@@ -8,6 +8,7 @@ import { Context } from "../..";
 import { observer } from "mobx-react-lite";
 import axios from "axios";
 import load_photo from "./../../imgs/load_photo.jpg";
+import UserVideos from "../../components/UserVideos/UserVideos";
 
 const UserProfile = observer((props) => {
   const store = useContext(Context);
@@ -42,7 +43,7 @@ const UserProfile = observer((props) => {
     {
       tabname: "Видео",
       tab_id: 1,
-      tab_content: <h1>VIDEOS</h1>,
+      tab_content: <UserVideos />,
     },
     {
       tabname: "Плейлисты",

@@ -1,0 +1,12 @@
+.user_video {
+  text-align: center;
+}
+
+.no_video {
+  /* font-size: 20px; */
+  padding: 5px;
+}
+
+.add_video {
+  color: #d9d9d9;
+}
