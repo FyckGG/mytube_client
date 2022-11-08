@@ -26,30 +26,30 @@ import { Context } from ".";
 function App() {
   const nodeRef = useRef(null);
   const store = useContext(Context);
-
+  //store.user.id
   const items_acc_menu = [
     {
-      href: "/profile",
+      href: `/profile/${store.user.id}`,
       value: "Мой профиль",
       icon: faUser,
     },
     {
-      href: "/subscriptions",
+      href: `/subscriptions/${store.user.id}`,
       value: "Мои подписки",
       icon: faListSquares,
     },
     {
-      href: "/liked_videos",
+      href: `/liked_videos/${store.user.id}`,
       value: "Понравившиеся видео",
       icon: faThumbsUp,
     },
     {
-      href: "/watch_later",
+      href: `/watch_later/${store.user.id}`,
       value: "Смотреть позже",
       icon: faClockFour,
     },
     {
-      href: "/playlisis",
+      href: `/playlisis/${store.user.id}`,
       value: "Плейлисты",
       icon: faFilm,
     },
@@ -156,12 +156,12 @@ function App() {
         />
 
         <Routes>
-          <Route path="/profile" element={<UserProfile />} />
-          <Route path="/subscriptions" element={<UserSubscriptions />} />
-          <Route path="/liked_videos" element={<UserLikes />} />
-          <Route path="/watch_later" element={<UserPlaylists />} />
-          <Route path="/playlisis" element={<UserPlaylists />} />
-          <Route path="/upload_video" element={<UploadVideo />} />
+          <Route path="/profile/:id" element={<UserProfile />} />
+          <Route path="/subscriptions/:id" element={<UserSubscriptions />} />
+          <Route path="/liked_videos/:id" element={<UserLikes />} />
+          <Route path="/watch_later/:id" element={<UserPlaylists />} />
+          <Route path="/playlisis/:id" element={<UserPlaylists />} />
+          <Route path="/upload_video:/id" element={<UploadVideo />} />
           <Route path="/" element={<MainPage />} />
         </Routes>
       </div>
