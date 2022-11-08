@@ -161,7 +161,7 @@ function App() {
           <Route path="/liked_videos/:id" element={<UserLikes />} />
           <Route path="/watch_later/:id" element={<UserPlaylists />} />
           <Route path="/playlisis/:id" element={<UserPlaylists />} />
-          <Route path="/upload_video:/id" element={<UploadVideo />} />
+          <Route path="/upload_video/:id" element={<UploadVideo />} />
           <Route path="/" element={<MainPage />} />
         </Routes>
       </div>
