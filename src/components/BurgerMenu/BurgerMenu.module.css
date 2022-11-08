@@ -1,0 +1,37 @@
+.menu_content_active {
+  transform: translateX(0) !important;
+}
+
+.menu_content {
+  position: fixed;
+  height: 100vh;
+  width: 20vw;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  background-color: #466570;
+  transform: translateX(-100%);
+  transition: all 0.4s;
+}
+
+.menu_content a {
+  color: aliceblue;
+  text-decoration: none;
+}
+
+.menu_content li {
+  display: block;
+  margin: 10px;
+}
+
+.menu_content ul {
+  text-align: center;
+}
+
+.menu_header {
+  color: aliceblue;
+  width: 100%;
+  text-align: center;
+  border-bottom: 2px solid black;
+  font-size: 20px;
+}

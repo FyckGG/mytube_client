@@ -1,0 +1,40 @@
+.img_upload_form {
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+
+.upload_photo {
+  border-radius: 10px;
+  border-style: solid;
+}
+
+.upload_photo_drop {
+  border-style: dashed;
+}
+
+.img_upload_form input[type="file"] {
+  display: none;
+}
+
+.custom_file_upload {
+  background-color: #f3f47b;
+  display: inline-block;
+  cursor: pointer;
+  padding: 5px;
+  border: 1px solid #d1e0e0;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.custom_file_upload:hover {
+  background-color: #c7c866;
+  border: 1px solid black;
+}
+
+.img_status {
+  margin-top: 5px;
+  background-color: red;
+  padding: 2px;
+  border-radius: 4px;
+}

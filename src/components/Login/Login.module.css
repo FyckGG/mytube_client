@@ -1,0 +1,50 @@
+.form_sig {
+  padding: 15px;
+}
+
+.form_sig label {
+  font-weight: bold;
+  color: #f3f47b;
+}
+
+hr {
+  background-color: #f3f47b;
+  height: 2px;
+}
+
+.form_sig input {
+  border: 1px solid #d1e0e0;
+  border-radius: 4px;
+  padding: 5px;
+  font-size: 15px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.create_acc {
+  margin-top: 15px !important;
+  background-color: #f3f47b;
+  padding: 5px;
+  font-size: 20px !important;
+  cursor: pointer;
+}
+
+.bad_input {
+  display: inline-block;
+  margin-left: 10px;
+  color: #9f1f35;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.create_acc:hover {
+  background-color: #c7c866;
+  border: 1px solid black;
+}
+
+.create_acc_disabled {
+  margin-top: 15px !important;
+  background-color: #a2a08c;
+  padding: 5px;
+  font-size: 20px !important;
+}

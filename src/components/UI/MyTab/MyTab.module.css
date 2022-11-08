@@ -1,0 +1,24 @@
+.mytab {
+  /* background-color: #9bacb2; */
+  color: #d9d9d9;
+  background-color: #5b757e;
+  border: 0;
+  padding: 5px;
+  font-size: 17px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.mytab_on {
+  color: aliceblue;
+  background-color: #9bacb2;
+  border: 0;
+  padding: 5px;
+  font-size: 17px;
+  cursor: pointer;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.mytab:hover {
+  color: aliceblue;
+}

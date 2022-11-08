@@ -1,0 +1,12 @@
+form {
+  display: inline-block;
+}
+
+.search input {
+  border: 1px solid #d1e0e0;
+  border-radius: 4px;
+  width: 500px;
+  height: 25px;
+  min-width: 100px;
+  padding: 2px;
+}

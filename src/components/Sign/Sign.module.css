@@ -1,0 +1,92 @@
+.form_reg {
+  padding: 15px;
+}
+
+.img_upload {
+  display: flex;
+  position: relative;
+  float: right;
+  padding: 30px;
+  /* align-self: center; */
+  flex-basis: 30%;
+}
+
+.sign_panel {
+  display: flex;
+  justify-content: space-around;
+}
+
+.bad_input {
+  display: inline-block;
+  margin-left: 10px;
+  color: #9f1f35;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.good_resp {
+  color: #00cc99 !important;
+}
+
+.form_reg label {
+  font-weight: bold;
+  color: #f3f47b;
+}
+
+hr {
+  background-color: #f3f47b;
+  height: 2px;
+}
+
+.form_reg input {
+  border: 1px solid #d1e0e0;
+  border-radius: 4px;
+  padding: 5px;
+  font-size: 15px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.create_acc {
+  margin-top: 15px !important;
+  background-color: #f3f47b;
+  padding: 5px;
+  font-size: 20px !important;
+  cursor: pointer;
+}
+
+.create_acc:hover {
+  background-color: #c7c866;
+  border: 1px solid black;
+}
+
+.create_acc_disabled {
+  margin-top: 15px !important;
+  background-color: #a2a08c;
+  padding: 5px;
+  font-size: 20px !important;
+}
+
+.load_panel {
+  display: flex;
+}
+
+.donut {
+  margin-top: 7px;
+  display: inline-block;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #c7c866;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: donut-spin 1.2s linear infinite;
+}
+
+@keyframes donut-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
