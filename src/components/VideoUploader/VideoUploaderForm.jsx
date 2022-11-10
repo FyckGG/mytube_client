@@ -58,7 +58,7 @@ const VideoUploader = () => {
       {
         userId: store.user.id,
         name: videoName,
-        path: `${__dirname}/../usersData/${store.user.id}/videos/${upload_responce.data.video_name}`,
+        path: `/../usersData/${store.user.id}/videos/${upload_responce.data.video_name}`,
         description: videoDescription,
         is_public: isPublic,
         subject: videoSubject,
