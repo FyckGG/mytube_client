@@ -22,7 +22,7 @@ const VideoUploader = () => {
   };
 
   const handleSubjectChange = (e) => {
-    console.log(e.target.value);
+    //console.log(e.target.value);
     setVideoSubject(e.target.value);
   };
 
@@ -40,18 +40,18 @@ const VideoUploader = () => {
         },
       }
     );
-    console.log(upload_responce.data.video_name);
-    // const db_responce = await axios.post(
-    //   "http://localhost:5000/user-action/add-video",
-    //   {
-    //     userId: store.user.id,
-    //     name: videoName,
-    //     path: "cococ",
-    //     description: videoDescription,
-    //     is_public: isPublic,
-    //     subject: videoSubject,
-    //   }
-    // );
+    //console.log(upload_responce.data.video_name);
+    const db_responce = await axios.post(
+      "http://localhost:5000/user-action/add-video",
+      {
+        userId: store.user.id,
+        name: videoName,
+        path: `${__dirname}/../usersData/${store.user.id}/videos/${upload_responce.data.video_name}`,
+        description: videoDescription,
+        is_public: isPublic,
+        subject: videoSubject,
+      }
+    );
   }
   return (
     <div className={styles.video_uploader}>
@@ -65,7 +65,7 @@ const VideoUploader = () => {
             id="video_name"
             value={videoName}
             onChange={(e) => {
-              console.log(e.target.value);
+              //console.log(e.target.value);
               setVideoName(e.target.value);
             }}
           />
@@ -79,7 +79,7 @@ const VideoUploader = () => {
             className={styles.video_description}
             value={videoDescription}
             onChange={(e) => {
-              console.log(e.target.value);
+              //console.log(e.target.value);
               setVideoDescription(e.target.value);
             }}
           ></textarea>
