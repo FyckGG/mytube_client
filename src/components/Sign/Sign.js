@@ -9,6 +9,7 @@ import { Context } from "../..";
 import { observer } from "mobx-react-lite";
 import ImgUploader from "./../ImgUploader/ImgUploader";
 import empty_photo from "./../../imgs/empty_photo.jpg";
+import Donut from "../UI/Donut/Donut";
 
 import axios from "axios";
 
@@ -206,8 +207,14 @@ function Sign({ modalActive, setModalActive, onSign }) {
           </label>
           <p className={styles.bad_input}>{errorRepassword}</p>
           <br />
-          {isSendingData ? (
-            <div className={styles.load_panel}>
+          {!isSendingData ? (
+            <Donut
+              donut_name={"Отправка данных"}
+              donut_color={"#c7c866"}
+              donut_size={"40px"}
+            />
+          ) : (
+            /* <div className={styles.load_panel}>
               <div
                 style={{
                   display: "inline-block",
@@ -220,8 +227,8 @@ function Sign({ modalActive, setModalActive, onSign }) {
                 Отправка данных
               </div>
               <div class={styles.donut}></div>{" "}
-            </div>
-          ) : (
+            </div> */
+
             <input
               className={
                 check_on_correct()
