@@ -3,6 +3,7 @@ import styles from "./VideoUploaderForm.module.css";
 import VideoInput from "../VideoInput/VideoInput";
 import axios from "axios";
 import { Context } from "../..";
+import { useNavigate } from "react-router-dom";
 
 const VideoUploader = () => {
   const [videoName, setVideoName] = React.useState("");
@@ -11,6 +12,7 @@ const VideoUploader = () => {
   const [videoSubject, setVideoSubject] = React.useState("");
   const [videoForUpload, setVideoForUpload] = React.useState("");
   const store = React.useContext(Context);
+  const navigate = useNavigate();
 
   const handleVideoChange = (e) => {
     setVideoForUpload(e);
@@ -22,7 +24,6 @@ const VideoUploader = () => {
   };
 
   const handleSubjectChange = (e) => {
-    //console.log(e.target.value);
     setVideoSubject(e.target.value);
   };
 
@@ -40,7 +41,7 @@ const VideoUploader = () => {
         },
       }
     );
-    //console.log(upload_responce.data.video_name);
+
     const db_responce = await axios.post(
       "http://localhost:5000/user-action/add-video",
       {
@@ -52,6 +53,8 @@ const VideoUploader = () => {
         subject: videoSubject,
       }
     );
+    console.log(db_responce.status);
+    if (db_responce.status === 200) navigate(`/profile/${store.user.id}`);
   }
   return (
     <div className={styles.video_uploader}>
@@ -65,7 +68,6 @@ const VideoUploader = () => {
             id="video_name"
             value={videoName}
             onChange={(e) => {
-              //console.log(e.target.value);
               setVideoName(e.target.value);
             }}
           />
@@ -79,7 +81,6 @@ const VideoUploader = () => {
             className={styles.video_description}
             value={videoDescription}
             onChange={(e) => {
-              //console.log(e.target.value);
               setVideoDescription(e.target.value);
             }}
           ></textarea>
