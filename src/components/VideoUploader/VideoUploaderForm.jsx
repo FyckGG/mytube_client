@@ -28,6 +28,17 @@ const VideoUploader = () => {
 
   async function upload_video(e) {
     e.preventDefault();
+    const responce = await axios.post(
+      "http://localhost:5000/user-action/add-video",
+      {
+        userId: store.user.id,
+        name: videoName,
+        path: "cococ",
+        description: videoDescription,
+        is_public: isPublic,
+        subject: videoSubject,
+      }
+    );
   }
   return (
     <div className={styles.video_uploader}>
