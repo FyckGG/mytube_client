@@ -9,7 +9,12 @@ const VideoUploader = () => {
   const [videoDescription, setVideoDescription] = React.useState("");
   const [isPublic, setIsPublic] = React.useState(true);
   const [videoSubject, setVideoSubject] = React.useState("");
+  const [videoForUpload, setVideoForUpload] = React.useState("");
   const store = React.useContext(Context);
+
+  const handleVideoChange = (e) => {
+    setVideoForUpload(e);
+  };
 
   const handlePublicChange = (e) => {
     if (e.target.value === "0") setIsPublic(true);
@@ -27,7 +32,7 @@ const VideoUploader = () => {
   return (
     <div className={styles.video_uploader}>
       <form className={styles.video_uploader_form} onSubmit={upload_video}>
-        <VideoInput height={300} width={400} />
+        <VideoInput height={300} width={400} video_change={handleVideoChange} />
         <br />
         <label for="video_name">
           Название видео:

@@ -12,6 +12,7 @@ const VideoInput = (props) => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     const url = URL.createObjectURL(file);
+    props.video_change(file);
     setSource(url);
   };
   const dragStartHandler = (e) => {
@@ -42,12 +43,10 @@ const VideoInput = (props) => {
         setError();
         fileReader.onloadend = () => {
           setSource(fileReader.result);
-          // props.img_change(e.dataTransfer.files[0]);
-          // console.log(imageURL);
         };
       }
     }
-    //handleOnChange(e);
+
     setDrop(false);
   };
   return (
