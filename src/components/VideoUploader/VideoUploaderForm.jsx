@@ -28,17 +28,30 @@ const VideoUploader = () => {
 
   async function upload_video(e) {
     e.preventDefault();
-    const responce = await axios.post(
-      "http://localhost:5000/user-action/add-video",
+    const uploading_video = new FormData();
+    uploading_video.append("id", store.user.id);
+    uploading_video.append("video", videoForUpload);
+    const upload_responce = await axios.post(
+      "http://localhost:5000/user-action/upload-video",
+      uploading_video,
       {
-        userId: store.user.id,
-        name: videoName,
-        path: "cococ",
-        description: videoDescription,
-        is_public: isPublic,
-        subject: videoSubject,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       }
     );
+    console.log(upload_responce.data.video_name);
+    // const db_responce = await axios.post(
+    //   "http://localhost:5000/user-action/add-video",
+    //   {
+    //     userId: store.user.id,
+    //     name: videoName,
+    //     path: "cococ",
+    //     description: videoDescription,
+    //     is_public: isPublic,
+    //     subject: videoSubject,
+    //   }
+    // );
   }
   return (
     <div className={styles.video_uploader}>
