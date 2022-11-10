@@ -1,16 +1,45 @@
 import React from "react";
 import styles from "./VideoUploaderForm.module.css";
 import VideoInput from "../VideoInput/VideoInput";
+import axios from "axios";
+import { Context } from "../..";
 
 const VideoUploader = () => {
+  const [videoName, setVideoName] = React.useState("");
+  const [videoDescription, setVideoDescription] = React.useState("");
+  const [isPublic, setIsPublic] = React.useState(true);
+  const [videoSubject, setVideoSubject] = React.useState("");
+  const store = React.useContext(Context);
+
+  const handlePublicChange = (e) => {
+    if (e.target.value === "0") setIsPublic(true);
+    else setIsPublic(false);
+  };
+
+  const handleSubjectChange = (e) => {
+    console.log(e.target.value);
+    setVideoSubject(e.target.value);
+  };
+
+  async function upload_video(e) {
+    e.preventDefault();
+  }
   return (
     <div className={styles.video_uploader}>
-      <form className={styles.video_uploader_form}>
+      <form className={styles.video_uploader_form} onSubmit={upload_video}>
         <VideoInput height={300} width={400} />
         <br />
         <label for="video_name">
           Название видео:
-          <input type="text" id="video_name" />
+          <input
+            type="text"
+            id="video_name"
+            value={videoName}
+            onChange={(e) => {
+              console.log(e.target.value);
+              setVideoName(e.target.value);
+            }}
+          />
         </label>
         <label for="video_description">
           Описание видео:
@@ -19,11 +48,16 @@ const VideoUploader = () => {
             cols="45"
             name="text"
             className={styles.video_description}
+            value={videoDescription}
+            onChange={(e) => {
+              console.log(e.target.value);
+              setVideoDescription(e.target.value);
+            }}
           ></textarea>
         </label>
         <label>
           Тип доступа:
-          <select>
+          <select onChange={handlePublicChange}>
             <option value="0">Публичный</option>
             <option value="1">Приватный</option>
           </select>
@@ -31,19 +65,19 @@ const VideoUploader = () => {
         <br />
         <label for="video">
           Тема видео:
-          <select>
+          <select onChange={handleSubjectChange}>
             <option selected disabled>
               Выберите тему
             </option>
-            <option value="0">Фильмы/сериалы</option>
-            <option value="1">Мультфилмы/анимация</option>
-            <option value="2">Музыка</option>
-            <option value="3">Видеоигры</option>
-            <option value="4">Спорт</option>
-            <option value="5">Активынй отдых</option>
-            <option value="6">Наука/технологии</option>
-            <option value="7">Экономика</option>
-            <option value="8">Политика</option>
+            <option value="Фильмы/сериалы">Фильмы/сериалы</option>
+            <option value="Мультфилмы/анимация">Мультфилмы/анимация</option>
+            <option value="Музыка">Музыка</option>
+            <option value="Видеоигры">Видеоигры</option>
+            <option value="Спорт">Спорт</option>
+            <option value="Активынй отдых">Активынй отдых</option>
+            <option value="Наука/технологии">Наука/технологии</option>
+            <option value="Экономика">Экономика</option>
+            <option value="Политика">Политика</option>
           </select>
         </label>
         <div style={{ textAlign: "center" }}>
