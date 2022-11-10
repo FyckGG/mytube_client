@@ -11,6 +11,7 @@ const VideoUploader = () => {
   const [isPublic, setIsPublic] = React.useState(true);
   const [videoSubject, setVideoSubject] = React.useState("");
   const [videoForUpload, setVideoForUpload] = React.useState("");
+  const [isVideoSending, setIsvideoSending] = React.useState(false);
   const store = React.useContext(Context);
   const navigate = useNavigate();
 
