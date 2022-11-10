@@ -14,6 +14,17 @@ const VideoUploader = () => {
   const store = React.useContext(Context);
   const navigate = useNavigate();
 
+  const is_full_video_data = () => {
+    if (
+      videoName !== "" &&
+      videoDescription !== "" &&
+      videoSubject !== "" &&
+      videoForUpload !== ""
+    )
+      return true;
+    else return false;
+  };
+
   const handleVideoChange = (e) => {
     setVideoForUpload(e);
   };
@@ -115,7 +126,12 @@ const VideoUploader = () => {
             type="submit"
             id="uploading"
             value="Загрузить"
-            className={styles.send_video_button}
+            className={
+              is_full_video_data()
+                ? styles.send_video_button
+                : styles.send_video_button_disabled
+            }
+            disabled={!is_full_video_data()}
           />
         </div>
       </form>
