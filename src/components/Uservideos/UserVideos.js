@@ -7,13 +7,21 @@ const UserVideos = () => {
   const store = React.useContext(Context);
   return (
     <div className={styles.user_video}>
-      <div className={styles.no_video}>
-        <h2>Нет видео</h2>
-      </div>
-      {/* <Main_Button button_action={}>Загрузить видео</Main_Button> */}
-      <Link to={`/upload_video/${store.user.id}`} className={styles.add_video}>
-        Загрузить видео
-      </Link>
+      {store.user.isActivated ? (
+        <>
+          <div className={styles.no_video}>
+            <h2>Нет видео</h2>
+          </div>
+          <Link
+            to={`/upload_video/${store.user.id}`}
+            className={styles.add_video}
+          >
+            Загрузить видео
+          </Link>{" "}
+        </>
+      ) : (
+        <h2>Для загрузки видео подтвердите свою электронную почту</h2>
+      )}
     </div>
   );
 };
