@@ -7,8 +7,8 @@ const Donut = (props) => {
       <div
         style={{
           display: "inline-block",
-          color: "#f3f47b",
-          fontSize: "15px",
+          color: props.donut_color,
+          fontSize: props.donut_name_size,
           fontWeight: "bold",
           margin: "auto",
         }}

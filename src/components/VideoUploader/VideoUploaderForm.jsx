@@ -4,6 +4,7 @@ import VideoInput from "../VideoInput/VideoInput";
 import axios from "axios";
 import { Context } from "../..";
 import { useNavigate } from "react-router-dom";
+import Donut from "../UI/Donut/Donut";
 
 const VideoUploader = () => {
   const [videoName, setVideoName] = React.useState("");
@@ -40,6 +41,7 @@ const VideoUploader = () => {
   };
 
   async function upload_video(e) {
+    setIsvideoSending(true);
     e.preventDefault();
     const uploading_video = new FormData();
     uploading_video.append("id", store.user.id);
@@ -65,7 +67,7 @@ const VideoUploader = () => {
         subject: videoSubject,
       }
     );
-    console.log(db_responce.status);
+    //console.log(db_responce.status);
     if (db_responce.status === 200) navigate(`/profile/${store.user.id}`);
   }
   return (
@@ -123,17 +125,28 @@ const VideoUploader = () => {
           </select>
         </label>
         <div style={{ textAlign: "center" }}>
-          <input
-            type="submit"
-            id="uploading"
-            value="Загрузить"
-            className={
-              is_full_video_data()
-                ? styles.send_video_button
-                : styles.send_video_button_disabled
-            }
-            disabled={!is_full_video_data()}
-          />
+          {isVideoSending ? (
+            <div className={styles.donut_panel}>
+              <Donut
+                donut_name={"Загрузка видео на сервер"}
+                donut_name_size={"17px"}
+                donut_color={"#f3f47b"}
+                donut_size={"40px"}
+              />
+            </div>
+          ) : (
+            <input
+              type="submit"
+              id="uploading"
+              value="Загрузить"
+              className={
+                is_full_video_data()
+                  ? styles.send_video_button
+                  : styles.send_video_button_disabled
+              }
+              disabled={!is_full_video_data()}
+            />
+          )}
         </div>
       </form>
     </div>

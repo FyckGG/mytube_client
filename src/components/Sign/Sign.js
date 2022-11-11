@@ -207,10 +207,11 @@ function Sign({ modalActive, setModalActive, onSign }) {
           </label>
           <p className={styles.bad_input}>{errorRepassword}</p>
           <br />
-          {!isSendingData ? (
+          {isSendingData ? (
             <Donut
               donut_name={"Отправка данных"}
-              donut_color={"#c7c866"}
+              donut_name_size={"15px"}
+              donut_color={"#f3f47b"}
               donut_size={"40px"}
             />
           ) : (
