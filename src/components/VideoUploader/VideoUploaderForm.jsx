@@ -68,7 +68,11 @@ const VideoUploader = () => {
       }
     );
     //console.log(db_responce.status);
-    if (db_responce.status === 200) navigate(`/profile/${store.user.id}`);
+
+    if (db_responce.status === 200) {
+      alert("Видео успешно загружено.");
+      navigate(`/profile/${store.user.id}`);
+    }
   }
   return (
     <div className={styles.video_uploader}>
