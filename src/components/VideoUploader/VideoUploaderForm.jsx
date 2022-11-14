@@ -67,9 +67,20 @@ const VideoUploader = () => {
         subject: videoSubject,
       }
     );
-    //console.log(db_responce.status);
 
-    if (db_responce.status === 200) {
+    const thumbnail_responce = await axios.post(
+      "http://localhost:5000/user-action/create-video-thumbnail",
+      {
+        video_dir: `/../usersData/${store.user.id}/videos/${upload_responce.data.video_name}`,
+        thumbnail_dir: `/../usersData/${store.user.id}/videos_thumbnails`,
+        thumbnail_name: upload_responce.data.video_name.substring(
+          0,
+          upload_responce.data.video_name.indexOf(".")
+        ),
+      }
+    );
+
+    if (thumbnail_responce.status === 200) {
       alert("Видео успешно загружено.");
       navigate(`/profile/${store.user.id}`);
     }
