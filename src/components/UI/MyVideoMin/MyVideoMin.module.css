@@ -1,0 +1,15 @@
+.video_min {
+  display: inline-block;
+}
+
+.video_time {
+  display: inline-block;
+  padding: 3px;
+  border-radius: 2px;
+  background-color: #b8b8c7;
+  margin-left: 5px;
+}
+
+.views {
+  display: inline-block;
+}
