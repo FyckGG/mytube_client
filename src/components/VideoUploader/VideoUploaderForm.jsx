@@ -14,7 +14,8 @@ const VideoUploader = () => {
   const [isPublic, setIsPublic] = React.useState(true);
   const [videoSubject, setVideoSubject] = React.useState("");
   const [videoForUpload, setVideoForUpload] = React.useState("");
-  const [videoData, setVideoData] = React.useState("");
+  //const [videoData, setVideoData] = React.useState("");
+  const [videoDuration, setVideoDuration] = React.useState(0);
   const [isVideoSending, setIsvideoSending] = React.useState(false);
   const store = React.useContext(Context);
   const navigate = useNavigate();
@@ -34,7 +35,11 @@ const VideoUploader = () => {
     setVideoForUpload(e);
     fileReader.readAsDataURL(e);
     fileReader.onloadend = () => {
-      setVideoData(fileReader.result);
+      //setVideoData(fileReader.result);
+      const media = new Audio(fileReader.result);
+      media.onloadedmetadata = () => {
+        setVideoDuration(media.duration);
+      };
     };
   };
 
@@ -50,11 +55,12 @@ const VideoUploader = () => {
   async function upload_video(e) {
     setIsvideoSending(true);
     e.preventDefault();
-    const video_duration = 0;
-    var media = new Audio(videoData);
-    media.onloadedmetadata = () => {
-      video_duration = media.duration;
-    };
+    // var video_duration = 0;
+    // const media = new Audio(videoData);
+    // media.onloadedmetadata = () => {
+    //   video_duration = media.duration;
+    // };
+
     const uploading_video = new FormData();
     uploading_video.append("id", store.user.id);
     uploading_video.append("video", videoForUpload);
@@ -77,7 +83,7 @@ const VideoUploader = () => {
         description: videoDescription,
         is_public: isPublic,
         subject: videoSubject,
-        duration: video_duration,
+        duration: videoDuration,
       }
     );
 
