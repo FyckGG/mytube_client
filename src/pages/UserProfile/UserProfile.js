@@ -15,9 +15,11 @@ const UserProfile = observer((props) => {
   const [avatar, setAvatar] = useState("");
   const [user_videos, setUserVideos] = useState([]);
   const [avatarLoading, setAvatarLoading] = useState(false);
+  const [videosLoading, setVideosLoading] = useState(false);
   useEffect(() => {
     const getUserData = async () => {
       setAvatarLoading(true);
+      setVideosLoading(true);
       await store.checkAuth();
       const avatar_result = await axios.post(
         "http://localhost:5000/users-data-load/get-avatar",
@@ -36,6 +38,7 @@ const UserProfile = observer((props) => {
         }
       );
       setUserVideos(user_videos_result.data);
+      setVideosLoading(false);
       //console.log(user_videos_result.data);
     };
     getUserData();
@@ -53,6 +56,7 @@ const UserProfile = observer((props) => {
         <UserVideos
           videos={user_videos}
           is_activated={store.user.isActivated}
+          is_loading={videosLoading}
           user_id={store.user.id}
         />
       ),
