@@ -15,19 +15,23 @@ const UserVideos = (props) => {
             </div>
           ) : (
             props.videos.map((video) => (
-              <MyVideoMin
-                src={`http://localhost:5000${video.thumbnail_dir}`}
-                video_name={video.video_name}
-                video_time={video.video_duration}
-              />
+              <div className={styles.video_min}>
+                <MyVideoMin
+                  src={`http://localhost:5000${video.thumbnail_dir}`}
+                  video_name={video.video_name}
+                  video_time={video.video_duration}
+                />
+              </div>
             ))
           )}
-          <Link
-            to={`/upload_video/${props.user_id}`}
-            className={styles.add_video}
-          >
-            Загрузить видео
-          </Link>{" "}
+          <div style={{ marginTop: "5px" }}>
+            <Link
+              to={`/upload_video/${props.user_id}`}
+              className={styles.add_video}
+            >
+              Загрузить видео
+            </Link>{" "}
+          </div>
         </>
       ) : (
         <h2>Для загрузки видео подтвердите свою электронную почту.</h2>

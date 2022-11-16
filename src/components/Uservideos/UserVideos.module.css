@@ -2,11 +2,17 @@
   text-align: center;
 }
 
+.video_min {
+  display: inline-block;
+  padding: 10px;
+}
+
 .no_video {
   /* font-size: 20px; */
   padding: 5px;
 }
 
 .add_video {
+  font-size: 20px;
   color: #d9d9d9;
 }
