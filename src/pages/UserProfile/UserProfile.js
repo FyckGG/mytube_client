@@ -13,26 +13,31 @@ import UserVideos from "../../components/UserVideos/UserVideos";
 const UserProfile = observer((props) => {
   const store = useContext(Context);
   const [avatar, setAvatar] = useState("");
+  const [user_videos, setUserVideos] = useState({});
   const [avatarLoading, setAvatarLoading] = useState(false);
   useEffect(() => {
-    const getAvatar = async () => {
+    const getUserData = async () => {
       setAvatarLoading(true);
       await store.checkAuth();
-      const result = await axios.post(
+      const avatar_result = await axios.post(
         "http://localhost:5000/users-data-load/get-avatar",
         {
           id: store.user.id,
         }
       );
-      console.log(result);
       setAvatar(
-        `http://localhost:5000${result.data.avatar_dir}${result.data.avatar_name}`
+        `http://localhost:5000${avatar_result.data.avatar_dir}${avatar_result.data.avatar_name}`
       );
-      console.log(avatar);
       setAvatarLoading(false);
-      //console.log(avatarLoading);
+      const user_videos_result = await axios.post(
+        "http://localhost:5000/users-data-load/get-user-videos",
+        {
+          user_id: store.user.id,
+        }
+      );
+      console.log(user_videos_result);
     };
-    getAvatar();
+    getUserData();
   }, []);
   const tab_items = [
     {
@@ -43,7 +48,12 @@ const UserProfile = observer((props) => {
     {
       tabname: "Видео",
       tab_id: 1,
-      tab_content: <UserVideos />,
+      tab_content: (
+        <UserVideos
+          is_activated={store.user.isActivated}
+          user_id={store.user.id}
+        />
+      ),
     },
     {
       tabname: "Плейлисты",
