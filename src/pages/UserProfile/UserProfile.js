@@ -13,7 +13,7 @@ import UserVideos from "../../components/UserVideos/UserVideos";
 const UserProfile = observer((props) => {
   const store = useContext(Context);
   const [avatar, setAvatar] = useState("");
-  const [user_videos, setUserVideos] = useState({});
+  const [user_videos, setUserVideos] = useState([]);
   const [avatarLoading, setAvatarLoading] = useState(false);
   useEffect(() => {
     const getUserData = async () => {
@@ -35,7 +35,8 @@ const UserProfile = observer((props) => {
           user_id: store.user.id,
         }
       );
-      console.log(user_videos_result);
+      setUserVideos(user_videos_result.data);
+      //console.log(user_videos_result.data);
     };
     getUserData();
   }, []);
@@ -50,6 +51,7 @@ const UserProfile = observer((props) => {
       tab_id: 1,
       tab_content: (
         <UserVideos
+          videos={user_videos}
           is_activated={store.user.isActivated}
           user_id={store.user.id}
         />
