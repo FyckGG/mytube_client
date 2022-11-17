@@ -23,6 +23,11 @@
   padding: 10px;
 }
 
+.video_min:hover {
+  cursor: pointer;
+  background-color: #b8b8c7;
+}
+
 .no_video {
   /* font-size: 20px; */
   padding: 5px;

@@ -8,6 +8,7 @@ import { observer } from "mobx-react-lite";
 import convertTime from "./../../otherServices/convertVideoTime";
 
 const UserVideos = observer((props) => {
+  const store = React.useContext(Context);
   return (
     <div className={styles.user_video}>
       {props.is_loading ? (
@@ -23,11 +24,16 @@ const UserVideos = observer((props) => {
               ) : (
                 props.videos.map((video) => (
                   <div className={styles.video_min}>
-                    <MyVideoMin
-                      src={`http://localhost:5000${video.thumbnail_dir}`}
-                      video_name={video.video_name}
-                      video_time={convertTime(video.video_duration)}
-                    />
+                    <Link
+                      to={`/watch_video?v=${video.id}_channel=${store.user.id}`}
+                      style={{ color: "inherit", textDecoration: "inherit" }}
+                    >
+                      <MyVideoMin
+                        src={`http://localhost:5000${video.thumbnail_dir}`}
+                        video_name={video.video_name}
+                        video_time={convertTime(video.video_duration)}
+                      />
+                    </Link>
                   </div>
                 ))
               )}
