@@ -9,6 +9,7 @@ import convertTime from "./../../otherServices/convertVideoTime";
 
 const UserVideos = observer((props) => {
   const store = React.useContext(Context);
+  console.log(store.user);
   return (
     <div className={styles.user_video}>
       {props.is_loading ? (
@@ -25,7 +26,7 @@ const UserVideos = observer((props) => {
                 props.videos.map((video) => (
                   <div className={styles.video_min}>
                     <Link
-                      to={`/watch_video?v=${video.id}_channel=${store.user.id}`}
+                      to={`/watch_video?v=${video.id}&channel=${store.user.login}`}
                       style={{ color: "inherit", textDecoration: "inherit" }}
                     >
                       <MyVideoMin
