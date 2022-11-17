@@ -21,6 +21,7 @@ import UserLikes from "./pages/UserLikes/UserLikes";
 import UserPlaylists from "./pages/UserPlaylists/UserPlaylists";
 import UserSubscriptions from "./pages/UserSubscriptions/UserSubscriptions";
 import UploadVideo from "./pages/UploadVideo/UploadVideo";
+import WatchVideo from "./pages/WatchVideoPage/WatchVideo";
 import { Context } from ".";
 
 function App() {
@@ -162,6 +163,7 @@ function App() {
           <Route path="/watch_later/:id" element={<UserPlaylists />} />
           <Route path="/playlisis/:id" element={<UserPlaylists />} />
           <Route path="/upload_video/:id" element={<UploadVideo />} />
+          <Route path="/watch_video/" element={<WatchVideo />} />
           <Route path="/" element={<MainPage />} />
         </Routes>
       </div>
