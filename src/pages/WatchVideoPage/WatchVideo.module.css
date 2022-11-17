@@ -1,3 +1,45 @@
 .video_player {
   text-align: center;
 }
+
+.video_stat {
+  display: block;
+}
+
+.video_name {
+  display: inline;
+  padding: 5px;
+  color: #d9d9d9;
+}
+
+.views_count {
+  display: inline;
+  color: #d9d9d9;
+  float: right;
+  margin-right: 5px;
+}
+
+.channel_picture {
+  display: inline-block;
+  padding: 8px;
+}
+
+.channel_info {
+  display: inline-block;
+}
+
+.channel_name {
+  display: flex;
+  color: #d9d9d9;
+}
+
+.subscribe_button {
+  display: flex;
+  margin-left: 8px;
+}
+
+.count_subs {
+  display: flex;
+  font-size: 15px;
+  color: #d9d9d9;
+}
