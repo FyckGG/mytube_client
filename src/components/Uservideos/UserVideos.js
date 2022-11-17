@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../..";
 import MyVideoMin from "../UI/MyVideoMin/MyVideoMin";
 import { observer } from "mobx-react-lite";
+import convertTime from "./../../otherServices/convertVideoTime";
 
 const UserVideos = observer((props) => {
   return (
@@ -25,7 +26,7 @@ const UserVideos = observer((props) => {
                     <MyVideoMin
                       src={`http://localhost:5000${video.thumbnail_dir}`}
                       video_name={video.video_name}
-                      video_time={video.video_duration}
+                      video_time={convertTime(video.video_duration)}
                     />
                   </div>
                 ))
