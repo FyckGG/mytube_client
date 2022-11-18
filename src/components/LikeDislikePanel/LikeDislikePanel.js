@@ -4,7 +4,7 @@ import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 import styles from "./LikeDislikePanel.module.css";
 
-const LikeDislikePanel = () => {
+const LikeDislikePanel = (props) => {
   return (
     <div className={styles.like_dislike}>
       <div
@@ -16,7 +16,7 @@ const LikeDislikePanel = () => {
           size="xl"
           style={{ marginRight: "5px" }}
         />
-        <p>228 тыс.</p>
+        <p>{props.likes}</p>
       </div>
       <div
         className={styles.like_dislike_button}
@@ -27,7 +27,7 @@ const LikeDislikePanel = () => {
           size="xl"
           style={{ marginRight: "5px" }}
         />
-        <p>9</p>
+        <p>{props.dislikes}</p>
       </div>
     </div>
   );
