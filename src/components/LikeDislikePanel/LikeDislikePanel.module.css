@@ -1,0 +1,18 @@
+.like_dislike {
+  color: aliceblue;
+  display: flex;
+  float: right;
+  margin-right: 5px;
+  padding: 5px;
+}
+
+.like_dislike_button {
+  display: flex;
+  background-color: #a1bbc4;
+  padding: 5px;
+}
+
+.like_dislike_button:hover {
+  cursor: pointer;
+  background-color: #91b0ba;
+}
