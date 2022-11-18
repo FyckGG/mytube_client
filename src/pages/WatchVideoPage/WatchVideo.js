@@ -5,6 +5,7 @@ import { Context } from "../..";
 import { useSearchParams } from "react-router-dom";
 import ProfilePicture from "../../components/UI/ProfilePicture/ProfilePicture";
 import Main_Button from "../../components/UI/main_button/Main_Button";
+import LikeDislikePanel from "../../components/LikeDislikePanel/LikeDislikePanel";
 import axios from "axios";
 
 const WatchVideo = () => {
@@ -41,6 +42,17 @@ const WatchVideo = () => {
         <h1 className={styles.video_name}>Дилайлай</h1>
         <h2 className={styles.views_count}>228k prosmotrov</h2>
       </div>
+      <LikeDislikePanel />
+      {/* <FontAwesomeIcon
+        icon={faThumbsUp}
+        size="lg"
+        style={{ paddingRight: "5px" }}
+      />
+      <FontAwesomeIcon
+        icon={faThumbsDown}
+        size="lg"
+        style={{ paddingRight: "5px" }}
+      /> */}
       <div className={styles.channel_picture}>
         <ProfilePicture
           src={
