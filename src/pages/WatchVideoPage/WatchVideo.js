@@ -88,10 +88,13 @@ const WatchVideo = observer(() => {
                 {pageLoading ? "" : `${countSubs} subs.`}
               </p>
             </div>
-
-            <div className={styles.subscribe_button}>
-              <Main_Button>Подписаться</Main_Button>
-            </div>
+            {store.user.login == channelName || pageLoading ? (
+              <></>
+            ) : (
+              <div className={styles.subscribe_button}>
+                <Main_Button>Подписаться</Main_Button>
+              </div>
+            )}
           </div>
           <div className={styles.video_description}>
             <h3>Описание видео:</h3>
