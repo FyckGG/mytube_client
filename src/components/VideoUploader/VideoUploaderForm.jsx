@@ -5,6 +5,7 @@ import axios from "axios";
 import { Context } from "../..";
 import { useNavigate } from "react-router-dom";
 import Donut from "../UI/Donut/Donut";
+import userActions from "../../userActions/userActions";
 
 const VideoUploader = () => {
   const fileReader = new FileReader();
@@ -14,7 +15,6 @@ const VideoUploader = () => {
   const [isPublic, setIsPublic] = React.useState(true);
   const [videoSubject, setVideoSubject] = React.useState("");
   const [videoForUpload, setVideoForUpload] = React.useState("");
-  //const [videoData, setVideoData] = React.useState("");
   const [videoDuration, setVideoDuration] = React.useState(0);
   const [isVideoSending, setIsvideoSending] = React.useState(false);
   const store = React.useContext(Context);
@@ -35,7 +35,6 @@ const VideoUploader = () => {
     setVideoForUpload(e);
     fileReader.readAsDataURL(e);
     fileReader.onloadend = () => {
-      //setVideoData(fileReader.result);
       const media = new Audio(fileReader.result);
       media.onloadedmetadata = () => {
         setVideoDuration(media.duration);
@@ -64,15 +63,18 @@ const VideoUploader = () => {
     const uploading_video = new FormData();
     uploading_video.append("id", store.user.id);
     uploading_video.append("video", videoForUpload);
-    const upload_responce = await axios.post(
-      "http://localhost:5000/user-action/upload-video",
-      uploading_video,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
+    // const upload_responce = await axios.post(
+    //   "http://localhost:5000/user-action/upload-video",
+    //   uploading_video,
+    //   {
+    //     headers: {
+    //       "Content-Type": "multipart/form-data",
+    //     },
+    //   }
+    // );
+
+    const upload_responce = await userActions.uploadVideo(uploading_video);
+    console.log(upload_responce);
 
     const db_responce = await axios.post(
       "http://localhost:5000/user-action/add-video",
