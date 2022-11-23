@@ -8,6 +8,7 @@ import Main_Button from "../../components/UI/main_button/Main_Button";
 import LikeDislikePanel from "../../components/LikeDislikePanel/LikeDislikePanel";
 import axios from "axios";
 import { observer } from "mobx-react-lite";
+import isVideoWatching from "../../otherServices/isVideoWatching";
 
 const WatchVideo = observer(() => {
   const store = React.useContext(Context);
@@ -23,6 +24,34 @@ const WatchVideo = observer(() => {
   const [countViews, setCountViews] = React.useState("");
   const [searchParams, setSearchParams] = useSearchParams();
   const [pageLoading, setPageLoading] = React.useState(false);
+  const [isPlay, setIsPlay] = React.useState(false);
+  const [duration, setDuration] = React.useState(0);
+  const [second, setSecond] = React.useState(0);
+
+  const handlePlay = () => {
+    setIsPlay(true);
+  };
+
+  const handlePause = () => {
+    setIsPlay(false);
+  };
+
+  const handleDuration = (duration) => {
+    setDuration(Math.ceil(duration));
+  };
+
+  React.useEffect(() => {
+    let timer = null;
+    if (isPlay) {
+      timer = setInterval(() => {
+        setSecond((second) => second + 1);
+        if (isVideoWatching(duration, second)) console.log("Просмотрел");
+      }, 1000);
+    } else if (!isPlay && second !== 0) {
+      clearInterval(timer);
+    }
+    return () => clearInterval(timer);
+  }, [isPlay, second]);
 
   React.useEffect(() => {
     const getVideo = async () => {
@@ -57,6 +86,9 @@ const WatchVideo = observer(() => {
           width="100%"
           height="70vh"
           style={{ display: "inline-block", marginTop: "20px" }}
+          onDuration={handleDuration}
+          onPlay={handlePlay}
+          onPause={handlePause}
         />
       </div>
       {pageLoading ? (
