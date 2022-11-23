@@ -9,6 +9,7 @@ import LikeDislikePanel from "../../components/LikeDislikePanel/LikeDislikePanel
 import axios from "axios";
 import { observer } from "mobx-react-lite";
 import isVideoWatching from "../../otherServices/isVideoWatching";
+import VideoStatsService from "../../services/videoStatsService";
 
 const WatchVideo = observer(() => {
   const store = React.useContext(Context);
@@ -25,6 +26,7 @@ const WatchVideo = observer(() => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [pageLoading, setPageLoading] = React.useState(false);
   const [isPlay, setIsPlay] = React.useState(false);
+  const [isWatch, setIsWatch] = React.useState(false);
   const [duration, setDuration] = React.useState(0);
   const [second, setSecond] = React.useState(0);
 
@@ -42,10 +44,14 @@ const WatchVideo = observer(() => {
 
   React.useEffect(() => {
     let timer = null;
-    if (isPlay) {
+    if (isPlay && !isWatch) {
       timer = setInterval(() => {
         setSecond((second) => second + 1);
-        if (isVideoWatching(duration, second)) console.log("Просмотрел");
+        console.log(second);
+        if (isVideoWatching(duration, second)) {
+          setIsWatch(true);
+          VideoStatsService.addView(searchParams.get("v"));
+        }
       }, 1000);
     } else if (!isPlay && second !== 0) {
       clearInterval(timer);
