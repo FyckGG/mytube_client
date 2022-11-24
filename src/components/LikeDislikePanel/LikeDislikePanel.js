@@ -8,7 +8,11 @@ const LikeDislikePanel = (props) => {
   return (
     <div className={styles.like_dislike}>
       <div
-        className={styles.like_dislike_button}
+        className={
+          props.is_like_active
+            ? styles.like_dislike_button_pressed
+            : styles.like_dislike_button
+        }
         style={{ borderRadius: "5px 0 0 5px" }}
         onClick={props.onLike}
       >
@@ -20,7 +24,11 @@ const LikeDislikePanel = (props) => {
         <p>{props.likes}</p>
       </div>
       <div
-        className={styles.like_dislike_button}
+        className={
+          props.is_dislike_active
+            ? styles.like_dislike_button_pressed
+            : styles.like_dislike_button
+        }
         style={{ borderRadius: "0 5px 5px 0" }}
         onClick={props.onDislike}
       >

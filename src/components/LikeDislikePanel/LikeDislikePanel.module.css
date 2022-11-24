@@ -12,7 +12,18 @@
   padding: 5px;
 }
 
+.like_dislike_button_pressed {
+  display: flex;
+  background-color: #8aa0ad;
+  padding: 5px;
+}
+
 .like_dislike_button:hover {
   cursor: pointer;
   background-color: #91b0ba;
+}
+
+.like_dislike_button_pressed:hover {
+  cursor: pointer;
+  background-color: #8096a3;
 }
