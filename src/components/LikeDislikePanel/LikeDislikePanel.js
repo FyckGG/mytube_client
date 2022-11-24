@@ -10,6 +10,7 @@ const LikeDislikePanel = (props) => {
       <div
         className={styles.like_dislike_button}
         style={{ borderRadius: "5px 0 0 5px" }}
+        onClick={props.onLike}
       >
         <FontAwesomeIcon
           icon={faThumbsUp}
@@ -21,6 +22,7 @@ const LikeDislikePanel = (props) => {
       <div
         className={styles.like_dislike_button}
         style={{ borderRadius: "0 5px 5px 0" }}
+        onClick={props.onDislike}
       >
         <FontAwesomeIcon
           icon={faThumbsDown}

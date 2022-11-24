@@ -29,6 +29,26 @@ const WatchVideo = observer(() => {
   const [isWatch, setIsWatch] = React.useState(false);
   const [duration, setDuration] = React.useState(0);
   const [second, setSecond] = React.useState(0);
+  const [isLike, setIsLike] = React.useState(false);
+  const [isDislike, setIsDislike] = React.useState(false);
+
+  const handleLikeChange = () => {
+    if (isLike) {
+      setCountLike((countLike) => countLike - 1);
+    } else setCountLike((countLike) => countLike + 1);
+    setIsLike(!isLike);
+    if (isDislike) setCountDislike((countDislike) => countDislike - 1);
+    setIsDislike(false);
+  };
+
+  const handleDislikeChange = () => {
+    if (isDislike) {
+      setCountDislike((countDislike) => countDislike - 1);
+    } else setCountDislike((countDislike) => countDislike + 1);
+    setIsDislike(!isDislike);
+    if (isLike) setCountLike((countLike) => countLike - 1);
+    setIsLike(false);
+  };
 
   const handlePlay = () => {
     setIsPlay(true);
@@ -110,7 +130,14 @@ const WatchVideo = observer(() => {
                 Количество просмотров:{countViews}
               </h2>
             </div>
-            <LikeDislikePanel likes={countLike} dislikes={countDislike} />
+            <LikeDislikePanel
+              likes={countLike}
+              dislikes={countDislike}
+              is_like_active={isLike}
+              is_dislike_active={isDislike}
+              onLike={handleLikeChange}
+              onDislike={handleDislikeChange}
+            />
 
             <div className={styles.channel_picture}>
               <ProfilePicture
