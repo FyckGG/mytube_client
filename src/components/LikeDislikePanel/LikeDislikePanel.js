@@ -6,10 +6,18 @@ import styles from "./LikeDislikePanel.module.css";
 
 const LikeDislikePanel = (props) => {
   return (
-    <div className={styles.like_dislike}>
+    <div
+      className={
+        localStorage.getItem("token") == null
+          ? `${styles.like_dislike} ${styles.like_dislike_unval}`
+          : styles.like_dislike
+      }
+    >
       <div
         className={
-          props.is_like_active
+          localStorage.getItem("token") == null
+            ? `${styles.like_dislike_button} ${styles.like_dislike_button_unval}`
+            : props.is_like_active
             ? styles.like_dislike_button_pressed
             : styles.like_dislike_button
         }
@@ -25,7 +33,9 @@ const LikeDislikePanel = (props) => {
       </div>
       <div
         className={
-          props.is_dislike_active
+          localStorage.getItem("token") == null
+            ? `${styles.like_dislike_button} ${styles.like_dislike_button_unval}`
+            : props.is_dislike_active
             ? styles.like_dislike_button_pressed
             : styles.like_dislike_button
         }

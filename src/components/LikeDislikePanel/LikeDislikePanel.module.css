@@ -6,6 +6,11 @@
   padding: 5px;
 }
 
+.like_dislike_unval {
+  color: #a1bbc4 !important;
+  pointer-events: none !important;
+}
+
 .like_dislike_button {
   display: flex;
   background-color: #a1bbc4;
@@ -26,4 +31,8 @@
 .like_dislike_button_pressed:hover {
   cursor: pointer;
   background-color: #8096a3;
+}
+
+.like_dislike_button_unval {
+  background-color: #859ba8 !important;
 }
