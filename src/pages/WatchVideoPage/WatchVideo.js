@@ -118,12 +118,14 @@ const WatchVideo = observer(() => {
   }, [isPlay, second]);
 
   React.useEffect(() => {
+    console.log(store.user);
     const getVideo = async () => {
       setPageLoading(true);
       const video = await axios.post(
         "http://localhost:5000/user-action/load-watch-video",
         {
           video_id: searchParams.get("v"),
+          user_id: searchParams.get("u"),
         }
       );
       setVideoPath(video.data.video.video_directory);
@@ -136,6 +138,8 @@ const WatchVideo = observer(() => {
       setCountDislike(video.data.count_dislikes);
       setCountSubs(video.data.count_subs);
       setCountViews(video.data.count_views);
+      if (video.data.video_mark === true) setIsLike(true);
+      else if (video.data.video_mark === false) setIsDislike(true);
       setPageLoading(false);
     };
     getVideo();
