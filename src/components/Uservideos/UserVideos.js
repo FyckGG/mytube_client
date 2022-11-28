@@ -26,7 +26,7 @@ const UserVideos = observer((props) => {
                 props.videos.map((video) => (
                   <div className={styles.video_min}>
                     <Link
-                      to={`/watch_video?v=${video.id}&channel=${store.user.login}`}
+                      to={`/watch_video?v=${video.id}&u=${store.user.id}`}
                       style={{ color: "inherit", textDecoration: "inherit" }}
                     >
                       <MyVideoMin
