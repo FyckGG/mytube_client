@@ -54,24 +54,12 @@ const VideoUploader = () => {
   async function upload_video(e) {
     setIsvideoSending(true);
     e.preventDefault();
-    // var video_duration = 0;
-    // const media = new Audio(videoData);
-    // media.onloadedmetadata = () => {
-    //   video_duration = media.duration;
-    // };
+   
 
     const uploading_video = new FormData();
     uploading_video.append("id", store.user.id);
     uploading_video.append("video", videoForUpload);
-    // const upload_responce = await axios.post(
-    //   "http://localhost:5000/user-action/upload-video",
-    //   uploading_video,
-    //   {
-    //     headers: {
-    //       "Content-Type": "multipart/form-data",
-    //     },
-    //   }
-    // );
+   
 
     const upload_responce = await userActions.uploadVideo(uploading_video);
     console.log(upload_responce);
