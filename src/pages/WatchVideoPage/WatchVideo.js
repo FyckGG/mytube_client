@@ -32,22 +32,60 @@ const WatchVideo = observer(() => {
   const [isLike, setIsLike] = React.useState(false);
   const [isDislike, setIsDislike] = React.useState(false);
 
-  const handleLikeChange = () => {
+  const handleLikeChange = async () => {
     if (isLike) {
-      setCountLike((countLike) => countLike - 1);
-    } else setCountLike((countLike) => countLike + 1);
+      const delete_like = await VideoStatsService.deleteMark(
+        searchParams.get("v"),
+        store.user.id,
+        true
+      );
+      setCountLike(countLike - 1);
+    } else {
+      if (isDislike) {
+        const delete_dislike = await VideoStatsService.deleteMark(
+          searchParams.get("v"),
+          store.user.id,
+          false
+        );
+        setIsDislike(!isDislike);
+        setCountDislike(countDislike - 1);
+      }
+      const add_like = await VideoStatsService.addMark(
+        searchParams.get("v"),
+        store.user.id,
+        true
+      );
+      setCountLike(countLike + 1);
+    }
     setIsLike(!isLike);
-    if (isDislike) setCountDislike((countDislike) => countDislike - 1);
-    setIsDislike(false);
   };
 
-  const handleDislikeChange = () => {
+  const handleDislikeChange = async () => {
     if (isDislike) {
-      setCountDislike((countDislike) => countDislike - 1);
-    } else setCountDislike((countDislike) => countDislike + 1);
+      const delete_dislike = await VideoStatsService.deleteMark(
+        searchParams.get("v"),
+        store.user.id,
+        false
+      );
+      setCountDislike(countDislike - 1);
+    } else {
+      if (isLike) {
+        const delete_like = await VideoStatsService.deleteMark(
+          searchParams.get("v"),
+          store.user.id,
+          true
+        );
+        setIsLike(!isLike);
+        setCountLike(countLike - 1);
+      }
+      const add_dislike = await VideoStatsService.addMark(
+        searchParams.get("v"),
+        store.user.id,
+        false
+      );
+      setCountDislike(countDislike + 1);
+    }
     setIsDislike(!isDislike);
-    if (isLike) setCountLike((countLike) => countLike - 1);
-    setIsLike(false);
   };
 
   const handlePlay = () => {
