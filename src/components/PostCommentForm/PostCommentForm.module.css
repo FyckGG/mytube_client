@@ -1,0 +1,35 @@
+.post_form {
+  width: 98%;
+}
+
+.post_pole {
+  display: flex;
+  justify-content: center;
+}
+
+.text_area {
+  resize: none;
+  width: 100%;
+  margin: 5px 0px 5px 0px;
+}
+
+.form_buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form_buttons button {
+  padding: 2px;
+  background-color: #f3f47b;
+  font-size: 15px;
+  border: 1px solid wheat;
+}
+
+.form_buttons button:hover {
+  cursor: pointer;
+  background-color: #c7c866;
+}
+
+.send {
+  margin-left: 5px;
+}
