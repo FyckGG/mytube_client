@@ -12,6 +12,7 @@ import isVideoWatching from "../../otherServices/isVideoWatching";
 import VideoStatsService from "../../services/videoStatsService";
 import CommentList from "../../components/CommentList/CommentList";
 import PostCommentForm from "../../components/PostCommentForm/PostCommentForm";
+import userActions from "../../userActions/userActions";
 
 const WatchVideo = observer(() => {
   const store = React.useContext(Context);
@@ -102,6 +103,15 @@ const WatchVideo = observer(() => {
 
   const handleDuration = (duration) => {
     setDuration(Math.ceil(duration));
+  };
+
+  const sendComment = async () => {
+    const new_comment = await userActions.sendComment(
+      searchParams.get("v"),
+      searchParams.get("u"),
+      commentText
+    );
+    console.log(new_comment);
   };
 
   React.useEffect(() => {
@@ -234,7 +244,7 @@ const WatchVideo = observer(() => {
                   on_comment={(e) => {
                     setCommentText(e);
                   }}
-                  on_send={() => console.log("send")}
+                  on_send={sendComment}
                   on_cancel={() => {
                     setCommentForm(false);
                     setCommentText("");
