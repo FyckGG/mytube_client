@@ -10,6 +10,8 @@ import axios from "axios";
 import { observer } from "mobx-react-lite";
 import isVideoWatching from "../../otherServices/isVideoWatching";
 import VideoStatsService from "../../services/videoStatsService";
+import CommentList from "../../components/CommentList/CommentList";
+import PostCommentForm from "../../components/PostCommentForm/PostCommentForm";
 
 const WatchVideo = observer(() => {
   const store = React.useContext(Context);
@@ -31,6 +33,8 @@ const WatchVideo = observer(() => {
   const [second, setSecond] = React.useState(0);
   const [isLike, setIsLike] = React.useState(false);
   const [isDislike, setIsDislike] = React.useState(false);
+  const [commentForm, setCommentForm] = React.useState(false);
+  const [commentText, setCommentText] = React.useState("");
 
   const handleLikeChange = async () => {
     if (isLike) {
@@ -207,6 +211,40 @@ const WatchVideo = observer(() => {
             <h3>Описание видео:</h3>
             <p>{videoDescription}</p>
             <h3 style={{ marginTop: "5px" }}>Категория: {videoSubject}</h3>
+          </div>
+          <div>
+            <h2
+              style={{
+                marginTop: "5px",
+                marginBottom: "5px",
+                marginRight: "5px",
+                color: "#d9d9d9",
+                padding: "2px",
+                display: "inline",
+              }}
+            >
+              Комментарии:
+            </h2>
+            <Main_Button button_action={() => setCommentForm(true)}>
+              Оставить комментарий
+            </Main_Button>
+            {commentForm ? (
+              <div className={styles.comment_form}>
+                <PostCommentForm
+                  on_comment={(e) => {
+                    setCommentText(e);
+                  }}
+                  on_send={() => console.log("send")}
+                  on_cancel={() => {
+                    setCommentForm(false);
+                    setCommentText("");
+                  }}
+                />
+              </div>
+            ) : (
+              <></>
+            )}
+            <CommentList />
           </div>
         </>
       )}

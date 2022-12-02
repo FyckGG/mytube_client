@@ -46,4 +46,11 @@
 
 .video_description {
   color: #d9d9d9;
+  padding: 2px;
+  border-bottom: 4px solid #d9d9d9;
+}
+
+.comment_form {
+  display: flex;
+  justify-content: center;
 }
