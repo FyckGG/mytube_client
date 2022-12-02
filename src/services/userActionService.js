@@ -12,4 +12,12 @@ export default class UserActionService {
       }
     );
   };
+
+  static sendComment = async (video, user, text) => {
+    return $api.post("http://localhost:5000/user-action/send-comment", {
+      video_id: video,
+      user_id: user,
+      text: text,
+    });
+  };
 }
