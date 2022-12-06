@@ -8,6 +8,7 @@ import Main_Button from "../../components/UI/main_button/Main_Button";
 import LikeDislikePanel from "../../components/LikeDislikePanel/LikeDislikePanel";
 import axios from "axios";
 import { observer } from "mobx-react-lite";
+import InfiniteScroll from "react-infinite-scroll-component";
 import isVideoWatching from "../../otherServices/isVideoWatching";
 import VideoStatsService from "../../services/videoStatsService";
 import CommentList from "../../components/CommentList/CommentList";
@@ -26,6 +27,8 @@ const WatchVideo = observer(() => {
   const [countDislike, setCountDislike] = React.useState("");
   const [countSubs, setCountSubs] = React.useState("");
   const [countViews, setCountViews] = React.useState("");
+  const [countComments, setCountComments] = React.useState("");
+  const [isCommentsLoad, setIsCommentsLoad] = React.useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [pageLoading, setPageLoading] = React.useState(false);
   const [isPlay, setIsPlay] = React.useState(false);
@@ -112,6 +115,20 @@ const WatchVideo = observer(() => {
       commentText
     );
     console.log(new_comment);
+    setCommentForm(false);
+    setCommentText("");
+  };
+
+  const getCommentList = async () => {
+    //console.log("comments");
+    const commentList = await axios.post(
+      "http://localhost:5000/data-load/get-comments",
+      {
+        video_id: searchParams.get("v"),
+      }
+    );
+    setCountComments(commentList.data.comments_count);
+    setIsCommentsLoad(true);
   };
 
   React.useEffect(() => {
@@ -233,7 +250,7 @@ const WatchVideo = observer(() => {
                 display: "inline",
               }}
             >
-              Комментарии:
+              Комментарии: {countComments}
             </h2>
             <Main_Button button_action={() => setCommentForm(true)}>
               Оставить комментарий
@@ -254,7 +271,19 @@ const WatchVideo = observer(() => {
             ) : (
               <></>
             )}
-            <CommentList />
+            <div>
+              {/* <CommentList /> */}
+              <InfiniteScroll
+                dataLength={4}
+                next={getCommentList}
+                hasMore={true}
+                pullDownToRefreshContent={
+                  <h3 style={{ textAlign: "center" }}>
+                    &#8595; Pull down to refresh
+                  </h3>
+                }
+              ></InfiniteScroll>
+            </div>
           </div>
         </>
       )}
