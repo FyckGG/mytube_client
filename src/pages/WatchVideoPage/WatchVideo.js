@@ -12,6 +12,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import isVideoWatching from "../../otherServices/isVideoWatching";
 import VideoStatsService from "../../services/videoStatsService";
 import CommentList from "../../components/CommentList/CommentList";
+import Donut from "../../components/UI/Donut/Donut";
 import PostCommentForm from "../../components/PostCommentForm/PostCommentForm";
 import userActions from "../../userActions/userActions";
 
@@ -28,6 +29,7 @@ const WatchVideo = observer(() => {
   const [countSubs, setCountSubs] = React.useState("");
   const [countViews, setCountViews] = React.useState("");
   const [countComments, setCountComments] = React.useState("");
+  const [commentList, setCommentList] = React.useState("");
   const [isCommentsLoad, setIsCommentsLoad] = React.useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [pageLoading, setPageLoading] = React.useState(false);
@@ -127,7 +129,9 @@ const WatchVideo = observer(() => {
         video_id: searchParams.get("v"),
       }
     );
+    console.log(commentList);
     setCountComments(commentList.data.comments_count);
+    setCommentList(commentList.data.comment_list);
     setIsCommentsLoad(true);
   };
 
@@ -272,6 +276,17 @@ const WatchVideo = observer(() => {
               <></>
             )}
             <div>
+              {isCommentsLoad ? (
+                <CommentList comment_list={commentList} />
+              ) : (
+                <div className={styles.donut_panel}>
+                  <Donut
+                    donut_name_size={"15px"}
+                    donut_color={"#f3f47b"}
+                    donut_size={"40px"}
+                  />
+                </div>
+              )}
               {/* <CommentList /> */}
               <InfiniteScroll
                 dataLength={4}
