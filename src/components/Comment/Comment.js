@@ -15,7 +15,12 @@ const Comment = (props) => {
       <div className={styles.comment_content}>
         <div>
           <p className={styles.comment_create_desc}>{props.user_name}</p>
-          <p className={styles.comment_create_desc}>{props.comment_time}</p>
+          <p
+            className={styles.comment_create_desc}
+            style={{ color: "#b4b4b4" }}
+          >
+            {props.comment_time}
+          </p>
         </div>
         <p className={styles.comment_text}>{props.comment_text}</p>
       </div>
