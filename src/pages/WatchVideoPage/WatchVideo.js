@@ -118,6 +118,9 @@ const WatchVideo = observer(() => {
     );
     console.log(new_comment);
     setCommentForm(false);
+
+    setCommentList([new_comment.data, ...commentList]);
+    setCountComments(countComments + 1);
     setCommentText("");
   };
 
