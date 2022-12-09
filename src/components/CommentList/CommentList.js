@@ -2,8 +2,9 @@ import React from "react";
 import Comment from "../Comment/Comment";
 import styles from "./CommentList.module.css";
 import timeAgo from "./../../otherServices/timeAgo";
+import { observer } from "mobx-react-lite";
 
-const CommentList = (props) => {
+const CommentList = observer((props) => {
   return (
     <div>
       {props.comment_list.map((comment) => (
@@ -18,6 +19,6 @@ const CommentList = (props) => {
       ))}
     </div>
   );
-};
+});
 
 export default CommentList;
