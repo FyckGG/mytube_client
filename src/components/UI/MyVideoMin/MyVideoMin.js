@@ -2,6 +2,7 @@ import React from "react";
 import VideoPreview from "../VideoPreview/VideoPreview";
 import styles from "./MyVideoMin.module.css";
 import convertCount from "./../../../otherServices/ConvertCount";
+import timeAgo from "./../../../otherServices/timeAgo";
 
 const MyVideoMin = (props) => {
   return (
@@ -11,6 +12,7 @@ const MyVideoMin = (props) => {
 
       <p className={styles.views}>{convertCount(props.video_views)} просм.</p>
       <p className={styles.video_time}>{props.video_time}</p>
+      <p>{timeAgo(props.video_date)}</p>
     </div>
   );
 };

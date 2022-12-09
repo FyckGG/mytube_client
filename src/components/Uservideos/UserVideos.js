@@ -34,6 +34,7 @@ const UserVideos = observer((props) => {
                         video_name={video.video_name}
                         video_time={convertTime(video.video_duration)}
                         video_views={video.number_views}
+                        video_date={video.video_date}
                       />
                     </Link>
                   </div>
