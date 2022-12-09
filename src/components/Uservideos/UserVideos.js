@@ -33,6 +33,7 @@ const UserVideos = observer((props) => {
                         src={`http://localhost:5000${video.thumbnail_dir}`}
                         video_name={video.video_name}
                         video_time={convertTime(video.video_duration)}
+                        video_views={video.number_views}
                       />
                     </Link>
                   </div>
