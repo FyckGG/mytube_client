@@ -15,6 +15,7 @@ import CommentList from "../../components/CommentList/CommentList";
 import Donut from "../../components/UI/Donut/Donut";
 import PostCommentForm from "../../components/PostCommentForm/PostCommentForm";
 import userActions from "../../userActions/userActions";
+import convertCount from "./../../otherServices/ConvertCount";
 
 const WatchVideo = observer(() => {
   const store = React.useContext(Context);
@@ -207,12 +208,12 @@ const WatchVideo = observer(() => {
             <div className={styles.video_stat}>
               <h1 className={styles.video_name}>{videoName}</h1>
               <h2 className={styles.views_count}>
-                Количество просмотров:{countViews}
+                Количество просмотров: {convertCount(countViews)}
               </h2>
             </div>
             <LikeDislikePanel
-              likes={countLike}
-              dislikes={countDislike}
+              likes={convertCount(countLike)}
+              dislikes={convertCount(countDislike)}
               is_like_active={isLike}
               is_dislike_active={isDislike}
               onLike={handleLikeChange}
