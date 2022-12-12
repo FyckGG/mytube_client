@@ -16,6 +16,8 @@ const UserProfile = observer((props) => {
   const [user_videos, setUserVideos] = useState([]);
   const [avatarLoading, setAvatarLoading] = useState(false);
   const [videosLoading, setVideosLoading] = useState(false);
+  const [countSubs, setCountSubs] = useState(0);
+  const [countViews, setCountViews] = useState(0);
   useEffect(() => {
     const getUserData = async () => {
       setAvatarLoading(true);
@@ -37,9 +39,15 @@ const UserProfile = observer((props) => {
           user_id: store.user.id,
         }
       );
+      const user_stats = await axios.post(
+        "http://localhost:5000/users-data-load/get-user-stats",
+        { user_id: store.user.id }
+      );
+      console.log(user_stats);
+      setCountSubs(user_stats.data.count_of_subs);
+      setCountViews(user_stats.data.count_of_views);
       setUserVideos(user_videos_result.data);
       setVideosLoading(false);
-      //console.log(user_videos_result.data);
     };
     getUserData();
   }, []);
@@ -80,7 +88,7 @@ const UserProfile = observer((props) => {
         <>
           <div>
             <h1 className={styles.user_name}>{store.user.login}, </h1>
-            <h2 className={styles.subs_count}>Кол-во подпищиков</h2>
+            <h2 className={styles.subs_count}> {countSubs} подпищ.</h2>
           </div>
           <div className={styles.user_picture}>
             <ProfilePicture
