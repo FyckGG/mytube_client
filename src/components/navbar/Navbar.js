@@ -6,6 +6,7 @@ import Icon from "../UI/Icon/Icon";
 import { Context } from "../..";
 import { useContext, useEffect } from "react";
 import { observer } from "mobx-react-lite";
+import { Link } from "react-router-dom";
 
 import styles from "./Navbar.module.css";
 
@@ -27,7 +28,9 @@ const Navbar = observer((props) => {
         ) : (
           <ul>
             <li style={{ float: "left" }}>
-              <Main_Button>Main Page</Main_Button>
+              <Link to={"/"}>
+                <Main_Button>Main Page</Main_Button>
+              </Link>
             </li>
             <li style={{ float: "left" }}>
               <Icon
