@@ -30,7 +30,9 @@ const WatchVideo = observer(() => {
   const [countSubs, setCountSubs] = React.useState("");
   const [countViews, setCountViews] = React.useState("");
   const [countComments, setCountComments] = React.useState("");
-  const [commentList, setCommentList] = React.useState("");
+  const [commentList, setCommentList] = React.useState([]);
+  const [commentRenderCount, setCommentRenderCount] = React.useState(0);
+  const [hasMoreComments, setHasMoreComments] = React.useState(true);
   const [isCommentsLoad, setIsCommentsLoad] = React.useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [pageLoading, setPageLoading] = React.useState(false);
@@ -126,16 +128,26 @@ const WatchVideo = observer(() => {
   };
 
   const getCommentList = async () => {
-    //console.log("comments");
-    const commentList = await axios.post(
+    if (commentRenderCount >= countComments && isCommentsLoad) {
+      setHasMoreComments(false);
+      return;
+    }
+    setCommentRenderCount(commentRenderCount + 5);
+    console.log("count cock: " + commentRenderCount);
+    const comment_list = await axios.post(
       "http://localhost:5000/data-load/get-comments",
       {
         video_id: searchParams.get("v"),
+        comment_count: commentRenderCount + 5,
       }
     );
-    console.log(commentList);
-    setCountComments(commentList.data.comments_count);
-    setCommentList(commentList.data.comment_list);
+    console.log(comment_list);
+    setCountComments(comment_list.data.comments_count);
+    if (comment_list.data.comments_count === 0) {
+      setHasMoreComments(false);
+      //return;
+    }
+    setCommentList(commentList.concat(comment_list.data.comment_list));
     setIsCommentsLoad(true);
   };
 
@@ -283,23 +295,26 @@ const WatchVideo = observer(() => {
               {isCommentsLoad ? (
                 <CommentList comment_list={commentList} />
               ) : (
-                <div className={styles.donut_panel}>
-                  <Donut
-                    donut_name_size={"15px"}
-                    donut_color={"#f3f47b"}
-                    donut_size={"40px"}
-                  />
-                </div>
+                <></>
               )}
-              {/* <CommentList /> */}
+
               <InfiniteScroll
-                dataLength={4}
+                dataLength={commentList.length}
                 next={getCommentList}
-                hasMore={true}
+                hasMore={hasMoreComments}
                 pullDownToRefreshContent={
                   <h3 style={{ textAlign: "center" }}>
                     &#8595; Pull down to refresh
                   </h3>
+                }
+                loader={
+                  <div className={styles.donut_panel}>
+                    <Donut
+                      donut_name_size={"15px"}
+                      donut_color={"#f3f47b"}
+                      donut_size={"40px"}
+                    />
+                  </div>
                 }
               ></InfiniteScroll>
             </div>
