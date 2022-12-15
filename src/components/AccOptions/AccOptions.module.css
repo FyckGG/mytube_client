@@ -1,5 +1,5 @@
 .acc_options {
-  position: sticky;
+  position: fixed;
   height: 80vh;
   width: 20vw;
   float: right;
@@ -10,6 +10,7 @@
   flex-direction: column;
   background-color: #a1bbc4;
   border-radius: 7px;
+  right: 0;
 }
 
 .acc_options ul {
