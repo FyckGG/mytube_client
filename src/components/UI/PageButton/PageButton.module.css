@@ -10,3 +10,10 @@
   border: 1px solid black;
   cursor: pointer;
 }
+
+.current_page_button {
+  background-color: #a2a08c;
+  border: 1px solid #d1e0e0;
+  padding: 5px;
+  font-size: 20px;
+}

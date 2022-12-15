@@ -7,9 +7,16 @@ import MyVideoMin from "../UI/MyVideoMin/MyVideoMin";
 import { observer } from "mobx-react-lite";
 import convertTime from "./../../otherServices/convertVideoTime";
 
+import PageList from "../UI/PageList/PageList";
+
 const UserVideos = observer((props) => {
   const store = React.useContext(Context);
-  console.log(store.user);
+  const [currentVideoPage, setCurrentVideoPage] = React.useState(0);
+
+  const handlePageChange = (e) => {
+    setCurrentVideoPage(e);
+    console.log(e);
+  };
   return (
     <div className={styles.user_video}>
       {props.is_loading ? (
@@ -23,22 +30,24 @@ const UserVideos = observer((props) => {
                   <h2>Нет видео</h2>
                 </div>
               ) : (
-                props.videos.map((video) => (
-                  <div className={styles.video_min}>
-                    <Link
-                      to={`/watch_video?v=${video.id}&u=${store.user.id}`}
-                      style={{ color: "inherit", textDecoration: "inherit" }}
-                    >
-                      <MyVideoMin
-                        src={`http://localhost:5000${video.thumbnail_dir}`}
-                        video_name={video.video_name}
-                        video_time={convertTime(video.video_duration)}
-                        video_views={video.number_views}
-                        video_date={video.video_date}
-                      />
-                    </Link>
-                  </div>
-                ))
+                props.videos
+                  .slice(currentVideoPage * 24, (currentVideoPage + 1) * 24)
+                  .map((video) => (
+                    <div className={styles.video_min}>
+                      <Link
+                        to={`/watch_video?v=${video.id}&u=${store.user.id}`}
+                        style={{ color: "inherit", textDecoration: "inherit" }}
+                      >
+                        <MyVideoMin
+                          src={`http://localhost:5000${video.thumbnail_dir}`}
+                          video_name={video.video_name}
+                          video_time={convertTime(video.video_duration)}
+                          video_views={video.number_views}
+                          video_date={video.video_date}
+                        />
+                      </Link>
+                    </div>
+                  ))
               )}
               <div style={{ marginTop: "5px" }}>
                 <Link
@@ -46,7 +55,18 @@ const UserVideos = observer((props) => {
                   className={styles.add_video}
                 >
                   Загрузить видео
-                </Link>{" "}
+                </Link>
+              </div>
+              <div style={{ marginTop: "7px" }}>
+                {Math.ceil(props.videos.length / 24) >= 2 ? (
+                  <PageList
+                    buttons_count={Math.ceil(props.videos.length / 24)}
+                    on_page_change={handlePageChange}
+                    active_button={currentVideoPage}
+                  />
+                ) : (
+                  <></>
+                )}
               </div>
             </>
           ) : (

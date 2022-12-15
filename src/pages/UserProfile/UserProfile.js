@@ -43,7 +43,6 @@ const UserProfile = observer((props) => {
         "http://localhost:5000/users-data-load/get-user-stats",
         { user_id: store.user.id }
       );
-      console.log(user_stats);
       setCountSubs(user_stats.data.count_of_subs);
       setCountViews(user_stats.data.count_of_views);
       setUserVideos(user_videos_result.data);
