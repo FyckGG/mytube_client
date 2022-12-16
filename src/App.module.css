@@ -8,8 +8,5 @@
 body {
   background-color: #668c99;
   display: flex;
+  overflow-x: hidden;
 }
-
-/* .page_content {
-  display: inline;
-} */
