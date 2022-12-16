@@ -13,10 +13,14 @@
 }
 
 .views_count {
-  display: inline;
+  display: flex;
   color: #d9d9d9;
   float: right;
-  margin-right: 5px;
+  margin-right: 5vw;
+}
+
+.like_dislike_panel {
+  margin-right: 2vw;
 }
 
 .channel_picture {
