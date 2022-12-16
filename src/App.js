@@ -131,6 +131,15 @@ function App() {
         list_icon={openList}
         acc_button_ref={accOptionButtonRef}
       />
+
+      <div>
+        <BurgerMenu
+          active={burgerActive}
+          setActive={setBurgerActive}
+          items={iteeems}
+          header="Навигация"
+        />
+      </div>
       <Sign
         modalActive={signActive}
         setModalActive={setSignActive}
@@ -141,21 +150,13 @@ function App() {
         setModalActive={setLoginActive}
         onLog={handleLogChange}
       ></Login>
+      <AccOptions
+        items={items_acc_menu}
+        acc_ref={accOptionRef}
+        header="Параметры аккаунта"
+        optionsActive={optionsActive}
+      />
       <div className={styles.page_content}>
-        <AccOptions
-          items={items_acc_menu}
-          acc_ref={accOptionRef}
-          header="Параметры аккаунта"
-          optionsActive={optionsActive}
-        />
-
-        <BurgerMenu
-          active={burgerActive}
-          setActive={setBurgerActive}
-          items={iteeems}
-          header="Навигация"
-        />
-
         <Routes>
           <Route path="/profile/:id" element={<UserProfile />} />
           <Route path="/subscriptions/:id" element={<UserSubscriptions />} />

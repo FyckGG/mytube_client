@@ -1,8 +1,10 @@
 .navbar {
-  /* background-color: #758da3; */
+  position: sticky;
+  /* display: flex; */
+  top: 0;
   background-color: #476b6b;
   padding-top: 2px;
-
+  width: 100vw;
   font-family: "PT Sans", sans-serif;
   margin-top: 0;
   padding: 5px;

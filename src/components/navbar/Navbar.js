@@ -45,14 +45,17 @@ const Navbar = observer((props) => {
               <Search />
             </li>
             {store.isAuth ? (
-              <li style={{ float: "right" }} ref={props.acc_button_ref}>
+              <li
+                style={{ float: "right", marginRight: "15px" }}
+                ref={props.acc_button_ref}
+              >
                 <Main_Button button_action={props.open_options}>
                   Account
                 </Main_Button>
               </li>
             ) : (
               <>
-                <li style={{ float: "right" }}>
+                <li style={{ float: "right", marginRight: "15px" }}>
                   <Main_Button button_action={props.log_in}>Log in</Main_Button>
                 </li>
                 <li style={{ float: "right", paddingRight: "15px" }}>
