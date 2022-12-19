@@ -204,7 +204,10 @@ const WatchVideo = observer(() => {
           controls
           width="100%"
           height="70vh"
-          style={{ display: "inline-block", marginTop: "20px" }}
+          style={{
+            display: "inline-block",
+            marginTop: "20px",
+          }}
           onDuration={handleDuration}
           onPlay={handlePlay}
           onPause={handlePause}
