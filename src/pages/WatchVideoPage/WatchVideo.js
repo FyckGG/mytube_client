@@ -32,6 +32,8 @@ const WatchVideo = observer(() => {
   const [countComments, setCountComments] = React.useState("");
   const [commentList, setCommentList] = React.useState([]);
   const [commentRenderCount, setCommentRenderCount] = React.useState(0);
+  //const [commentsForRender, setCommentsForRender] = React.useState([]);
+  const [isCommentsLoading, setIsCommentsLoading] = React.useState(false);
   const [hasMoreComments, setHasMoreComments] = React.useState(true);
   const [isCommentsLoad, setIsCommentsLoad] = React.useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -128,27 +130,28 @@ const WatchVideo = observer(() => {
   };
 
   const getCommentList = async () => {
+    if (isCommentsLoading) return;
+    setIsCommentsLoading(true);
     if (commentRenderCount >= countComments && isCommentsLoad) {
       setHasMoreComments(false);
       return;
     }
-    setCommentRenderCount(commentRenderCount + 5);
-    console.log("count cock: " + commentRenderCount);
+    setCommentRenderCount(commentRenderCount + 10);
     const comment_list = await axios.post(
       "http://localhost:5000/data-load/get-comments",
       {
         video_id: searchParams.get("v"),
-        comment_count: commentRenderCount + 5,
+        comment_count: commentRenderCount + 10,
       }
     );
-    console.log(comment_list);
+    console.log(comment_list.data);
     setCountComments(comment_list.data.comments_count);
     if (comment_list.data.comments_count === 0) {
       setHasMoreComments(false);
-      //return;
     }
     setCommentList(commentList.concat(comment_list.data.comment_list));
     setIsCommentsLoad(true);
+    setIsCommentsLoading(false);
   };
 
   React.useEffect(() => {
@@ -169,7 +172,6 @@ const WatchVideo = observer(() => {
   }, [isPlay, second]);
 
   React.useEffect(() => {
-    console.log(store.user);
     const getVideo = async () => {
       setPageLoading(true);
       const video = await axios.post(
@@ -179,6 +181,7 @@ const WatchVideo = observer(() => {
           user_id: searchParams.get("u"),
         }
       );
+
       setVideoPath(video.data.video.video_directory);
       setVideoName(video.data.video.video_name);
       setVideoDescription(video.data.video.video_description);
@@ -297,33 +300,28 @@ const WatchVideo = observer(() => {
             ) : (
               <></>
             )}
-            <div>
-              {isCommentsLoad ? (
+            {pageLoading ? (
+              <></>
+            ) : (
+              <div>
                 <CommentList comment_list={commentList} />
-              ) : (
-                <></>
-              )}
-
-              <InfiniteScroll
-                dataLength={commentList.length}
-                next={getCommentList}
-                hasMore={hasMoreComments}
-                pullDownToRefreshContent={
-                  <h3 style={{ textAlign: "center" }}>
-                    &#8595; Pull down to refresh
-                  </h3>
-                }
-                loader={
-                  <div className={styles.donut_panel}>
-                    <Donut
-                      donut_name_size={"15px"}
-                      donut_color={"#f3f47b"}
-                      donut_size={"40px"}
-                    />
-                  </div>
-                }
-              ></InfiniteScroll>
-            </div>
+                <InfiniteScroll
+                  dataLength={commentList.length}
+                  next={getCommentList}
+                  hasMore={hasMoreComments}
+                  style={{ marginTop: 20 }}
+                  loader={
+                    <div className={styles.donut_panel}>
+                      <Donut
+                        donut_name_size={"15px"}
+                        donut_color={"#f3f47b"}
+                        donut_size={"40px"}
+                      />
+                    </div>
+                  }
+                ></InfiniteScroll>
+              </div>
+            )}
           </div>
         </>
       )}
