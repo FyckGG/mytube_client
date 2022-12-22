@@ -1,3 +1,16 @@
-/* .main_page {
-  position: relative;
-} */
+.main_page {
+  margin-top: 5px;
+  padding: 10px;
+  text-align: center;
+  color: aliceblue;
+}
+
+.video_min {
+  display: inline-block;
+  padding: 6px;
+}
+
+.video_min:hover {
+  cursor: pointer;
+  background-color: #b8b8c7;
+}
