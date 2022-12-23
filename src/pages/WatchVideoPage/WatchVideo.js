@@ -221,24 +221,26 @@ const WatchVideo = observer(() => {
       ) : (
         <>
           <div
-            style={{ borderBottom: "4px solid #d9d9d9", paddingBottom: "10px" }}
+            style={{
+              borderBottom: "4px solid #d9d9d9",
+              paddingBottom: "10px",
+            }}
           >
+            <h1 className={styles.video_name}>{videoName}</h1>
             <div className={styles.video_stat}>
-              <h1 className={styles.video_name}>{videoName}</h1>
               <h2 className={styles.views_count}>
                 Количество просмотров: {convertCount(countViews)}
               </h2>
-            </div>
-
-            <div className={styles.like_dislike_panel}>
-              <LikeDislikePanel
-                likes={convertCount(countLike)}
-                dislikes={convertCount(countDislike)}
-                is_like_active={isLike}
-                is_dislike_active={isDislike}
-                onLike={handleLikeChange}
-                onDislike={handleDislikeChange}
-              />
+              <div className={styles.like_dislike_panel}>
+                <LikeDislikePanel
+                  likes={convertCount(countLike)}
+                  dislikes={convertCount(countDislike)}
+                  is_like_active={isLike}
+                  is_dislike_active={isDislike}
+                  onLike={handleLikeChange}
+                  onDislike={handleDislikeChange}
+                />
+              </div>
             </div>
 
             <div className={styles.channel_picture}>

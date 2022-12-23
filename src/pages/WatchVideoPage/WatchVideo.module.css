@@ -4,12 +4,15 @@
 
 .video_stat {
   display: block;
+  float: right;
 }
 
 .video_name {
-  display: inline;
+  display: block;
   padding: 5px;
   color: #d9d9d9;
+  word-break: break-word;
+  margin-right: 5%;
 }
 
 .views_count {
@@ -52,6 +55,12 @@
   color: #d9d9d9;
   padding: 2px;
   border-bottom: 4px solid #d9d9d9;
+}
+
+.video_description_text {
+  display: block;
+  word-break: break-word;
+  padding: 5%;
 }
 
 .comment_form {
