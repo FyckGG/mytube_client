@@ -13,6 +13,7 @@
   width: 150px;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin: auto;
 }
 
 .channel_name:hover {
@@ -34,4 +35,8 @@
 
 .views {
   display: inline-block;
+}
+
+.video_stats p {
+  font-size: small;
 }
