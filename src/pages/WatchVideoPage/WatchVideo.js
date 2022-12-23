@@ -32,7 +32,7 @@ const WatchVideo = observer(() => {
   const [countComments, setCountComments] = React.useState("");
   const [commentList, setCommentList] = React.useState([]);
   const [commentRenderCount, setCommentRenderCount] = React.useState(0);
-  //const [commentsForRender, setCommentsForRender] = React.useState([]);
+
   const [isCommentsLoading, setIsCommentsLoading] = React.useState(false);
   const [hasMoreComments, setHasMoreComments] = React.useState(true);
   const [isCommentsLoad, setIsCommentsLoad] = React.useState(false);
@@ -118,7 +118,8 @@ const WatchVideo = observer(() => {
   const sendComment = async () => {
     const new_comment = await userActions.sendComment(
       searchParams.get("v"),
-      searchParams.get("u"),
+
+      store.user.id,
       commentText
     );
     console.log(new_comment);
@@ -178,7 +179,7 @@ const WatchVideo = observer(() => {
         "http://localhost:5000/user-action/load-watch-video",
         {
           video_id: searchParams.get("v"),
-          user_id: searchParams.get("u"),
+          user_id: store.user.id,
         }
       );
 
