@@ -9,10 +9,15 @@
   padding: 50px;
 }
 
+.subs_panel {
+  display: flex;
+}
+
 .subs_count {
   /* display: inline-block; */
   /* color: #d9d9d9; */
   color: #b4b4b4;
+  margin-right: 5px;
   /* padding: 20px; */
 }
 

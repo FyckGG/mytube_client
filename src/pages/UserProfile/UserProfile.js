@@ -7,22 +7,34 @@ import ChannelInformation from "../../components/ChannelInformation/ChannelInfor
 import { Context } from "../..";
 import { observer } from "mobx-react-lite";
 import axios from "axios";
+import userActions from "../../userActions/userActions";
+import UserDataLoad from "../../userDataLoad/userDataLoad";
 import load_photo from "./../../imgs/load_photo.jpg";
 import UserVideos from "../../components/UserVideos/UserVideos";
+import Main_Button from "../../components/UI/main_button/Main_Button";
 
 const UserProfile = observer((props) => {
   const store = useContext(Context);
+  const [user, setUser] = useState("");
   const [avatar, setAvatar] = useState("");
+  const [isSubs, setIsSubs] = useState(false);
   const [user_name, setUserName] = useState("");
   const [user_videos, setUserVideos] = useState([]);
   const [avatarLoading, setAvatarLoading] = useState(false);
   const [videosLoading, setVideosLoading] = useState(false);
   const [countSubs, setCountSubs] = useState(0);
   const [countViews, setCountViews] = useState(0);
+
+  const subscribe = async () => {
+    const subscribe_result = await userActions.Subscribe(user, store.user.id);
+    setCountSubs(countSubs + 1);
+    setIsSubs(true);
+  };
+
   useEffect(() => {
     const url = window.location.href;
     const final = url.substring(url.lastIndexOf("/") + 1);
-    //console.log(final);
+    setUser(final);
     const getUserData = async () => {
       setAvatarLoading(true);
       setVideosLoading(true);
@@ -38,7 +50,6 @@ const UserProfile = observer((props) => {
       const avatar_result = await axios.post(
         "http://localhost:5000/users-data-load/get-avatar",
         {
-          //id: store.user.id,
           id: final,
         }
       );
@@ -49,15 +60,18 @@ const UserProfile = observer((props) => {
       const user_videos_result = await axios.post(
         "http://localhost:5000/users-data-load/get-user-videos",
         {
-          //user_id: store.user.id,
           user_id: final,
         }
       );
       const user_stats = await axios.post(
         "http://localhost:5000/users-data-load/get-user-stats",
-        //{ user_id: store.user.id }
+
         { user_id: final }
       );
+
+      const is_user_sub = await UserDataLoad.getSubs(final, store.user.id);
+      setIsSubs(is_user_sub.data);
+      console.log(is_user_sub);
       setCountSubs(user_stats.data.count_of_subs);
       setCountViews(user_stats.data.count_of_views);
       setUserVideos(user_videos_result.data);
@@ -101,8 +115,15 @@ const UserProfile = observer((props) => {
       ) : (
         <>
           <div>
-            <h1 className={styles.user_name}>{user_name}, </h1>
-            <h2 className={styles.subs_count}> {countSubs} подпищ.</h2>
+            <h1 className={styles.user_name}>{user_name} </h1>
+            <div className={styles.subs_panel}>
+              <h2 className={styles.subs_count}> {countSubs} подпищ.</h2>
+              {user === store.user.id ? (
+                <></>
+              ) : (
+                <Main_Button button_action={subscribe}>Подписаться</Main_Button>
+              )}
+            </div>
           </div>
           <div className={styles.user_picture}>
             <ProfilePicture
