@@ -20,4 +20,11 @@ export default class UserActionService {
       text: text,
     });
   };
+
+  static subscribe = async (channel_id, subscriber_id) => {
+    return $api.post("http://localhost:5000/user-action/subscribe", {
+      channel_id: channel_id,
+      subscriber_id: subscriber_id,
+    });
+  };
 }

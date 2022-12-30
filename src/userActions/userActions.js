@@ -18,4 +18,16 @@ export default class userActions {
       throw "Не удалось отправить комментарий на сервер: " + e;
     }
   }
+
+  static async Subscribe(channel_id, subscriber_id) {
+    try {
+      const result = await UserActionService.subscribe(
+        channel_id,
+        subscriber_id
+      );
+      return result;
+    } catch (e) {
+      throw "Не удалось осуществить подписку: " + e;
+    }
+  }
 }
