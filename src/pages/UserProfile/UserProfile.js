@@ -13,20 +13,33 @@ import UserVideos from "../../components/UserVideos/UserVideos";
 const UserProfile = observer((props) => {
   const store = useContext(Context);
   const [avatar, setAvatar] = useState("");
+  const [user_name, setUserName] = useState("");
   const [user_videos, setUserVideos] = useState([]);
   const [avatarLoading, setAvatarLoading] = useState(false);
   const [videosLoading, setVideosLoading] = useState(false);
   const [countSubs, setCountSubs] = useState(0);
   const [countViews, setCountViews] = useState(0);
   useEffect(() => {
+    const url = window.location.href;
+    const final = url.substring(url.lastIndexOf("/") + 1);
+    //console.log(final);
     const getUserData = async () => {
       setAvatarLoading(true);
       setVideosLoading(true);
       await store.checkAuth();
+      const user_result = await axios.post(
+        "http://localhost:5000/users-data-load/get-user",
+        {
+          user_id: final,
+        }
+      );
+      console.log(user_result);
+      setUserName(user_result.data.login);
       const avatar_result = await axios.post(
         "http://localhost:5000/users-data-load/get-avatar",
         {
-          id: store.user.id,
+          //id: store.user.id,
+          id: final,
         }
       );
       setAvatar(
@@ -36,12 +49,14 @@ const UserProfile = observer((props) => {
       const user_videos_result = await axios.post(
         "http://localhost:5000/users-data-load/get-user-videos",
         {
-          user_id: store.user.id,
+          //user_id: store.user.id,
+          user_id: final,
         }
       );
       const user_stats = await axios.post(
         "http://localhost:5000/users-data-load/get-user-stats",
-        { user_id: store.user.id }
+        //{ user_id: store.user.id }
+        { user_id: final }
       );
       setCountSubs(user_stats.data.count_of_subs);
       setCountViews(user_stats.data.count_of_views);
@@ -86,7 +101,7 @@ const UserProfile = observer((props) => {
       ) : (
         <>
           <div>
-            <h1 className={styles.user_name}>{store.user.login}, </h1>
+            <h1 className={styles.user_name}>{user_name}, </h1>
             <h2 className={styles.subs_count}> {countSubs} подпищ.</h2>
           </div>
           <div className={styles.user_picture}>
