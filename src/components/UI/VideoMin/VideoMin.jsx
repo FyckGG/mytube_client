@@ -18,10 +18,7 @@ const VideoMin = (props) => {
         />
       </div>
       <div className={styles.video_info}>
-        <Link
-          to={"/profile/63779401330ba70b9cc7dd97"}
-          style={{ height: "40%" }}
-        >
+        <Link to={`/profile/${props.channel}`} style={{ height: "40%" }}>
           <ProfilePicture
             src={`http://localhost:5000${props.channel_icon}`}
             alt="profile_img"
