@@ -2,6 +2,7 @@ import React from "react";
 import VideoPreview from "../VideoPreview/VideoPreview";
 import styles from "./VideoMin.module.css";
 import convertCount from "./../../../otherServices/ConvertCount";
+import convertTime from "./../../../otherServices/convertVideoTime";
 import timeAgo from "./../../../otherServices/timeAgo";
 import ProfilePicture from "../ProfilePicture/ProfilePicture";
 import Tooltip from "../Tooltip/Tooltip";
@@ -12,7 +13,7 @@ const VideoMin = (props) => {
     <div className={styles.video_min}>
       <div>
         <VideoPreview
-          src="https://www.planetware.com/wpimages/2020/02/france-in-pictures-beautiful-places-to-photograph-eiffel-tower.jpg"
+          src={`http://localhost:5000${props.preview}`}
           width="200"
         />
       </div>
@@ -22,25 +23,25 @@ const VideoMin = (props) => {
           style={{ height: "40%" }}
         >
           <ProfilePicture
-            src="https://www.planetware.com/wpimages/2020/02/france-in-pictures-beautiful-places-to-photograph-eiffel-tower.jpg"
+            src={`http://localhost:5000${props.channel_icon}`}
             alt="profile_img"
             width="40"
             height="40"
           />
         </Link>
         <div className={styles.video_stats}>
-          <Tooltip text={"video_name"}>
-            <h2 className={styles.video_name}>videoName..</h2>
+          <Tooltip text={props.name}>
+            <h2 className={styles.video_name}>{props.name}</h2>
           </Tooltip>
           <Link
             to={"/profile/63779401330ba70b9cc7dd97"}
             style={{ color: "inherit", textDecoration: "inherit" }}
           >
-            <h4 className={styles.channel_name}>channelName</h4>
+            <h4 className={styles.channel_name}>{props.channel_name}</h4>
           </Link>
-          <p className={styles.views}>{convertCount(228000)} просм.</p>
-          <p className={styles.video_time}>{"3h 3m 5s"}</p>
-          <p>{timeAgo("2022-12-14T13:58:40.809+00:00")}</p>
+          <p className={styles.views}>{convertCount(props.views)} просм.</p>
+          <p className={styles.video_time}>{convertTime(props.duration)}</p>
+          <p>{timeAgo(props.date)}</p>
         </div>
       </div>
     </div>
