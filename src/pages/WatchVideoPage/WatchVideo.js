@@ -258,7 +258,9 @@ const WatchVideo = observer(() => {
                 {pageLoading ? "" : `${countSubs} subs.`}
               </p>
             </div>
-            {store.user.login == channelName || pageLoading ? (
+            {store.user.login == channelName ||
+            pageLoading ||
+            localStorage.getItem("token") == null ? (
               <></>
             ) : (
               <div className={styles.subscribe_button}>
@@ -284,9 +286,13 @@ const WatchVideo = observer(() => {
             >
               Комментарии: {countComments}
             </h2>
-            <Main_Button button_action={() => setCommentForm(true)}>
-              Оставить комментарий
-            </Main_Button>
+            {localStorage.getItem("token") == null ? (
+              <></>
+            ) : (
+              <Main_Button button_action={() => setCommentForm(true)}>
+                Оставить комментарий
+              </Main_Button>
+            )}
             {commentForm ? (
               <div className={styles.comment_form}>
                 <PostCommentForm
