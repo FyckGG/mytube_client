@@ -2,39 +2,50 @@ import React from "react";
 import { useState, useEffect, useContext } from "react";
 import ProfilePicture from "../../components/UI/ProfilePicture/ProfilePicture";
 import styles from "./UserProfile.module.css";
+import Main_Button from "../../components/UI/main_button/Main_Button";
 import ToggleTabs from "../../components/ToggleTabs/ToggleTabs";
 import ChannelInformation from "../../components/ChannelInformation/ChannelInformation";
 import { Context } from "../..";
 import { observer } from "mobx-react-lite";
-import axios from "axios";
 import userActions from "../../userActions/userActions";
 import UserDataLoad from "../../userDataLoad/userDataLoad";
+import axios from "axios";
+
 import load_photo from "./../../imgs/load_photo.jpg";
 import UserVideos from "../../components/UserVideos/UserVideos";
-import Main_Button from "../../components/UI/main_button/Main_Button";
 
 const UserProfile = observer((props) => {
   const store = useContext(Context);
-  const [user, setUser] = useState("");
+
   const [avatar, setAvatar] = useState("");
-  const [isSubs, setIsSubs] = useState(false);
+  const [userId, setUserId] = useState("");
   const [user_name, setUserName] = useState("");
   const [user_videos, setUserVideos] = useState([]);
   const [avatarLoading, setAvatarLoading] = useState(false);
   const [videosLoading, setVideosLoading] = useState(false);
   const [countSubs, setCountSubs] = useState(0);
+  const [isSubs, setIsSubs] = useState("");
+  const [isSubsInfoLoad, setIsSubInfoLoad] = useState(false);
   const [countViews, setCountViews] = useState(0);
 
-  const subscribe = async () => {
-    const subscribe_result = await userActions.Subscribe(user, store.user.id);
-    setCountSubs(countSubs + 1);
-    setIsSubs(true);
+  const subscribe_click = async () => {
+    if (isSubs) {
+      const unsub_result = await userActions.Unsubscribe(userId, store.user.id);
+      setCountSubs(countSubs - 1);
+      setIsSubs(false);
+      console.log("otpiska");
+    } else {
+      const sub_result = await userActions.Subscribe(userId, store.user.id);
+      setCountSubs(countSubs + 1);
+      setIsSubs(true);
+      console.log("podpiska");
+    }
   };
 
   useEffect(() => {
     const url = window.location.href;
     const final = url.substring(url.lastIndexOf("/") + 1);
-    setUser(final);
+    setUserId(final);
     const getUserData = async () => {
       setAvatarLoading(true);
       setVideosLoading(true);
@@ -45,7 +56,6 @@ const UserProfile = observer((props) => {
           user_id: final,
         }
       );
-      console.log(user_result);
       setUserName(user_result.data.login);
       const avatar_result = await axios.post(
         "http://localhost:5000/users-data-load/get-avatar",
@@ -69,16 +79,21 @@ const UserProfile = observer((props) => {
         { user_id: final }
       );
 
-      const is_user_sub = await UserDataLoad.getSubs(final, store.user.id);
-      setIsSubs(is_user_sub.data);
-      console.log(is_user_sub);
+      if (!props.is_my_profile) {
+        const is_subs_result = await UserDataLoad.getSubs(final, store.user.id);
+
+        setIsSubs(is_subs_result.data);
+      }
+
       setCountSubs(user_stats.data.count_of_subs);
-      setCountViews(user_stats.data.count_of_views);
+      setCountViews(user_stats.data.count_of_views); // общее число просмотров у юзера
       setUserVideos(user_videos_result.data);
+      setIsSubInfoLoad(true);
       setVideosLoading(false);
     };
     getUserData();
   }, []);
+
   const tab_items = [
     {
       tabname: "Главная",
@@ -90,6 +105,7 @@ const UserProfile = observer((props) => {
       tab_id: 1,
       tab_content: (
         <UserVideos
+          is_load={props.is_my_profile}
           videos={user_videos}
           is_activated={store.user.isActivated}
           is_loading={videosLoading}
@@ -116,14 +132,23 @@ const UserProfile = observer((props) => {
         <>
           <div>
             <h1 className={styles.user_name}>{user_name} </h1>
-            <div className={styles.subs_panel}>
-              <h2 className={styles.subs_count}> {countSubs} подпищ.</h2>
-              {user === store.user.id ? (
-                <></>
-              ) : (
-                <Main_Button button_action={subscribe}>Подписаться</Main_Button>
-              )}
-            </div>
+            {isSubsInfoLoad ? (
+              <div className={styles.subs_panel}>
+                <h2 className={styles.subs_count}> {countSubs} подпищ.</h2>
+                {props.is_my_profile ? (
+                  <></>
+                ) : (
+                  <Main_Button
+                    button_action={subscribe_click}
+                    is_pressed={isSubs}
+                  >
+                    {isSubs ? "Вы подписаны" : "Подписаться"}
+                  </Main_Button>
+                )}
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
           <div className={styles.user_picture}>
             <ProfilePicture
