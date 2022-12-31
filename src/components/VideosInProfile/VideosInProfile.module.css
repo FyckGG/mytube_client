@@ -1,0 +1,9 @@
+.video_min {
+  display: inline-block;
+  padding: 10px;
+}
+
+.video_min:hover {
+  cursor: pointer;
+  background-color: #b8b8c7;
+}
