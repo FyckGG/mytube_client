@@ -4,6 +4,7 @@ import Main_Button from "../UI/main_button/Main_Button";
 import { Link } from "react-router-dom";
 import { Context } from "../..";
 import MyVideoMin from "../UI/MyVideoMin/MyVideoMin";
+import { VideosInProfile } from "../VideosInProfile/VideosInProfile";
 import { observer } from "mobx-react-lite";
 import convertTime from "./../../otherServices/convertVideoTime";
 
@@ -30,7 +31,11 @@ const UserVideos = observer((props) => {
                   <h2>Нет видео</h2>
                 </div>
               ) : (
-                props.videos
+                <VideosInProfile
+                  videos={props.videos}
+                  currentVideoPage={currentVideoPage}
+                />
+                /* props.videos
                   .slice(currentVideoPage * 24, (currentVideoPage + 1) * 24)
                   .map((video) => (
                     <div className={styles.video_min}>
@@ -47,16 +52,20 @@ const UserVideos = observer((props) => {
                         />
                       </Link>
                     </div>
-                  ))
+                  )) */
               )}
-              <div style={{ marginTop: "5px" }}>
-                <Link
-                  to={`/upload_video/${props.user_id}`}
-                  className={styles.add_video}
-                >
-                  Загрузить видео
-                </Link>
-              </div>
+              {props.is_load ? (
+                <div style={{ marginTop: "5px" }}>
+                  <Link
+                    to={`/upload_video/${props.user_id}`}
+                    className={styles.add_video}
+                  >
+                    Загрузить видео
+                  </Link>
+                </div>
+              ) : (
+                <></>
+              )}
               <div style={{ marginTop: "7px" }}>
                 {Math.ceil(props.videos.length / 24) >= 2 ? (
                   <PageList
