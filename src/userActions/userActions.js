@@ -30,4 +30,16 @@ export default class userActions {
       throw "Не удалось осуществить подписку: " + e;
     }
   }
+
+  static async Unsubscribe(channel_id, subscriber_id) {
+    try {
+      const result = await UserActionService.unsubscribe(
+        channel_id,
+        subscriber_id
+      );
+      return result;
+    } catch (e) {
+      throw "не удалось удалить подписку: " + e;
+    }
+  }
 }

@@ -27,4 +27,11 @@ export default class UserActionService {
       subscriber_id: subscriber_id,
     });
   };
+
+  static unsubscribe = async (channel_id, subscriber_id) => {
+    return $api.post("http://localhost:5000/user-action/unsubscribe", {
+      channel_id: channel_id,
+      subscriber_id: subscriber_id,
+    });
+  };
 }
