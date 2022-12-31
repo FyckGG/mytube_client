@@ -9,6 +9,21 @@
   padding: 2px;
 }
 
+.pressed_main_button {
+  background-color: #aaab96;
+  border: 1px solid #d1e0e0;
+  border-radius: 4px;
+  display: inline-block;
+  font-size: 17px;
+  width: fit-content;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.pressed_main_button:hover {
+  background-color: #c6c7ae;
+}
+
 .main_button:hover {
   background-color: #c7c866;
   border: 1px solid black;
