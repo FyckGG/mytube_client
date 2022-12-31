@@ -22,6 +22,8 @@ import UserPlaylists from "./pages/UserPlaylists/UserPlaylists";
 import UserSubscriptions from "./pages/UserSubscriptions/UserSubscriptions";
 import UploadVideo from "./pages/UploadVideo/UploadVideo";
 import WatchVideo from "./pages/WatchVideoPage/WatchVideo";
+import Channel from "./pages/Channel/Channel";
+import MyChannel from "./pages/MyChannel/MyChannel";
 import { Context } from ".";
 
 function App() {
@@ -158,13 +160,14 @@ function App() {
       />
       <div className={styles.page_content}>
         <Routes>
-          <Route path="/profile/:id" element={<UserProfile />} />
+          <Route path="/profile/:id" element={<MyChannel />} />
           <Route path="/subscriptions/:id" element={<UserSubscriptions />} />
           <Route path="/liked_videos/:id" element={<UserLikes />} />
           <Route path="/watch_later/:id" element={<UserPlaylists />} />
           <Route path="/playlisis/:id" element={<UserPlaylists />} />
           <Route path="/upload_video/:id" element={<UploadVideo />} />
           <Route path="/watch_video/" element={<WatchVideo />} />
+          <Route path="/channel/:id" element={<Channel />} />
           <Route path="/" element={<MainPage />} />
         </Routes>
       </div>
