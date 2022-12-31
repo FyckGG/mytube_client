@@ -7,8 +7,10 @@ import timeAgo from "./../../../otherServices/timeAgo";
 import ProfilePicture from "../ProfilePicture/ProfilePicture";
 import Tooltip from "../Tooltip/Tooltip";
 import { Link } from "react-router-dom";
+import { Context } from "../../..";
 
 const VideoMin = (props) => {
+  const store = React.useContext(Context);
   return (
     <div className={styles.video_min}>
       <div>
@@ -18,7 +20,14 @@ const VideoMin = (props) => {
         />
       </div>
       <div className={styles.video_info}>
-        <Link to={`/profile/${props.channel}`} style={{ height: "40%" }}>
+        <Link
+          to={
+            store.user.id === props.channel
+              ? `/profile/${props.channel}`
+              : `/channel/${props.channel}`
+          }
+          style={{ height: "40%" }}
+        >
           <ProfilePicture
             src={`http://localhost:5000${props.channel_icon}`}
             alt="profile_img"
@@ -31,7 +40,7 @@ const VideoMin = (props) => {
             <h2 className={styles.video_name}>{props.name}</h2>
           </Tooltip>
           <Link
-            to={"/profile/63779401330ba70b9cc7dd97"}
+            to={`/channel/${props.channel}`}
             style={{ color: "inherit", textDecoration: "inherit" }}
           >
             <h4 className={styles.channel_name}>{props.channel_name}</h4>
