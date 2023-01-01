@@ -90,7 +90,7 @@ const UserProfile = observer((props) => {
         { user_id: final }
       );
 
-      if (!props.is_my_profile) {
+      if (!props.is_my_profile && store.user.id) {
         const is_subs_result = await UserDataLoad.getSubs(final, store.user.id);
 
         setIsSubs(is_subs_result.data);
@@ -149,7 +149,7 @@ const UserProfile = observer((props) => {
             {isSubsInfoLoad ? (
               <div className={styles.subs_panel}>
                 <h2 className={styles.subs_count}> {countSubs} подпищ.</h2>
-                {props.is_my_profile ? (
+                {props.is_my_profile || !store.user.id ? (
                   <></>
                 ) : (
                   <SubscribeButton
