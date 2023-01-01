@@ -15,6 +15,7 @@ import CommentList from "../../components/CommentList/CommentList";
 import Donut from "../../components/UI/Donut/Donut";
 import PostCommentForm from "../../components/PostCommentForm/PostCommentForm";
 import SubscribeButton from "../../components/UI/SubscribeButton/SubscribeButton";
+import ChannelLink from "../../components/UI/ChannelLink/ChannelLink";
 import userActions from "../../userActions/userActions";
 import convertCount from "./../../otherServices/ConvertCount";
 
@@ -274,15 +275,23 @@ const WatchVideo = observer(() => {
             </div>
 
             <div className={styles.channel_picture}>
-              <ProfilePicture
-                src={`http://localhost:5000${channelAvatar}`}
-                alt="profile_img"
-                width="60"
-                height="60"
-              />
+              <ChannelLink user_id={store.user.id} channel_id={channelId}>
+                <ProfilePicture
+                  src={`http://localhost:5000${channelAvatar}`}
+                  alt="profile_img"
+                  width="60"
+                  height="60"
+                />
+              </ChannelLink>
             </div>
             <div className={styles.channel_info}>
-              <h3 className={styles.channel_name}>{channelName}</h3>
+              <ChannelLink
+                user_id={store.user.id}
+                channel_id={channelId}
+                style={{ color: "inherit", textDecoration: "inherit" }}
+              >
+                <h3 className={styles.channel_name}>{channelName}</h3>
+              </ChannelLink>
               <p className={styles.count_subs}>
                 {pageLoading ? "" : `${countSubs} subs.`}
               </p>
