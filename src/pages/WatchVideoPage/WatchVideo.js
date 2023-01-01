@@ -14,6 +14,7 @@ import VideoStatsService from "../../services/videoStatsService";
 import CommentList from "../../components/CommentList/CommentList";
 import Donut from "../../components/UI/Donut/Donut";
 import PostCommentForm from "../../components/PostCommentForm/PostCommentForm";
+import SubscribeButton from "../../components/UI/SubscribeButton/SubscribeButton";
 import userActions from "../../userActions/userActions";
 import convertCount from "./../../otherServices/ConvertCount";
 
@@ -32,6 +33,9 @@ const WatchVideo = observer(() => {
   const [countComments, setCountComments] = React.useState("");
   const [commentList, setCommentList] = React.useState([]);
   const [commentRenderCount, setCommentRenderCount] = React.useState(0);
+
+  const [isSubs, setIsSubs] = React.useState(false);
+  const [channelId, setChannelId] = React.useState("");
 
   const [isCommentsLoading, setIsCommentsLoading] = React.useState(false);
   const [hasMoreComments, setHasMoreComments] = React.useState(true);
@@ -155,6 +159,15 @@ const WatchVideo = observer(() => {
     setIsCommentsLoading(false);
   };
 
+  const handleCountSubsChange = (e) => {
+    if (e) setCountSubs(countSubs + 1);
+    else setCountSubs(countSubs - 1);
+  };
+
+  const handleSubsStatusChange = (e) => {
+    setIsSubs(e);
+  };
+
   React.useEffect(() => {
     let timer = null;
     if (isPlay && !isWatch) {
@@ -198,6 +211,22 @@ const WatchVideo = observer(() => {
       setPageLoading(false);
     };
     getVideo();
+  }, []);
+
+  React.useEffect(() => {
+    const getSubStatus = async () => {
+      const channel_status = await axios.post(
+        "http://localhost:5000/users-data-load/get-channel-status",
+        {
+          user_id: store.user.id,
+          video_id: searchParams.get("v"),
+        }
+      );
+      console.log(channel_status);
+      setIsSubs(channel_status.data.subs_status);
+      setChannelId(channel_status.data.channel);
+    };
+    getSubStatus();
   }, []);
 
   return (
@@ -264,7 +293,13 @@ const WatchVideo = observer(() => {
               <></>
             ) : (
               <div className={styles.subscribe_button}>
-                <Main_Button>Подписаться</Main_Button>
+                <SubscribeButton
+                  is_subs={isSubs}
+                  channel={channelId}
+                  subscriber={store.user.id}
+                  count_subs_change={handleCountSubsChange}
+                  subs_status_change={handleSubsStatusChange}
+                />
               </div>
             )}
           </div>

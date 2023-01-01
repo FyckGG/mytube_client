@@ -9,6 +9,7 @@ import { Context } from "../..";
 import { observer } from "mobx-react-lite";
 import userActions from "../../userActions/userActions";
 import UserDataLoad from "../../userDataLoad/userDataLoad";
+import SubscribeButton from "../../components/UI/SubscribeButton/SubscribeButton";
 import axios from "axios";
 
 import load_photo from "./../../imgs/load_photo.jpg";
@@ -28,6 +29,15 @@ const UserProfile = observer((props) => {
   const [isSubsInfoLoad, setIsSubInfoLoad] = useState(false);
   const [countViews, setCountViews] = useState(0);
   const [signDate, setSignDate] = useState("");
+
+  const handleCountSubsChange = (e) => {
+    if (e) setCountSubs(countSubs + 1);
+    else setCountSubs(countSubs - 1);
+  };
+
+  const handleSubsStatusChange = (e) => {
+    setIsSubs(e);
+  };
 
   const subscribe_click = async () => {
     if (isSubs) {
@@ -87,7 +97,7 @@ const UserProfile = observer((props) => {
       }
 
       setCountSubs(user_stats.data.count_of_subs);
-      setCountViews(user_stats.data.count_of_views); // общее число просмотров у юзера
+      setCountViews(user_stats.data.count_of_views);
       setUserVideos(user_videos_result.data);
       setSignDate(user_result.data.sign_date);
       setIsSubInfoLoad(true);
@@ -142,12 +152,13 @@ const UserProfile = observer((props) => {
                 {props.is_my_profile ? (
                   <></>
                 ) : (
-                  <Main_Button
-                    button_action={subscribe_click}
-                    is_pressed={isSubs}
-                  >
-                    {isSubs ? "Вы подписаны" : "Подписаться"}
-                  </Main_Button>
+                  <SubscribeButton
+                    is_subs={isSubs}
+                    channel={userId}
+                    subscriber={store.user.id}
+                    count_subs_change={handleCountSubsChange}
+                    subs_status_change={handleSubsStatusChange}
+                  />
                 )}
               </div>
             ) : (
