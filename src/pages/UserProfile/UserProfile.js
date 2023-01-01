@@ -27,6 +27,7 @@ const UserProfile = observer((props) => {
   const [isSubs, setIsSubs] = useState("");
   const [isSubsInfoLoad, setIsSubInfoLoad] = useState(false);
   const [countViews, setCountViews] = useState(0);
+  const [signDate, setSignDate] = useState("");
 
   const subscribe_click = async () => {
     if (isSubs) {
@@ -88,6 +89,7 @@ const UserProfile = observer((props) => {
       setCountSubs(user_stats.data.count_of_subs);
       setCountViews(user_stats.data.count_of_views); // общее число просмотров у юзера
       setUserVideos(user_videos_result.data);
+      setSignDate(user_result.data.sign_date);
       setIsSubInfoLoad(true);
       setVideosLoading(false);
     };
@@ -121,7 +123,9 @@ const UserProfile = observer((props) => {
     {
       tabname: "Обо мне",
       tab_id: 3,
-      tab_content: <ChannelInformation />,
+      tab_content: (
+        <ChannelInformation reg_date={signDate} count_views={countViews} />
+      ),
     },
   ];
   return (
