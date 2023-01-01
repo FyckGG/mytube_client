@@ -1,0 +1,19 @@
+.info_text {
+  margin-top: 5px;
+  display: flex;
+}
+
+.description {
+  display: inline-block;
+  width: 70%;
+}
+
+.channel_stats {
+  margin-left: auto;
+  display: inline;
+}
+
+.channel_stats_item {
+  padding-bottom: 5px;
+  border-bottom: 1px solid #d9d9d9;
+}
