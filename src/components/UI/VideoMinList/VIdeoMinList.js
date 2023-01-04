@@ -9,8 +9,7 @@ export const VIdeoMinList = ({ videos }) => {
       {videos.map((video) => (
         <div className={styles.video_min}>
           <Link
-            //to={"/watch_video?v=638494a1fe301e648c2bb148"}
-            to={`watch_video?v=${video.video_id}`}
+            to={`/watch_video?v=${video.video_id}`}
             style={{ color: "inherit", textDecoration: "inherit" }}
           >
             <VideoMin
