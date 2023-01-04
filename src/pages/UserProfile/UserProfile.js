@@ -10,6 +10,7 @@ import { observer } from "mobx-react-lite";
 import userActions from "../../userActions/userActions";
 import UserDataLoad from "../../userDataLoad/userDataLoad";
 import SubscribeButton from "../../components/UI/SubscribeButton/SubscribeButton";
+import { Donut_2 } from "../../components/UI/Donut_2/Donut_2";
 import axios from "axios";
 
 import load_photo from "./../../imgs/load_photo.jpg";
@@ -143,7 +144,7 @@ const UserProfile = observer((props) => {
   return (
     <div className={styles.profile}>
       {store.isLoading ? (
-        <div className={styles.loading}></div>
+        <Donut_2 />
       ) : (
         <>
           <div>
