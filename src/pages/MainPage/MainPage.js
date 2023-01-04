@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./MainPage.module.css";
 import VideoMin from "../../components/UI/VideoMin/VideoMin";
+import { VIdeoMinList } from "../../components/UI/VideoMinList/VIdeoMinList";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -13,7 +14,6 @@ const MainPage = () => {
       const videos = await axios.get(
         "http://localhost:5000/data-load/get-videos"
       );
-      console.log(videos);
       setVideos(videos.data);
       setVideosLoading(false);
     };
@@ -26,26 +26,7 @@ const MainPage = () => {
         <div>Загрузка...</div>
       ) : (
         <>
-          {videos.map((video) => (
-            <div className={styles.video_min}>
-              <Link
-                //to={"/watch_video?v=638494a1fe301e648c2bb148"}
-                to={`watch_video?v=${video.video_id}`}
-                style={{ color: "inherit", textDecoration: "inherit" }}
-              >
-                <VideoMin
-                  name={video.video_name}
-                  preview={video.video_preview}
-                  channel={video.channel_id}
-                  channel_name={video.channel_name}
-                  channel_icon={video.channel_avatar}
-                  views={video.count_views}
-                  date={video.video_date}
-                  duration={video.video_duration}
-                />
-              </Link>
-            </div>
-          ))}
+          <VIdeoMinList videos={videos} />
         </>
       )}
     </div>
