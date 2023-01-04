@@ -13,6 +13,7 @@ import SubscribeButton from "../../components/UI/SubscribeButton/SubscribeButton
 import axios from "axios";
 
 import load_photo from "./../../imgs/load_photo.jpg";
+import { getLastUrlPart } from "../../otherServices/getLastUrlPart";
 import UserVideos from "../../components/UserVideos/UserVideos";
 
 const UserProfile = observer((props) => {
@@ -55,7 +56,8 @@ const UserProfile = observer((props) => {
 
   useEffect(() => {
     const url = window.location.href;
-    const final = url.substring(url.lastIndexOf("/") + 1);
+    //const final = url.substring(url.lastIndexOf("/") + 1);
+    const final = getLastUrlPart(url);
     setUserId(final);
     const getUserData = async () => {
       setAvatarLoading(true);
