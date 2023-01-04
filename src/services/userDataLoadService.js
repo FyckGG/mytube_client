@@ -7,4 +7,10 @@ export default class UserDataLoadService {
       subscriber_id: subscriber_id,
     });
   };
+
+  static getLikedVideos = async (user_id) => {
+    return $api.post("http://localhost:5000/users-data-load/get-liked-videos", {
+      user_id: user_id,
+    });
+  };
 }
