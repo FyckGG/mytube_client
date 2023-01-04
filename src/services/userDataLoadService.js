@@ -13,4 +13,13 @@ export default class UserDataLoadService {
       user_id: user_id,
     });
   };
+
+  static getSubsChannels = async (user_id) => {
+    return $api.post(
+      "http://localhost:5000/users-data-load/get-subs-channels",
+      {
+        user_id: user_id,
+      }
+    );
+  };
 }

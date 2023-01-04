@@ -21,4 +21,13 @@ export default class UserDataLoad {
       throw "Не удалось загрузить понравившиеся видео: " + e;
     }
   }
+
+  static async getSubsChannels(user_id) {
+    try {
+      const result = await UserDataLoadService.getSubsChannels(user_id);
+      return result;
+    } catch (e) {
+      throw "Не улалось получить подписки пользователя:" + e;
+    }
+  }
 }
