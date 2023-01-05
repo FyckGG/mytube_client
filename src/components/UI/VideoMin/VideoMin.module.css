@@ -1,6 +1,12 @@
 .video_min {
   display: inline-block;
   text-align: center;
+  position: relative;
+}
+
+.dots {
+  position: absolute;
+  right: 0;
 }
 
 .video_info {

@@ -8,12 +8,18 @@ import ProfilePicture from "../ProfilePicture/ProfilePicture";
 import Tooltip from "../Tooltip/Tooltip";
 import { Link } from "react-router-dom";
 import ChannelLink from "../ChannelLink/ChannelLink";
+import { VerticalDots } from "../VerticalDots/VerticalDots";
+import addWatchLater from "../../../otherServices/addWatchLater";
 import { Context } from "../../..";
 
 const VideoMin = (props) => {
+  const dotsList = [{ name: "Смотреть позже" }];
   const store = React.useContext(Context);
   return (
     <div className={styles.video_min}>
+      <div className={styles.dots}>
+        <VerticalDots content={dotsList} />
+      </div>
       <div>
         <VideoPreview
           src={`http://localhost:5000${props.preview}`}
