@@ -2,6 +2,7 @@ import React from "react";
 import { ChannelSubscribeList } from "../../components/UI/ChannelSubscribeList/ChannelSubscribeList";
 import { ChannelSubscribe } from "../../components/UI/ChannelSubscribe/ChannelSubscribe";
 import UserDataLoad from "../../userDataLoad/userDataLoad";
+import { Donut_2 } from "../../components/UI/Donut_2/Donut_2";
 import { getLastUrlPart } from "./../../otherServices/getLastUrlPart";
 import styles from "./UserSubscriptions.module.css";
 
@@ -13,7 +14,6 @@ const UserSubscriptions = () => {
       const subs_channels = await UserDataLoad.getSubsChannels(
         getLastUrlPart(window.location.href)
       );
-      console.log(subs_channels.data);
       setSubsChannels(subs_channels.data);
       setIsSubsLoading(false);
     };
@@ -21,7 +21,13 @@ const UserSubscriptions = () => {
   }, []);
   return (
     <div className={styles.channel_subscriptions}>
-      <ChannelSubscribeList list={subsChannels} />
+      {isSubsLoading ? (
+        <Donut_2 />
+      ) : subsChannels.length !== 0 ? (
+        <ChannelSubscribeList list={subsChannels} />
+      ) : (
+        <h1>Нет подписок</h1>
+      )}
     </div>
   );
 };
