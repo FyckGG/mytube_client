@@ -19,7 +19,13 @@ const UserLikes = () => {
   }, []);
   return (
     <div className={styles.user_likes_page}>
-      {isVIdeosLoad ? <Donut_2 /> : <VIdeoMinList videos={likedVideos} />}
+      {isVIdeosLoad ? (
+        <Donut_2 />
+      ) : likedVideos.length !== 0 ? (
+        <VIdeoMinList videos={likedVideos} />
+      ) : (
+        <h1>Нет понравившихся видео</h1>
+      )}
     </div>
   );
 };
