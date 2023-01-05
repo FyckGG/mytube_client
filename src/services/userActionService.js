@@ -34,4 +34,11 @@ export default class UserActionService {
       subscriber_id: subscriber_id,
     });
   };
+
+  static addWatchLater = async (video_id, user_id) => {
+    return $api.post("http://localhost:5000/user-action/add-watch-later", {
+      video_id: video_id,
+      user_id: user_id,
+    });
+  };
 }

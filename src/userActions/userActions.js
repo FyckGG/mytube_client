@@ -42,4 +42,13 @@ export default class userActions {
       throw "не удалось удалить подписку: " + e;
     }
   }
+
+  static async addWatchLater(video_id, user_id) {
+    try {
+      const result = await UserActionService.addWatchLater(video_id, user_id);
+      return result;
+    } catch (e) {
+      throw "Не удалось добавить запись 'Посмотреть позже:' " + e;
+    }
+  }
 }
