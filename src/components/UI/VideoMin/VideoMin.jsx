@@ -13,8 +13,15 @@ import addWatchLater from "../../../otherServices/addWatchLater";
 import { Context } from "../../..";
 
 const VideoMin = (props) => {
-  const dotsList = [{ name: "Смотреть позже" }];
   const store = React.useContext(Context);
+  const dotsList = [
+    {
+      name: "Смотреть позже",
+      action: () => {
+        addWatchLater(props.video_id, store.user.id);
+      },
+    },
+  ];
   return (
     <div className={styles.video_min}>
       <div className={styles.dots}>

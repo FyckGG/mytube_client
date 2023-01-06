@@ -13,6 +13,7 @@ export const VIdeoMinList = ({ videos }) => {
             style={{ color: "inherit", textDecoration: "inherit" }}
           >
             <VideoMin
+              video_id={video.video_id}
               name={video.video_name}
               preview={video.video_preview}
               channel={video.channel_id}
