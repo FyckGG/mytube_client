@@ -41,4 +41,11 @@ export default class UserActionService {
       user_id: user_id,
     });
   };
+
+  static deleteWatchLater = async (video_id, user_id) => {
+    return $api.post("http://localhost:5000/user-action/delete-watch-later", {
+      video_id: video_id,
+      user_id: user_id,
+    });
+  };
 }

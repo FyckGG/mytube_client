@@ -51,4 +51,16 @@ export default class userActions {
       throw "Не удалось добавить запись 'Посмотреть позже:' " + e;
     }
   }
+
+  static async deleteWatchLater(video_id, user_id) {
+    try {
+      const result = await UserActionService.deleteWatchLater(
+        video_id,
+        user_id
+      );
+      return result;
+    } catch (e) {
+      throw "Не удалось удалить запись 'Смотреть позже' : " + e;
+    }
+  }
 }
