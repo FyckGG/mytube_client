@@ -99,7 +99,6 @@ function App() {
         !accOptionButtonRef.current.contains(e.target)
       ) {
         setOptionsActive(false);
-        console.log("gbgb");
       }
     };
     document.addEventListener("click", handleClick);
