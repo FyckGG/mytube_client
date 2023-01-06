@@ -15,6 +15,7 @@ const MainPage = () => {
         "http://localhost:5000/data-load/get-videos"
       );
       setVideos(videos.data);
+      console.log(videos.data);
       setVideosLoading(false);
     };
     getVideos();
