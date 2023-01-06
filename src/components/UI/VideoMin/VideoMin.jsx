@@ -10,22 +10,39 @@ import { Link } from "react-router-dom";
 import ChannelLink from "../ChannelLink/ChannelLink";
 import { VerticalDots } from "../VerticalDots/VerticalDots";
 import addWatchLater from "../../../otherServices/addWatchLater";
+import deleteWatchLater from "../../../otherServices/deleteWatchLater";
+import { observer } from "mobx-react-lite";
 import { Context } from "../../..";
 
-const VideoMin = (props) => {
+const VideoMin = observer((props) => {
+  const [isWatchLater, setIsWatchLater] = React.useState(props.is_watch_later);
   const store = React.useContext(Context);
   const dotsList = [
     {
       name: "Смотреть позже",
-      action: () => {
-        addWatchLater(props.video_id, store.user.id);
+      action: async () => {
+        await addWatchLater(props.video_id, store.user.id);
+        setIsWatchLater(!isWatchLater);
+      },
+    },
+  ];
+  const dotsList_2 = [
+    {
+      name: "Удалить из 'Смотреть позже'",
+      action: async () => {
+        await deleteWatchLater(props.video_id, store.user.id);
+        setIsWatchLater(!isWatchLater);
       },
     },
   ];
   return (
     <div className={styles.video_min}>
       <div className={styles.dots}>
-        <VerticalDots content={dotsList} />
+        {isWatchLater ? (
+          <VerticalDots content={dotsList_2} />
+        ) : (
+          <VerticalDots content={dotsList} />
+        )}
       </div>
       <div>
         <VideoPreview
@@ -65,6 +82,6 @@ const VideoMin = (props) => {
       </div>
     </div>
   );
-};
+});
 
 export default VideoMin;

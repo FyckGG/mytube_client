@@ -22,6 +22,7 @@ export const VIdeoMinList = ({ videos }) => {
               views={video.count_views}
               date={video.video_date}
               duration={video.video_duration}
+              is_watch_later={video.is_watch_later}
             />
           </Link>
         </div>
