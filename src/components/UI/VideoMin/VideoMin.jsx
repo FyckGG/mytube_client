@@ -38,10 +38,16 @@ const VideoMin = observer((props) => {
   return (
     <div className={styles.video_min}>
       <div className={styles.dots}>
-        {isWatchLater ? (
-          <VerticalDots content={dotsList_2} />
+        {isWatchLater == undefined ? (
+          <></>
         ) : (
-          <VerticalDots content={dotsList} />
+          <>
+            {isWatchLater ? (
+              <VerticalDots content={dotsList_2} />
+            ) : (
+              <VerticalDots content={dotsList} />
+            )}
+          </>
         )}
       </div>
       <div>

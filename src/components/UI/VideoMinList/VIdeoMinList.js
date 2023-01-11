@@ -3,10 +3,10 @@ import VideoMin from "../VideoMin/VideoMin";
 import { Link } from "react-router-dom";
 import styles from "./VideoMinList.module.css";
 
-export const VIdeoMinList = ({ videos }) => {
+export const VIdeoMinList = (props) => {
   return (
     <div>
-      {videos.map((video) => (
+      {props.videos.map((video) => (
         <div className={styles.video_min}>
           <Link
             to={`/watch_video?v=${video.video_id}`}
