@@ -11,44 +11,20 @@ import ChannelLink from "../ChannelLink/ChannelLink";
 import { VerticalDots } from "../VerticalDots/VerticalDots";
 import addWatchLater from "../../../otherServices/addWatchLater";
 import deleteWatchLater from "../../../otherServices/deleteWatchLater";
+import { VerticalDotsInVIdeoMin } from "../VerticalDotsInVideoMin/VerticalDotsInVIdeoMin";
 import { observer } from "mobx-react-lite";
 import { Context } from "../../..";
 
 const VideoMin = observer((props) => {
-  const [isWatchLater, setIsWatchLater] = React.useState(props.is_watch_later);
   const store = React.useContext(Context);
-  const dotsList = [
-    {
-      name: "Смотреть позже",
-      action: async () => {
-        await addWatchLater(props.video_id, store.user.id);
-        setIsWatchLater(!isWatchLater);
-      },
-    },
-  ];
-  const dotsList_2 = [
-    {
-      name: "Удалить из 'Смотреть позже'",
-      action: async () => {
-        await deleteWatchLater(props.video_id, store.user.id);
-        setIsWatchLater(!isWatchLater);
-      },
-    },
-  ];
+
   return (
     <div className={styles.video_min}>
       <div className={styles.dots}>
-        {isWatchLater == undefined ? (
-          <></>
-        ) : (
-          <>
-            {isWatchLater ? (
-              <VerticalDots content={dotsList_2} />
-            ) : (
-              <VerticalDots content={dotsList} />
-            )}
-          </>
-        )}
+        <VerticalDotsInVIdeoMin
+          is_watch_later={props.is_watch_later}
+          video_id={props.video_id}
+        />
       </div>
       <div>
         <VideoPreview

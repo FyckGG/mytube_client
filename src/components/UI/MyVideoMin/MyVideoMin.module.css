@@ -1,5 +1,6 @@
 .video_min {
   display: inline-block;
+  position: relative;
 }
 
 .video_time {
@@ -23,4 +24,9 @@
 
 .video_min p {
   font-size: small;
+}
+
+.dots {
+  position: absolute;
+  right: 0;
 }

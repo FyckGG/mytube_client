@@ -16,11 +16,13 @@ export const VideosInProfile = (props) => {
               style={{ color: "inherit", textDecoration: "inherit" }}
             >
               <MyVideoMin
+                video_id={video.id}
                 src={`http://localhost:5000${video.thumbnail_dir}`}
                 video_name={video.video_name}
                 video_time={convertTime(video.video_duration)}
                 video_views={video.number_views}
                 video_date={video.video_date}
+                is_watch_later={video.is_watch_later}
               />
             </Link>
           </div>

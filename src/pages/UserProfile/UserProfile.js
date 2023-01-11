@@ -81,10 +81,13 @@ const UserProfile = observer((props) => {
         `http://localhost:5000${avatar_result.data.avatar_dir}${avatar_result.data.avatar_name}`
       );
       setAvatarLoading(false);
+      console.log(store.user.id);
       const user_videos_result = await axios.post(
         "http://localhost:5000/users-data-load/get-user-videos",
         {
-          user_id: final,
+          //user_id: final,
+          channel_id: final,
+          user_id: store.user.id,
         }
       );
       const user_stats = await axios.post(
@@ -102,6 +105,7 @@ const UserProfile = observer((props) => {
       setCountSubs(user_stats.data.count_of_subs);
       setCountViews(user_stats.data.count_of_views);
       setUserVideos(user_videos_result.data);
+      //console.log(user_videos_result.data);
       setSignDate(user_result.data.sign_date);
       setIsSubInfoLoad(true);
       setVideosLoading(false);
