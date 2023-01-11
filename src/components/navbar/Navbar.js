@@ -13,12 +13,11 @@ import styles from "./Navbar.module.css";
 const Navbar = observer((props) => {
   const is_log = props.is_log;
   const store = useContext(Context);
-
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      store.checkAuth();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.getItem("token")) {
+  //     store.checkAuth();
+  //   }
+  // }, []);
 
   return (
     <>
