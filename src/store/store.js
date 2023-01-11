@@ -6,7 +6,8 @@ import { API_URL } from "../http";
 export default class Store {
   user = {};
   isAuth = false;
-  isLoading = false;
+  //isLoading = false;
+  isLoading = true;
 
   constructor() {
     makeAutoObservable(this);
@@ -55,7 +56,6 @@ export default class Store {
   }
 
   async checkAuth() {
-    this.setLoading(true);
     try {
       const response = await axios.get(`${API_URL}/refresh`, {
         withCredentials: true,
