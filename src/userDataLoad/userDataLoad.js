@@ -30,4 +30,13 @@ export default class UserDataLoad {
       throw "Не улалось получить подписки пользователя:" + e;
     }
   }
+
+  static async getWatchLaterVideos(user_id) {
+    try {
+      const result = await UserDataLoadService.getWatchLaterVideos(user_id);
+      return result;
+    } catch (e) {
+      throw "Не удалось получить видео для просмотра позже: " + e;
+    }
+  }
 }
