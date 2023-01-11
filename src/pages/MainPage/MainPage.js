@@ -4,22 +4,31 @@ import VideoMin from "../../components/UI/VideoMin/VideoMin";
 import { VIdeoMinList } from "../../components/UI/VideoMinList/VIdeoMinList";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { Context } from "../..";
+import { set } from "mobx";
 
 const MainPage = () => {
+  const store = React.useContext(Context);
+  const [isUserLoading, setIsUserLoading] = React.useState(store.isLoading);
   const [videos, setVideos] = React.useState([]);
-  const [videosLoading, setVideosLoading] = React.useState(false);
+  const [videosLoading, setVideosLoading] = React.useState(true);
   React.useEffect(() => {
     const getVideos = async () => {
-      setVideosLoading(true);
-      const videos = await axios.get(
-        "http://localhost:5000/data-load/get-videos"
+      const videos_res = await axios.post(
+        "http://localhost:5000/data-load/get-videos",
+        { user: store.user.id }
       );
-      setVideos(videos.data);
-      console.log(videos.data);
-      setVideosLoading(false);
+
+      if (!isUserLoading) {
+        setVideos(videos_res.data);
+        setVideosLoading(false);
+      }
+      console.log(videos_res);
+      setIsUserLoading(store.isLoading);
     };
+
     getVideos();
-  }, []);
+  }, [isUserLoading]);
 
   return (
     <div className={styles.main_page}>
