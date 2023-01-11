@@ -29,7 +29,7 @@ const UserProfile = observer((props) => {
   const [countSubs, setCountSubs] = useState(0);
   const [isSubs, setIsSubs] = useState("");
   const [isSubsInfoLoad, setIsSubInfoLoad] = useState(false);
-  const [countViews, setCountViews] = useState(0);
+  const [countViews, setCountViews] = useState("");
   const [signDate, setSignDate] = useState("");
 
   const handleCountSubsChange = (e) => {
