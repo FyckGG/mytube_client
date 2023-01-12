@@ -5,6 +5,7 @@ import styles from "./UserProfile.module.css";
 import Main_Button from "../../components/UI/main_button/Main_Button";
 import ToggleTabs from "../../components/ToggleTabs/ToggleTabs";
 import ChannelInformation from "../../components/ChannelInformation/ChannelInformation";
+import UserProfileMainPage from "../UserProfileMainPage/UserProfileMainPage";
 import { Context } from "../..";
 import { observer } from "mobx-react-lite";
 import userActions from "../../userActions/userActions";
@@ -41,19 +42,19 @@ const UserProfile = observer((props) => {
     setIsSubs(e);
   };
 
-  const subscribe_click = async () => {
-    if (isSubs) {
-      const unsub_result = await userActions.Unsubscribe(userId, store.user.id);
-      setCountSubs(countSubs - 1);
-      setIsSubs(false);
-      console.log("otpiska");
-    } else {
-      const sub_result = await userActions.Subscribe(userId, store.user.id);
-      setCountSubs(countSubs + 1);
-      setIsSubs(true);
-      console.log("podpiska");
-    }
-  };
+  // const subscribe_click = async () => {
+  //   if (isSubs) {
+  //     const unsub_result = await userActions.Unsubscribe(userId, store.user.id);
+  //     setCountSubs(countSubs - 1);
+  //     setIsSubs(false);
+  //     console.log("otpiska");
+  //   } else {
+  //     const sub_result = await userActions.Subscribe(userId, store.user.id);
+  //     setCountSubs(countSubs + 1);
+  //     setIsSubs(true);
+  //     console.log("podpiska");
+  //   }
+  // };
 
   useEffect(() => {
     const url = window.location.href;
@@ -105,7 +106,7 @@ const UserProfile = observer((props) => {
       setCountSubs(user_stats.data.count_of_subs);
       setCountViews(user_stats.data.count_of_views);
       setUserVideos(user_videos_result.data);
-      //console.log(user_videos_result.data);
+      // console.log(user_videos_result.data);
       setSignDate(user_result.data.sign_date);
       setIsSubInfoLoad(true);
       setVideosLoading(false);
@@ -117,7 +118,9 @@ const UserProfile = observer((props) => {
     {
       tabname: "Главная",
       tab_id: 0,
-      tab_content: <h1>MAIN</h1>,
+      tab_content: (
+        <UserProfileMainPage videos={user_videos} is_loading={videosLoading} />
+      ),
     },
     {
       tabname: "Видео",
