@@ -135,6 +135,12 @@ const WatchVideo = observer(() => {
     setCommentText("");
   };
 
+  const deleteComment = async (id) => {
+    const delete_result = await userActions.deleteComment(id);
+    setCommentList(commentList.filter((comment) => comment.comment_id != id));
+    setCountComments(countComments - 1);
+  };
+
   const getCommentList = async () => {
     if (isCommentsLoading) return;
     setIsCommentsLoading(true);
@@ -357,7 +363,10 @@ const WatchVideo = observer(() => {
               <></>
             ) : (
               <div>
-                <CommentList comment_list={commentList} />
+                <CommentList
+                  comment_list={commentList}
+                  on_delete_icon_click={deleteComment}
+                />
                 <InfiniteScroll
                   dataLength={commentList.length}
                   next={getCommentList}

@@ -3,10 +3,15 @@ import ProfilePicture from "../UI/ProfilePicture/ProfilePicture";
 import styles from "./Comment.module.css";
 import ChannelLink from "../UI/ChannelLink/ChannelLink";
 import { Context } from "../..";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import img from "./../../imgs/cross.png";
 
 const Comment = (props) => {
   const store = React.useContext(Context);
+  // const deleteThisComment = () => {
+  //   props.on_icon_click();
+  // };
   return (
     <div className={styles.comment}>
       <ChannelLink
@@ -38,7 +43,20 @@ const Comment = (props) => {
           >
             {props.comment_time}
           </p>
+
+          {/* {props.user_id === store.user.id ? (
+            <div className={styles.delete_icon} onClick={deleteThisComment}>
+              <FontAwesomeIcon
+                className={styles.font_delete}
+                icon={faTrash}
+                size="lg"
+              />
+            </div>
+          ) : (
+            <></>
+          )} */}
         </div>
+
         <p className={styles.comment_text}>{props.comment_text}</p>
       </div>
     </div>
