@@ -14,7 +14,7 @@ const ChannelInformation = (props) => {
         <>
           <h2>Описание канала</h2>
           <div className={styles.info_text}>
-            <p className={styles.description}>Здесь могло быть ваше описание</p>
+            <p className={styles.description}>Описание отсутствует</p>
             <div className={styles.channel_stats}>
               <div className={styles.channel_stats_item}>
                 Дата регистрации: {convertDate(props.reg_date)}
