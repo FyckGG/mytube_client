@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./VideoInput.module.css";
 import is_video_check from "../../formatCheck/isVideoCheck";
+import upload_video_icon from "./../../imgs/upload_video.png";
 
 const VideoInput = (props) => {
   const { height, width } = props;
@@ -72,7 +73,7 @@ const VideoInput = (props) => {
           style={{ width: "30%", height: height }}
         >
           <img
-            src="https://cdn-icons-png.flaticon.com/512/4620/4620095.png"
+            src={upload_video_icon}
             alt="upload_video"
             height="200px"
             width="200px"
