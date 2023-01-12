@@ -21,6 +21,12 @@ export default class UserActionService {
     });
   };
 
+  static deleteComment = async (comment) => {
+    return $api.post("http://localhost:5000/user-action/delete-comment", {
+      comment_id: comment,
+    });
+  };
+
   static subscribe = async (channel_id, subscriber_id) => {
     return $api.post("http://localhost:5000/user-action/subscribe", {
       channel_id: channel_id,

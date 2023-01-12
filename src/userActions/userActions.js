@@ -19,6 +19,15 @@ export default class userActions {
     }
   }
 
+  static async deleteComment(comment) {
+    try {
+      const result = await UserActionService.deleteComment(comment);
+      return result;
+    } catch (e) {
+      throw "Не удалось удалить комментарий: " + e;
+    }
+  }
+
   static async Subscribe(channel_id, subscriber_id) {
     try {
       const result = await UserActionService.subscribe(
