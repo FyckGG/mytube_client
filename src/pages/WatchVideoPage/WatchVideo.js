@@ -19,8 +19,15 @@ import ChannelLink from "../../components/UI/ChannelLink/ChannelLink";
 import userActions from "../../userActions/userActions";
 import convertCount from "./../../otherServices/ConvertCount";
 
+import load_photo from "./../../imgs/load_photo.jpg";
+import UserDataLoad from "../../userDataLoad/userDataLoad";
+//import load_photo from "./../../imgs/load_photo.jpg";
+
 const WatchVideo = observer(() => {
   const store = React.useContext(Context);
+  const [isUserLoading, setIsUserLoading] = React.useState(store.isLoading);
+  const [isVideoMarkLoading, setIsVideoMarkLoading] = React.useState(true);
+  const [isSubsStatusLoading, setIsSubsStatusLoading] = React.useState(true);
   const [videoPath, setVideoPath] = React.useState("");
   const [videoName, setVideoName] = React.useState("");
   const [videoDescription, setVideoDescription] = React.useState("");
@@ -127,7 +134,7 @@ const WatchVideo = observer(() => {
       store.user.id,
       commentText
     );
-    console.log(new_comment);
+    //console.log(new_comment);
     setCommentForm(false);
 
     setCommentList([new_comment.data, ...commentList]);
@@ -156,7 +163,7 @@ const WatchVideo = observer(() => {
         comment_count: commentRenderCount + 10,
       }
     );
-    console.log(comment_list.data);
+    //console.log(comment_list.data);
     setCountComments(comment_list.data.comments_count);
     if (comment_list.data.comments_count === 0) {
       setHasMoreComments(false);
@@ -194,6 +201,7 @@ const WatchVideo = observer(() => {
 
   React.useEffect(() => {
     const getVideo = async () => {
+      //if (!isUserLoading) {
       setPageLoading(true);
       const video = await axios.post(
         "http://localhost:5000/user-action/load-watch-video",
@@ -202,6 +210,8 @@ const WatchVideo = observer(() => {
           user_id: store.user.id,
         }
       );
+
+      //console.log(video.data);
 
       setVideoPath(video.data.video.video_directory);
       setVideoName(video.data.video.video_name);
@@ -213,28 +223,63 @@ const WatchVideo = observer(() => {
       setCountDislike(video.data.count_dislikes);
       setCountSubs(video.data.count_subs);
       setCountViews(video.data.count_views);
-      if (video.data.video_mark === true) setIsLike(true);
-      else if (video.data.video_mark === false) setIsDislike(true);
+      //if (video.data.video_mark === true) setIsLike(true);
+      //else if (video.data.video_mark === false) setIsDislike(true);
       setPageLoading(false);
+      //}
+
+      // setTimeout(() => {
+      //   setIsUserLoading(store.isLoading);
+      // }, 5000);
     };
     getVideo();
   }, []);
 
   React.useEffect(() => {
     const getSubStatus = async () => {
-      const channel_status = await axios.post(
-        "http://localhost:5000/users-data-load/get-channel-status",
-        {
-          user_id: store.user.id,
-          video_id: searchParams.get("v"),
-        }
-      );
-      console.log(channel_status);
-      setIsSubs(channel_status.data.subs_status);
-      setChannelId(channel_status.data.channel);
+      if (!isUserLoading) {
+        const channel_status = await axios.post(
+          "http://localhost:5000/users-data-load/get-channel-status",
+          {
+            user_id: store.user.id,
+            video_id: searchParams.get("v"),
+          }
+        );
+        //console.log(channel_status);
+        setIsSubs(channel_status.data.subs_status);
+        setChannelId(channel_status.data.channel);
+        setIsSubsStatusLoading(false);
+      }
+      setTimeout(() => setIsUserLoading(store.isLoading), 1000);
     };
     getSubStatus();
-  }, []);
+  }, [isUserLoading]);
+
+  React.useEffect(() => {
+    const getVideoMark = async () => {
+      if (!isUserLoading) {
+        //const video_mark = await UserDataLoad.getVideoMark(
+        const video_mark = await axios.post(
+          "http://localhost:5000/users-data-load/get-video-mark",
+          {
+            user_id: store.user.id,
+            video_id: searchParams.get("v"),
+          }
+        );
+        console.log("vfvfvfv");
+        console.log(video_mark);
+        if (video_mark.data !== null) {
+          if (video_mark.data.is_like === true) setIsLike(true);
+          if (video_mark.data.is_like === false) setIsDislike(true);
+        }
+        setIsVideoMarkLoading(false);
+      }
+      setTimeout(() => {
+        setIsUserLoading(store.isLoading);
+      }, 1000);
+    };
+    getVideoMark();
+  }, [isUserLoading]);
 
   return (
     <div>
@@ -268,16 +313,20 @@ const WatchVideo = observer(() => {
               <h2 className={styles.views_count}>
                 Количество просмотров: {convertCount(countViews)}
               </h2>
-              <div className={styles.like_dislike_panel}>
-                <LikeDislikePanel
-                  likes={convertCount(countLike)}
-                  dislikes={convertCount(countDislike)}
-                  is_like_active={isLike}
-                  is_dislike_active={isDislike}
-                  onLike={handleLikeChange}
-                  onDislike={handleDislikeChange}
-                />
-              </div>
+              {isVideoMarkLoading ? (
+                <></>
+              ) : (
+                <div className={styles.like_dislike_panel}>
+                  <LikeDislikePanel
+                    likes={convertCount(countLike)}
+                    dislikes={convertCount(countDislike)}
+                    is_like_active={isLike}
+                    is_dislike_active={isDislike}
+                    onLike={handleLikeChange}
+                    onDislike={handleDislikeChange}
+                  />
+                </div>
+              )}
             </div>
 
             <div className={styles.channel_picture}>
@@ -304,7 +353,8 @@ const WatchVideo = observer(() => {
             </div>
             {store.user.login == channelName ||
             pageLoading ||
-            localStorage.getItem("token") == null ? (
+            localStorage.getItem("token") == null ||
+            isSubsStatusLoading ? (
               <></>
             ) : (
               <div className={styles.subscribe_button}>
