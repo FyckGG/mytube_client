@@ -18,7 +18,7 @@
   display: inline-block;
 }
 
-.delete_icon {
+/* .delete_icon {
   display: inline;
   margin-left: 5px;
   color: #d9d9d9;
@@ -27,4 +27,4 @@
 .delete_icon:hover .font_delete {
   cursor: pointer;
   color: #b4b4b4;
-}
+} */
