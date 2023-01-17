@@ -54,12 +54,10 @@ const VideoUploader = () => {
   async function upload_video(e) {
     setIsvideoSending(true);
     e.preventDefault();
-   
 
     const uploading_video = new FormData();
     uploading_video.append("id", store.user.id);
     uploading_video.append("video", videoForUpload);
-   
 
     const upload_responce = await userActions.uploadVideo(uploading_video);
     console.log(upload_responce);
