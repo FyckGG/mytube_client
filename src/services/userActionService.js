@@ -54,4 +54,18 @@ export default class UserActionService {
       user_id: user_id,
     });
   };
+
+  static editVideo = async (
+    video_id,
+    video_name,
+    video_description,
+    video_access
+  ) => {
+    return $api.post("http://localhost:5000/user-action/edit-video", {
+      video_id: video_id,
+      video_name: video_name,
+      video_description: video_description,
+      video_access: video_access,
+    });
+  };
 }

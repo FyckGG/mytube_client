@@ -72,4 +72,23 @@ export default class userActions {
       throw "Не удалось удалить запись 'Смотреть позже' : " + e;
     }
   }
+
+  static async editVideo(
+    video_id,
+    video_name,
+    video_description,
+    video_access
+  ) {
+    try {
+      const result = await UserActionService.editVideo(
+        video_id,
+        video_name,
+        video_description,
+        video_access
+      );
+      return result;
+    } catch (e) {
+      throw "Не удалось изменить видео: " + e;
+    }
+  }
 }
