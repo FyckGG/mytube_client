@@ -12,78 +12,68 @@ import PageList from "../UI/PageList/PageList";
 
 const UserVideos = observer((props) => {
   const store = React.useContext(Context);
+  const [editVideoActive, setEditVideoActive] = React.useState(false);
   const [currentVideoPage, setCurrentVideoPage] = React.useState(0);
+
+  const handleEdiVideoFormActive = () => {
+    setEditVideoActive(true);
+  };
 
   const handlePageChange = (e) => {
     setCurrentVideoPage(e);
-    console.log(e);
   };
   return (
-    <div className={styles.user_video}>
-      {props.is_loading ? (
-        <h2 className={styles.loading}>Идёт загрузка...</h2>
-      ) : (
-        <>
-          {!props.is_activated ? (
-            <>
-              {props.videos == "" ? (
-                <div className={styles.no_video}>
-                  <h2>Нет видео</h2>
-                </div>
-              ) : (
-                <VideosInProfile
-                  videos={props.videos}
-                  currentVideoPage={currentVideoPage}
-                />
-                /* props.videos
-                  .slice(currentVideoPage * 24, (currentVideoPage + 1) * 24)
-                  .map((video) => (
-                    <div className={styles.video_min}>
-                      <Link
-                        to={`/watch_video?v=${video.id}`}
-                        style={{ color: "inherit", textDecoration: "inherit" }}
-                      >
-                        <MyVideoMin
-                          src={`http://localhost:5000${video.thumbnail_dir}`}
-                          video_name={video.video_name}
-                          video_time={convertTime(video.video_duration)}
-                          video_views={video.number_views}
-                          video_date={video.video_date}
-                        />
-                      </Link>
-                    </div>
-                  )) */
-              )}
-              {props.is_load ? (
-                <div style={{ marginTop: "5px" }}>
-                  <Link
-                    to={`/upload_video/${props.user_id}`}
-                    className={styles.add_video}
-                  >
-                    Загрузить видео
-                  </Link>
-                </div>
-              ) : (
-                <></>
-              )}
-              <div style={{ marginTop: "7px" }}>
-                {Math.ceil(props.videos.length / 24) >= 2 ? (
-                  <PageList
-                    buttons_count={Math.ceil(props.videos.length / 24)}
-                    on_page_change={handlePageChange}
-                    active_button={currentVideoPage}
+    <>
+      <div className={styles.user_video}>
+        {props.is_loading ? (
+          <h2 className={styles.loading}>Идёт загрузка...</h2>
+        ) : (
+          <>
+            {!props.is_activated ? (
+              <>
+                {props.videos == "" ? (
+                  <div className={styles.no_video}>
+                    <h2>Нет видео</h2>
+                  </div>
+                ) : (
+                  <VideosInProfile
+                    activation_edit_form={handleEdiVideoFormActive}
+                    can_redact={props.can_change}
+                    videos={props.videos}
+                    currentVideoPage={currentVideoPage}
                   />
+                )}
+                {props.can_change ? (
+                  <div style={{ marginTop: "5px" }}>
+                    <Link
+                      to={`/upload_video/${props.user_id}`}
+                      className={styles.add_video}
+                    >
+                      Загрузить видео
+                    </Link>
+                  </div>
                 ) : (
                   <></>
                 )}
-              </div>
-            </>
-          ) : (
-            <h2>Для загрузки видео подтвердите свою электронную почту.</h2>
-          )}{" "}
-        </>
-      )}
-    </div>
+                <div style={{ marginTop: "7px" }}>
+                  {Math.ceil(props.videos.length / 24) >= 2 ? (
+                    <PageList
+                      buttons_count={Math.ceil(props.videos.length / 24)}
+                      on_page_change={handlePageChange}
+                      active_button={currentVideoPage}
+                    />
+                  ) : (
+                    <></>
+                  )}
+                </div>
+              </>
+            ) : (
+              <h2>Для загрузки видео подтвердите свою электронную почту.</h2>
+            )}{" "}
+          </>
+        )}
+      </div>
+    </>
   );
 });
 

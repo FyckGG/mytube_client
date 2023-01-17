@@ -7,7 +7,6 @@ import Tooltip from "../Tooltip/Tooltip";
 import { VerticalDotsInVIdeoMin } from "../VerticalDotsInVideoMin/VerticalDotsInVIdeoMin";
 
 const MyVideoMin = (props) => {
-  console.log(props.is_watch_later);
   return (
     <div className={styles.video_min}>
       <div className={styles.dots}>

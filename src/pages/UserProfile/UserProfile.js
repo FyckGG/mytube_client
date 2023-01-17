@@ -127,7 +127,8 @@ const UserProfile = observer((props) => {
       tab_id: 1,
       tab_content: (
         <UserVideos
-          is_load={props.is_my_profile}
+          //is_load={props.is_my_profile}
+          can_change={props.is_my_profile}
           videos={user_videos}
           is_activated={store.user.isActivated}
           is_loading={videosLoading}

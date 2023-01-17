@@ -1,9 +1,33 @@
 .video_min {
   display: inline-block;
   padding: 10px;
+  /* position: relative; */
 }
 
 .video_min:hover {
   cursor: pointer;
   background-color: #b8b8c7;
+}
+
+.video_min_item {
+  position: relative;
+  right: 0;
+  top: auto;
+  display: flex;
+  margin: auto;
+}
+
+.edit_icon {
+  position: absolute;
+  display: flex;
+  right: 0;
+  bottom: 34%;
+  color: #d9d9d9;
+  background-color: rgba(110, 110, 107, 0.7);
+  padding: 3px;
+}
+
+.edit_icon:hover .font_edit {
+  cursor: pointer;
+  color: aliceblue;
 }
