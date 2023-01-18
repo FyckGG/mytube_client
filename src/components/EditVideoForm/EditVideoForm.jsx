@@ -26,6 +26,7 @@ export const EditVideoForm = observer((props) => {
     }
     setError("");
     const edit_result = await userActions.editVideo(
+      store.user.id,
       props.video_id,
       videoName,
       videoDescription,
