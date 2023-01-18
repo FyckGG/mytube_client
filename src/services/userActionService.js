@@ -56,12 +56,14 @@ export default class UserActionService {
   };
 
   static editVideo = async (
+    user_id,
     video_id,
     video_name,
     video_description,
     video_access
   ) => {
     return $api.post("http://localhost:5000/user-action/edit-video", {
+      user: user_id,
       video_id: video_id,
       video_name: video_name,
       video_description: video_description,

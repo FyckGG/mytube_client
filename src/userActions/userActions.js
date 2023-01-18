@@ -74,6 +74,7 @@ export default class userActions {
   }
 
   static async editVideo(
+    user_id,
     video_id,
     video_name,
     video_description,
@@ -81,6 +82,7 @@ export default class userActions {
   ) {
     try {
       const result = await UserActionService.editVideo(
+        user_id,
         video_id,
         video_name,
         video_description,
