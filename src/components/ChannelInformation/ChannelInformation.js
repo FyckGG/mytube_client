@@ -5,16 +5,15 @@ import addSpaces from "../../otherServices/addSpaces";
 import { Donut_2 } from "../UI/Donut_2/Donut_2";
 
 const ChannelInformation = (props) => {
-  console.log("views " + props.count_views);
   return (
     <div className={styles.channel_info}>
-      {props.reg_date == "" || props.count_views == "" ? (
+      {props.reg_date === "" || props.count_views === "" ? (
         <Donut_2 />
       ) : (
         <>
           <h2>Описание канала</h2>
           <div className={styles.info_text}>
-            <p className={styles.description}>Описание отсутствует</p>
+            <p className={styles.description}>{props.channel_description}</p>
             <div className={styles.channel_stats}>
               <div className={styles.channel_stats_item}>
                 Дата регистрации: {convertDate(props.reg_date)}

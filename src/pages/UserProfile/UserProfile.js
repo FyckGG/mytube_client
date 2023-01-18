@@ -34,6 +34,7 @@ const UserProfile = observer((props) => {
   const [isSubsInfoLoad, setIsSubInfoLoad] = useState(false);
   const [countViews, setCountViews] = useState("");
   const [signDate, setSignDate] = useState("");
+  const [channelDesciption, setChannelDescription] = useState(""); ///////////////////
 
   const handleCountSubsChange = (e) => {
     if (e) setCountSubs(countSubs + 1);
@@ -105,11 +106,17 @@ const UserProfile = observer((props) => {
         setIsSubs(is_subs_result.data);
       }
 
+      const user_description = await axios.post(
+        "http://localhost:5000/users-data-load/get-channel-description",
+        { user_id: final }
+      );
+
       setCountSubs(user_stats.data.count_of_subs);
       setCountViews(user_stats.data.count_of_views);
       setUserVideos(user_videos_result.data);
       // console.log(user_videos_result.data);
       setSignDate(user_result.data.sign_date);
+      setChannelDescription(user_description.data.description);
       setIsSubInfoLoad(true);
       setVideosLoading(false);
     };
@@ -147,7 +154,11 @@ const UserProfile = observer((props) => {
       tabname: "Обо мне",
       tab_id: 3,
       tab_content: (
-        <ChannelInformation reg_date={signDate} count_views={countViews} />
+        <ChannelInformation
+          reg_date={signDate}
+          count_views={countViews}
+          channel_description={channelDesciption}
+        />
       ),
     },
   ];
