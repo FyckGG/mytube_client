@@ -1,0 +1,35 @@
+.img_uploader {
+  color: black;
+  margin-top: 10px;
+}
+
+.finish_button {
+  padding: 5px;
+  font-size: 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.save_button {
+  background-color: #f3f47b;
+}
+
+.save_button:hover {
+  cursor: pointer;
+  background-color: #c7c866;
+}
+
+.cancel_button {
+  background-color: #c1c1be;
+  margin-left: 10px;
+}
+
+.cancel_button:hover {
+  cursor: pointer;
+  background-color: #9e9e9b;
+}
+
+.error_message {
+  margin-top: 5px;
+  color: red;
+}

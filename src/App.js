@@ -24,6 +24,7 @@ import UploadVideo from "./pages/UploadVideo/UploadVideo";
 import WatchVideo from "./pages/WatchVideoPage/WatchVideo";
 import Channel from "./pages/Channel/Channel";
 import MyChannel from "./pages/MyChannel/MyChannel";
+import { EditProfilePage } from "./pages/EditProfilePage/EditProfilePage";
 import { EditVideoPage } from "./pages/EditVideoPage/EditVideoPage";
 import { WatchLater } from "./pages/WatchLater/WatchLater";
 import { Context } from ".";
@@ -176,6 +177,7 @@ function App() {
           <Route path="/watch_video/" element={<WatchVideo />} />
           <Route path="/channel/:id" element={<Channel />} />
           <Route path="/edit_video/" element={<EditVideoPage />} />
+          <Route path="/edit_profile/:id" element={<EditProfilePage />} />
           <Route path="/" element={<MainPage />} />
         </Routes>
       </div>
