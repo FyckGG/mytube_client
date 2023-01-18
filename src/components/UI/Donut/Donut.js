@@ -11,6 +11,7 @@ const Donut = (props) => {
           fontSize: props.donut_name_size,
           fontWeight: "bold",
           margin: "auto",
+          marginRight: "10px",
         }}
       >
         {props.donut_name}
