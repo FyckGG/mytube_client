@@ -1,5 +1,6 @@
 import React from "react";
 import { useSearchParams } from "react-router-dom";
+import EditForm from "../UI/EditForm/EditForm";
 import { observer } from "mobx-react-lite";
 import styles from "./EditVideoForm.module.css";
 import { useNavigate } from "react-router-dom";
@@ -41,7 +42,8 @@ export const EditVideoForm = observer((props) => {
   }, [props.is_loading]);
 
   return (
-    <div className={styles.edit_video_form}>
+    // <div className={styles.edit_video_form}>
+    <EditForm>
       <div>
         <h1>Изменить данные видео:</h1>
         <form onSubmit={changeVideo}>
@@ -124,6 +126,7 @@ export const EditVideoForm = observer((props) => {
           />
         </form>
       </div>
-    </div>
+    </EditForm>
+    // </div>
   );
 });

@@ -1,4 +1,4 @@
-.edit_video_form {
+/* .edit_video_form {
   margin: auto;
   width: 75%;
   height: 50%;
@@ -29,7 +29,7 @@
   padding: 7px;
   border-radius: 5px;
   width: 100%;
-}
+} */
 
 .finish_button {
   padding: 5px;
@@ -38,13 +38,13 @@
   border-radius: 5px;
 }
 
-.video_description {
+/* .video_description {
   border-radius: 5px;
   margin-top: 10px;
   padding: 5px;
   border-radius: 5px;
   width: 100%;
-}
+} */
 
 .submit_button {
   background-color: #f3f47b;
