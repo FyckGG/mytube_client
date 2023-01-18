@@ -11,7 +11,9 @@ import { observer } from "mobx-react-lite";
 import userActions from "../../userActions/userActions";
 import UserDataLoad from "../../userDataLoad/userDataLoad";
 import SubscribeButton from "../../components/UI/SubscribeButton/SubscribeButton";
+import EditProfileButton from "../../components/UI/EditProfileButton/EditProfileButton";
 import { Donut_2 } from "../../components/UI/Donut_2/Donut_2";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 import load_photo from "./../../imgs/load_photo.jpg";
@@ -157,6 +159,14 @@ const UserProfile = observer((props) => {
         <>
           <div>
             <h1 className={styles.user_name}>{user_name} </h1>
+            {props.is_my_profile && store.user.id ? (
+              <Link to={`/edit_profile/${store.user.id}`}>
+                <EditProfileButton />
+              </Link>
+            ) : (
+              <></>
+            )}
+
             {isSubsInfoLoad ? (
               <div className={styles.subs_panel}>
                 <h2 className={styles.subs_count}> {countSubs} подпищ.</h2>
