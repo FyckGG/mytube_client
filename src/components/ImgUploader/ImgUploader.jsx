@@ -59,7 +59,7 @@ const ImgUploader = (props) => {
       } else {
         setFileStatus();
         fileReader.onloadend = () => {
-          console.log(fileReader.result);
+          //console.log(fileReader.result);
           setImageURL(fileReader.result);
           props.img_change(e.target.files[0]);
           //console.log(imageURL);
