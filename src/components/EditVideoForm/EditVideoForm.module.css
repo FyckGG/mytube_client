@@ -69,3 +69,13 @@
   margin-top: 5px;
   color: red;
 }
+
+.delete_button {
+  /* background-color: #c0c8cb; */
+  background-color: #d8e1e4;
+}
+
+.delete_button:hover {
+  cursor: pointer;
+  background-color: #c0c8cb;
+}

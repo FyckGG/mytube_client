@@ -6,6 +6,7 @@ import styles from "./EditVideoForm.module.css";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../..";
 import userActions from "../../userActions/userActions";
+import Donut from "../UI/Donut/Donut";
 
 export const EditVideoForm = observer((props) => {
   const navigate = useNavigate();
@@ -16,7 +17,16 @@ export const EditVideoForm = observer((props) => {
   const [videoName, setVideoName] = React.useState(props.default_name);
   const [videoAccess, setVideoAccess] = React.useState(props.default_access);
   const [error, setError] = React.useState("");
+  const [isSendingData, setIsSendingData] = React.useState(false);
+  const [isDeletingVideo, setIsDeletingVideo] = React.useState(false);
   // const [videoSubject, setVideoSubject] = React.useState(props.default_subject);
+
+  const delete_video = async () => {
+    setIsDeletingVideo(true);
+    const result = await userActions.deleteVideo(props.video_id);
+    navigate(`/profile/${store.user.id}`);
+    //638494a1fe301e648c2bb148
+  };
 
   const changeVideo = async (e) => {
     e.preventDefault();
@@ -25,6 +35,7 @@ export const EditVideoForm = observer((props) => {
       return;
     }
     setError("");
+    setIsSendingData(true);
     const edit_result = await userActions.editVideo(
       store.user.id,
       props.video_id,
@@ -110,21 +121,52 @@ export const EditVideoForm = observer((props) => {
               </select>
             </label> */}
           <div className={styles.error_message}>{error}</div>
-          <input
-            className={`${styles.submit_button} ${styles.finish_button}`}
-            type={"submit"}
-            id={"save_changes"}
-            value={"Сохранить изменения"}
-          />
-          <input
-            className={`${styles.cancel_button} ${styles.finish_button}`}
-            type={"button"}
-            id={"cancel_changes"}
-            value={"Отменить"}
-            onClick={() => {
-              navigate(`/profile/${store.user.id}`);
-            }}
-          />
+          {isSendingData ? (
+            <div style={{ display: "inline-block" }}>
+              <Donut
+                donut_name={"Сохранение изменений"}
+                donut_name_size={"20px"}
+                donut_color={"#f3f47b"}
+                donut_size={"40px"}
+              />
+            </div>
+          ) : isDeletingVideo ? (
+            <div style={{ display: "inline-block" }}>
+              <Donut
+                donut_name={"Удаление видео"}
+                donut_name_size={"20px"}
+                donut_color={"#f3f47b"}
+                donut_size={"40px"}
+              />
+            </div>
+          ) : (
+            <>
+              <input
+                className={`${styles.submit_button} ${styles.finish_button}`}
+                type={"submit"}
+                id={"save_changes"}
+                value={"Сохранить изменения"}
+              />
+              <input
+                className={`${styles.cancel_button} ${styles.finish_button}`}
+                type={"button"}
+                id={"cancel_changes"}
+                value={"Отменить"}
+                onClick={() => {
+                  navigate(`/profile/${store.user.id}`);
+                }}
+              />
+              <br />
+              <input
+                onClick={() => {
+                  delete_video();
+                }}
+                className={`${styles.delete_button} ${styles.finish_button}`}
+                type={"button"}
+                value={"Удалить видео"}
+              />
+            </>
+          )}
         </form>
       </div>
     </EditForm>
