@@ -70,4 +70,10 @@ export default class UserActionService {
       video_access: video_access,
     });
   };
+
+  static deleteVideo = async (video_id) => {
+    return $api.post("http://localhost:5000/user-action/delete-video", {
+      video_id: video_id,
+    });
+  };
 }

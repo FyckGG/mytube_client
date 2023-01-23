@@ -93,4 +93,14 @@ export default class userActions {
       throw "Не удалось изменить видео: " + e;
     }
   }
+
+  static async deleteVideo(video_id) {
+    try {
+      console.log("cvfv");
+      const result = await UserActionService.deleteVideo(video_id);
+      return result;
+    } catch (e) {
+      throw "Не удалось удалить видео: " + e;
+    }
+  }
 }
