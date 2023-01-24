@@ -87,6 +87,7 @@ function Sign({ modalActive, setModalActive, onSign }) {
       alert(
         "Регистрация прошла успешно. Для подтверждения аккаунта перейдите по ссылке, присланной на Вашу электронную почту."
       );
+      window.location.reload();
     } catch (e) {
       setServerResponse(e);
       setIsSendingData(false);

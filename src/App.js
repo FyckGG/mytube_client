@@ -64,10 +64,11 @@ function App() {
       href: "/",
       value: "Покинуть аккаунт",
       icon: faDoorOpen,
-      action: () => {
+      action: async () => {
         //console.log("ggf");
-        store.logout();
+        await store.logout();
         setOptionsActive(false);
+        window.location.reload();
       },
     },
   ];

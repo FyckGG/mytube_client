@@ -39,6 +39,7 @@ function Login({ modalActive, setModalActive, onLog }) {
     try {
       const response = await store.autorization(login_email, password);
       console.log(store.user);
+      window.location.reload();
       setModalActive(false);
     } catch (e) {
       setResponseStatus(e);
