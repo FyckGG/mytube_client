@@ -5,12 +5,31 @@ import styles from "./Login.module.css";
 import AuthServices from "../../services/authService";
 import { Context } from "../..";
 import { observer } from "mobx-react-lite";
+import axios from "axios";
 
 function Login({ modalActive, setModalActive, onLog }) {
   const [login_email, setLogin_email] = useState("");
   const [password, setPassword] = useState("");
   const [responseStatus, setResponseStatus] = useState("");
   const store = useContext(Context);
+
+  const sendResetPasswordMessage = async () => {
+    setResponseStatus("");
+    const email = prompt(
+      "Для смены пароля введите email, привязанный к вашему аккаунту (Перед отправкой убедитесь, что email подтверждён)."
+    );
+    const send_message_result = await axios
+      .post("http://localhost:5000/users/get-req-for-change-password", {
+        email: email,
+      })
+      .then((res) => {
+        alert("На вашу почту было выслано сообщение для смены пароля.");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Ошибка при отправке письма.");
+      });
+  };
 
   async function autorization(e) {
     e.preventDefault();
@@ -66,6 +85,12 @@ function Login({ modalActive, setModalActive, onLog }) {
           type="submit"
           value="Log in"
         ></input>
+        <p
+          className={styles.forgot_password}
+          onClick={() => sendResetPasswordMessage()}
+        >
+          Забыли пароль?
+        </p>
         <p className={styles.bad_input}>{responseStatus}</p>
       </form>
     </Modal_Win>

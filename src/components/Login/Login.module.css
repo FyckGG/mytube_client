@@ -48,3 +48,14 @@ hr {
   padding: 5px;
   font-size: 20px !important;
 }
+
+.forgot_password {
+  display: inline-block;
+  margin-left: 5px;
+  color: #f3f47b;
+}
+
+.forgot_password:hover {
+  cursor: pointer;
+  color: #c7c866;
+}
