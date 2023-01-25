@@ -94,6 +94,20 @@ export default class userActions {
     }
   }
 
+  static async editTags(user_id, video_id, tags, hash_tags) {
+    try {
+      const result = await UserActionService.editTags(
+        user_id,
+        video_id,
+        tags,
+        hash_tags
+      );
+      return result;
+    } catch (e) {
+      throw "Не удалось изменить теги видео: " + e;
+    }
+  }
+
   static async deleteVideo(video_id) {
     try {
       console.log("cvfv");

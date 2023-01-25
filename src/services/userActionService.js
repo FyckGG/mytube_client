@@ -71,6 +71,15 @@ export default class UserActionService {
     });
   };
 
+  static editTags = async (user_id, video_id, tags, hash_tags) => {
+    return $api.post("http://localhost:5000/user-action/edit-tags", {
+      user_id: user_id,
+      video_id: video_id,
+      tags: tags,
+      hash_tags: hash_tags,
+    });
+  };
+
   static deleteVideo = async (video_id) => {
     return $api.post("http://localhost:5000/user-action/delete-video", {
       video_id: video_id,
