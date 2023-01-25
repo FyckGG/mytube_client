@@ -6,16 +6,21 @@ import { Context } from "../..";
 import { useNavigate } from "react-router-dom";
 import Donut from "../UI/Donut/Donut";
 import userActions from "../../userActions/userActions";
+import VideoDataCreation from "../../videoDataCreation/videoDataCreation";
+import { checkHashTags } from "../../otherServices/checkHashTags";
 
 const VideoUploader = () => {
   const fileReader = new FileReader();
 
   const [videoName, setVideoName] = React.useState("");
   const [videoDescription, setVideoDescription] = React.useState("");
+  const [videoTags, setVideoTags] = React.useState("");
+  const [videoHashtags, setVideoHashtags] = React.useState("");
   const [isPublic, setIsPublic] = React.useState(true);
   const [videoSubject, setVideoSubject] = React.useState("");
   const [videoForUpload, setVideoForUpload] = React.useState("");
   const [videoDuration, setVideoDuration] = React.useState(0);
+  const [isHashTagsCorrect, setIsHashTagsCorrect] = React.useState(true);
   const [isVideoSending, setIsvideoSending] = React.useState(false);
   const store = React.useContext(Context);
   const navigate = useNavigate();
@@ -52,8 +57,18 @@ const VideoUploader = () => {
   };
 
   async function upload_video(e) {
-    setIsvideoSending(true);
+    setIsHashTagsCorrect(true);
     e.preventDefault();
+    const tags_arr = videoTags == "" ? [""] : videoTags.split(" ");
+    const hashtags_arr = videoHashtags == [""] ? "" : videoHashtags.split(" ");
+
+    const is_hash_correct =
+      hashtags_arr == [""] ? true : checkHashTags(hashtags_arr);
+    setIsHashTagsCorrect(is_hash_correct);
+
+    if (!is_hash_correct) return;
+
+    setIsvideoSending(true);
 
     const uploading_video = new FormData();
     uploading_video.append("id", store.user.id);
@@ -88,6 +103,12 @@ const VideoUploader = () => {
       }
     );
 
+    const save_tags_result = await VideoDataCreation.saveVideoTags(
+      db_responce.data._id,
+      tags_arr,
+      hashtags_arr
+    );
+
     if (db_responce.status === 200) {
       alert("Видео успешно загружено.");
       navigate(`/profile/${store.user.id}`);
@@ -115,10 +136,51 @@ const VideoUploader = () => {
             rows="3"
             cols="45"
             name="text"
-            className={styles.video_description}
+            className={styles.textarea}
             value={videoDescription}
             onChange={(e) => {
               setVideoDescription(e.target.value);
+            }}
+          ></textarea>
+        </label>
+        <label for="video_tags">
+          Теги видео (должны быть разделены пробелами):
+          <textarea
+            rows="3"
+            cols="45"
+            name="text"
+            className={styles.textarea}
+            value={videoTags}
+            onChange={(e) => {
+              setVideoTags(e.target.value);
+            }}
+          ></textarea>
+        </label>
+        <label for="video_hashtags">
+          <div style={{ display: "inline-block" }}>
+            Хештеги видео (должны начинаться с # и быть разделены пробелами):
+          </div>
+          {isHashTagsCorrect ? (
+            <></>
+          ) : (
+            <div
+              style={{
+                display: "inline-block",
+                marginLeft: "5px",
+                color: "#9f1f35",
+              }}
+            >
+              добавьте знак # в начале каждого хештега
+            </div>
+          )}
+          <textarea
+            rows="3"
+            cols="45"
+            name="text"
+            className={styles.textarea}
+            value={videoHashtags}
+            onChange={(e) => {
+              setVideoHashtags(e.target.value);
             }}
           ></textarea>
         </label>
