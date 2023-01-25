@@ -20,7 +20,8 @@ const VideoUploader = () => {
   const [videoSubject, setVideoSubject] = React.useState("");
   const [videoForUpload, setVideoForUpload] = React.useState("");
   const [videoDuration, setVideoDuration] = React.useState(0);
-  const [isHashTagsCorrect, setIsHashTagsCorrect] = React.useState(true);
+  const [isTagsCorrect, setIsTagsCorrect] = React.useState("");
+  const [isHashTagsCorrect, setIsHashTagsCorrect] = React.useState("");
   const [isVideoSending, setIsvideoSending] = React.useState(false);
   const store = React.useContext(Context);
   const navigate = useNavigate();
@@ -64,9 +65,21 @@ const VideoUploader = () => {
 
     const is_hash_correct =
       hashtags_arr == [""] ? true : checkHashTags(hashtags_arr);
-    setIsHashTagsCorrect(is_hash_correct);
+    setIsHashTagsCorrect(
+      is_hash_correct ? "" : "добавьте знак # в начале каждого хештега"
+    );
 
     if (!is_hash_correct) return;
+
+    if (hashtags_arr.length > 3) {
+      setIsHashTagsCorrect("превышено максимальное число хештегов");
+    }
+
+    if (tags_arr.length > 10) {
+      setIsTagsCorrect("превышено максимальное число тегов");
+    }
+
+    if (hashtags_arr.length > 3 || tags_arr.length > 10) return;
 
     setIsvideoSending(true);
 
@@ -146,7 +159,16 @@ const VideoUploader = () => {
           ></textarea>
         </label>
         <label for="video_tags">
-          Теги видео (должны быть разделены пробелами):
+          <div style={{ display: "inline-block" }}>Теги видео (макс: 10):</div>
+          <div
+            style={{
+              display: "inline-block",
+              marginLeft: "5px",
+              color: "#9f1f35",
+            }}
+          >
+            {isTagsCorrect}
+          </div>
           <textarea
             maxLength={200}
             rows="3"
@@ -161,21 +183,19 @@ const VideoUploader = () => {
         </label>
         <label for="video_hashtags">
           <div style={{ display: "inline-block" }}>
-            Хештеги видео (должны начинаться с # и быть разделены пробелами):
+            Хештеги видео (макс: 3):
           </div>
-          {isHashTagsCorrect ? (
-            <></>
-          ) : (
-            <div
-              style={{
-                display: "inline-block",
-                marginLeft: "5px",
-                color: "#9f1f35",
-              }}
-            >
-              добавьте знак # в начале каждого хештега
-            </div>
-          )}
+
+          <div
+            style={{
+              display: "inline-block",
+              marginLeft: "5px",
+              color: "#9f1f35",
+            }}
+          >
+            {isHashTagsCorrect}
+          </div>
+
           <textarea
             maxLength={100}
             rows="3"
