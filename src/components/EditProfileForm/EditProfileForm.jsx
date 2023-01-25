@@ -82,6 +82,7 @@ export const EditProfileForm = observer((props) => {
             <label>
               Описание канала:
               <textarea
+                maxLength={300}
                 rows="3"
                 cols="45"
                 name="text"

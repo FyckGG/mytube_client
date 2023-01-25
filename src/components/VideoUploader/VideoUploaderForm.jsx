@@ -123,6 +123,7 @@ const VideoUploader = () => {
           Название видео:
           <input
             type="text"
+            maxLength={100}
             id="video_name"
             value={videoName}
             onChange={(e) => {
@@ -133,6 +134,7 @@ const VideoUploader = () => {
         <label for="video_description">
           Описание видео:
           <textarea
+            maxLength={500}
             rows="3"
             cols="45"
             name="text"
@@ -146,6 +148,7 @@ const VideoUploader = () => {
         <label for="video_tags">
           Теги видео (должны быть разделены пробелами):
           <textarea
+            maxLength={200}
             rows="3"
             cols="45"
             name="text"
@@ -174,6 +177,7 @@ const VideoUploader = () => {
             </div>
           )}
           <textarea
+            maxLength={100}
             rows="3"
             cols="45"
             name="text"

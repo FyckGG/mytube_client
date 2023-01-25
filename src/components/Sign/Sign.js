@@ -137,6 +137,7 @@ function Sign({ modalActive, setModalActive, onSign }) {
             <br />
             <input
               type="text"
+              maxLength={50}
               id="email"
               value={email}
               onChange={(e) => {
@@ -154,6 +155,7 @@ function Sign({ modalActive, setModalActive, onSign }) {
             <br />
             <input
               type="text"
+              maxLength={50}
               id="login_s"
               value={login}
               onChange={(e) => {
@@ -171,6 +173,7 @@ function Sign({ modalActive, setModalActive, onSign }) {
             <br />
             <input
               type="password"
+              maxLength={50}
               id="pas_s_1"
               value={password}
               onChange={(e) => {
@@ -197,6 +200,7 @@ function Sign({ modalActive, setModalActive, onSign }) {
             <input
               type="password"
               id="pas_s_2"
+              maxLength={50}
               value={repassword}
               onChange={(e) => {
                 setRepassword(e.target.value);

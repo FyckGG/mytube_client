@@ -63,6 +63,7 @@ export const EditVideoForm = observer((props) => {
             Название видео:
             <input
               type={"text"}
+              maxLength={100}
               value={videoName}
               onChange={(e) => {
                 setVideoName(e.target.value);
@@ -73,6 +74,7 @@ export const EditVideoForm = observer((props) => {
           <label for="video_description">
             Описание видео:
             <textarea
+              maxLength={500}
               rows="3"
               cols="45"
               name="text"

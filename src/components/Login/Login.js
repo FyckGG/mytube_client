@@ -62,6 +62,7 @@ function Login({ modalActive, setModalActive, onLog }) {
           <br />
           <input
             type="text"
+            maxLength={50}
             id="login_l"
             value={login_email}
             onChange={(e) => setLogin_email(e.target.value)}
@@ -73,6 +74,7 @@ function Login({ modalActive, setModalActive, onLog }) {
           <br />
           <input
             type="password"
+            maxLength={50}
             id="pas_l_1"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
