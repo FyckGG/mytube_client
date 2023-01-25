@@ -15,6 +15,8 @@ export const EditVideoPage = observer(() => {
   const [videoDescription, setVideoDescription] = React.useState();
   const [videoAccess, setVideoAccess] = React.useState();
   const [videoSubject, setVideoSubject] = React.useState();
+  const [tagList, setTagList] = React.useState();
+  const [hashTagList, setHashTagList] = React.useState();
   React.useEffect(() => {
     const getVideoData = async () => {
       if (isUserLoading == false) {
@@ -22,10 +24,13 @@ export const EditVideoPage = observer(() => {
           searchParams.get("v"),
           store.user.id
         );
+        //console.log(video_data);
         setVideoName(video_data.data.name);
         setVideoDescription(video_data.data.description);
         setVideoAccess(video_data.data.access_type);
         setVideoSubject(video_data.data.subject);
+        setTagList(video_data.data.tags.tags_list);
+        setHashTagList(video_data.data.tags.hash_tags_list);
         setIsLoading(false);
         return;
       }
@@ -55,6 +60,8 @@ export const EditVideoPage = observer(() => {
           default_description={videoDescription}
           default_access={videoAccess}
           default_subject={videoSubject}
+          tags={tagList}
+          hash_tags={hashTagList}
         />
       )}
     </div>
