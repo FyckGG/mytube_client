@@ -27,6 +27,7 @@ import MyChannel from "./pages/MyChannel/MyChannel";
 import { EditProfilePage } from "./pages/EditProfilePage/EditProfilePage";
 import { EditVideoPage } from "./pages/EditVideoPage/EditVideoPage";
 import { ResetPasswordPage } from "./pages/ResetPasswordPage/ResetPasswordPage";
+import SeacrhResultsPage from "./pages/SearchResultsPage/SeacrhResultsPage";
 import { WatchLater } from "./pages/WatchLater/WatchLater";
 import { Context } from ".";
 
@@ -181,6 +182,7 @@ function App() {
           <Route path="/edit_video/" element={<EditVideoPage />} />
           <Route path="/edit_profile/:id" element={<EditProfilePage />} />
           <Route path="/password-reset/" element={<ResetPasswordPage />} />
+          <Route path="/search-results/" element={<SeacrhResultsPage />} />
           <Route path="/" element={<MainPage />} />
         </Routes>
       </div>
