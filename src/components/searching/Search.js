@@ -33,7 +33,7 @@ export default function Search() {
         }}
         placeholder="Search"
       ></input>
-      <Link to={`/search-results?params=${stringParams}`}>
+      <Link to={`/search-results?params=${stringParams}&&page=0`}>
         <Main_Button
         // button_action={() => {
         //   search();
