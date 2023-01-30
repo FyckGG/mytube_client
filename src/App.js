@@ -28,6 +28,7 @@ import { EditProfilePage } from "./pages/EditProfilePage/EditProfilePage";
 import { EditVideoPage } from "./pages/EditVideoPage/EditVideoPage";
 import { ResetPasswordPage } from "./pages/ResetPasswordPage/ResetPasswordPage";
 import SeacrhResultsPage from "./pages/SearchResultsPage/SeacrhResultsPage";
+import SubscribtionVideoPage from "./pages/SubscribtionsVideoPage/SubscribtionVideoPage";
 import { WatchLater } from "./pages/WatchLater/WatchLater";
 import { Context } from ".";
 
@@ -74,14 +75,25 @@ function App() {
     },
   ];
 
-  const iteeems = [
+  const burger_items = [
     {
-      href: "dcld,cdlc,dlcdlcdc",
-      value: "vfvfvfvfv",
+      href: "/",
+      value: "Главная",
     },
-    { href: "frefsfmskfsfsfsfsf", value: "mkvmkvmfkvmk" },
-    { href: "fr", value: "yo mr white" },
+    { href: "", value: "line" },
+    { href: "/videos-subscriptions/?page=0", value: "Подписки" },
+    { href: "", value: "line" },
+    { href: "/subjects/films-serials", value: "Фильмы/сериалы" },
+    { href: "/subjects/cartoons-animation", value: "Мультфильмы/анимация" },
+    { href: "/subjects/music", value: "Музыка" },
+    { href: "/subjects/videogames", value: "Видеоигры" },
+    { href: "/subjects/sport", value: "Спорт" },
+    { href: "/subjects/active-leisure", value: "Активный отдых" },
+    { href: "/subject/science-tecnology", value: "Наука/технологии" },
+    { href: "/subject/economic", value: "Экономика" },
+    { href: "/subject/politics", value: "Политика" },
   ];
+
   const [signActive, setSignActive] = useState(false);
   const [loginActive, setLoginActive] = useState(false);
   const [burgerActive, setBurgerActive] = useState(false);
@@ -149,7 +161,7 @@ function App() {
         <BurgerMenu
           active={burgerActive}
           setActive={setBurgerActive}
-          items={iteeems}
+          items={burger_items}
           header="Навигация"
         />
       </div>
@@ -183,6 +195,10 @@ function App() {
           <Route path="/edit_profile/:id" element={<EditProfilePage />} />
           <Route path="/password-reset/" element={<ResetPasswordPage />} />
           <Route path="/search-results/" element={<SeacrhResultsPage />} />
+          <Route
+            path="/videos-subscriptions"
+            element={<SubscribtionVideoPage />}
+          />
           <Route path="/" element={<MainPage />} />
         </Routes>
       </div>
