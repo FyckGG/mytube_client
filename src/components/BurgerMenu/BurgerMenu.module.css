@@ -22,17 +22,32 @@
 
 .menu_content li {
   display: block;
-  margin: 10px;
+  /* margin-top: 10px; */
+  padding-top: 10px;
+  padding-bottom: 5px;
+  width: 100%;
+  height: auto;
+}
+
+.menu_content li:hover {
+  background-color: #384f58;
+  width: 100%;
 }
 
 .menu_content ul {
   text-align: center;
+  width: 100%;
 }
 
 .menu_header {
   color: aliceblue;
   width: 100%;
   text-align: center;
-  border-bottom: 2px solid black;
   font-size: 20px;
+  padding-bottom: 5px;
+}
+
+.bottom_border {
+  border-bottom: 2px solid black;
+  /* padding-bottom: 5px; */
 }
