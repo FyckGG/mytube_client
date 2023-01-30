@@ -13,6 +13,7 @@ const SeacrhResultsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [filtredVideos, setFilterdVideos] = React.useState([]);
   const [pageVideos, setPageVideos] = React.useState();
+  const [videosLength, setVideosLength] = React.useState(0);
   const [filteredChannels, setFilteredChannels] = React.useState([]);
   const [isUserLoading, setIsUserLoading] = React.useState(store.isLoading);
   const [isResultsLoading, setIsResultsLoading] = React.useState(true);
@@ -31,7 +32,6 @@ const SeacrhResultsPage = () => {
   };
 
   React.useEffect(() => {
-    //console.log("page " + currentPage);
     const getSearchResults = async () => {
       setIsResultsLoading(true);
       if (!isUserLoading) {
@@ -40,36 +40,23 @@ const SeacrhResultsPage = () => {
           {
             user_id: store.user.id,
             search_string: searchParams.get("params"),
+            current_page: Number(searchParams.get("page")),
           }
         );
 
-        setFilterdVideos(search_results.data.videos);
         setFilteredChannels(search_results.data.channels);
 
-        setPageVideos(
-          search_results.data.videos.length > 33
-            ? search_results.data.videos.slice(
-                Number(currentPage) * 33,
-                (Number(currentPage) + 1) * 33
-              )
-            : search_results.data.videos
-        );
+        setPageVideos(search_results.data.videos);
 
-        //console.log(search_results);
+        setVideosLength(search_results.data.videos_length);
+
         setIsResultsLoading(false);
       }
       setTimeout(() => setIsUserLoading(store.isLoading), 3000);
     };
     getSearchResults();
-  }, [searchParams.get("params"), isUserLoading]);
+  }, [searchParams.get("params"), searchParams.get("page"), isUserLoading]);
 
-  React.useEffect(() => {
-    // console.log(filtredVideos);
-    // console.log(filtredVideos.slice(currentPage, currentPage + 1));
-    setPageVideos(
-      filtredVideos.slice(currentPage * 33, (currentPage + 1) * 33)
-    );
-  }, [currentPage]);
   return (
     <div className={styles.search_results_page}>
       {isResultsLoading ? (
@@ -77,7 +64,7 @@ const SeacrhResultsPage = () => {
       ) : (
         <>
           {" "}
-          {filteredChannels.length == 0 && filtredVideos.length == 0 ? (
+          {filteredChannels.length == 0 && pageVideos.length == 0 ? (
             <h1>По данному запросу ничего не найдено</h1>
           ) : (
             <h1 style={{ marginBottom: "5px" }}>Результаты поиска:</h1>
@@ -88,12 +75,12 @@ const SeacrhResultsPage = () => {
             ) : (
               <></>
             )}
-            {/* <VIdeoMinList videos={filtredVideos} /> */}
+
             <VIdeoMinList videos={pageVideos} />
             <div style={{ marginTop: "10px" }}>
-              {filtredVideos.length > 32 ? (
+              {videosLength > 32 ? (
                 <PageList
-                  buttons_count={Math.ceil(filtredVideos.length / 32)} // тут считать в зависимости от того скока видосов
+                  buttons_count={Math.ceil(videosLength / 32)}
                   on_page_change={handlePageChange}
                   active_button={Number(currentPage)}
                 />
