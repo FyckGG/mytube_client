@@ -145,14 +145,10 @@ const UserProfile = observer((props) => {
         />
       ),
     },
-    {
-      tabname: "Плейлисты",
-      tab_id: 2,
-      tab_content: <h1>PLAYLISTS</h1>,
-    },
+
     {
       tabname: "Обо мне",
-      tab_id: 3,
+      tab_id: 2,
       tab_content: (
         <ChannelInformation
           reg_date={signDate}
