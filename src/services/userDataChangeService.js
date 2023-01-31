@@ -22,4 +22,14 @@ export default class UserDataChangeService {
       }
     );
   };
+
+  static add_video_to_history = async (user_id, video_id) => {
+    return $api.post(
+      "http://localhost:5000/user-data-change/add-video-to-history",
+      {
+        user_id: user_id,
+        video_id: video_id,
+      }
+    );
+  };
 }

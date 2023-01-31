@@ -31,4 +31,11 @@ export default class UserDataLoadService {
       }
     );
   };
+
+  static getUserHistoryVideos = async (user_id) => {
+    return $api.post(
+      "http://localhost:5000/users-data-load/get-user-history-videos",
+      { user_id: user_id }
+    );
+  };
 }

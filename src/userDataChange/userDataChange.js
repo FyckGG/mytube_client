@@ -21,4 +21,16 @@ export default class UserDataChange {
       throw "Не удалось изменить описание канала: " + e;
     }
   }
+
+  static async add_video_to_history(user_id, video_id) {
+    try {
+      const result = await UserDataChangeService.add_video_to_history(
+        user_id,
+        video_id
+      );
+      return result;
+    } catch (e) {
+      throw "Не удалось добавить видео в историю: " + e;
+    }
+  }
 }

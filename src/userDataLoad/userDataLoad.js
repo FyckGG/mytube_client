@@ -39,4 +39,13 @@ export default class UserDataLoad {
       throw "Не удалось получить видео для просмотра позже: " + e;
     }
   }
+
+  static async getUserHistoryVideos(user_id) {
+    try {
+      const result = await UserDataLoadService.getUserHistoryVideos(user_id);
+      return result;
+    } catch (e) {
+      throw "Не удалось получить историю пользователя: " + e;
+    }
+  }
 }
