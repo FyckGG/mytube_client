@@ -22,10 +22,11 @@ const SubscribtionVideoPage = () => {
 
   const handlePageChange = async (e) => {
     setCurrentPage(Number(e));
-    const search_par = searchParams.get("params");
+    //const search_par = searchParams.get("params");
     const changed_page_par = new URLSearchParams();
     changed_page_par.append("page", e);
-    navigate({ search: `params=${search_par}&${changed_page_par.toString()}` });
+    //navigate({ search: `params=${search_par}&${changed_page_par.toString()}` });
+    navigate({ search: `${changed_page_par.toString()}` });
   };
 
   React.useEffect(() => {
