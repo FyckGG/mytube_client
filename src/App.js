@@ -29,6 +29,7 @@ import { EditVideoPage } from "./pages/EditVideoPage/EditVideoPage";
 import { ResetPasswordPage } from "./pages/ResetPasswordPage/ResetPasswordPage";
 import SeacrhResultsPage from "./pages/SearchResultsPage/SeacrhResultsPage";
 import SubscribtionVideoPage from "./pages/SubscribtionsVideoPage/SubscribtionVideoPage";
+import SubjectVideoPage from "./pages/SubjectVideoPage/SubjectVideoPage";
 import { WatchLater } from "./pages/WatchLater/WatchLater";
 import { Context } from ".";
 
@@ -83,15 +84,18 @@ function App() {
     { href: "", value: "line" },
     { href: "/videos-subscriptions/?page=0", value: "Подписки" },
     { href: "", value: "line" },
-    { href: "/subjects/films-serials", value: "Фильмы/сериалы" },
-    { href: "/subjects/cartoons-animation", value: "Мультфильмы/анимация" },
-    { href: "/subjects/music", value: "Музыка" },
-    { href: "/subjects/videogames", value: "Видеоигры" },
-    { href: "/subjects/sport", value: "Спорт" },
-    { href: "/subjects/active-leisure", value: "Активный отдых" },
-    { href: "/subject/science-tecnology", value: "Наука/технологии" },
-    { href: "/subject/economic", value: "Экономика" },
-    { href: "/subject/politics", value: "Политика" },
+    { href: "/subjects/films-serials/?page=0", value: "Фильмы/сериалы" },
+    {
+      href: "/subjects/cartoons-animation/?page=0",
+      value: "Мультфильмы/анимация",
+    },
+    { href: "/subjects/music/?page=0", value: "Музыка" },
+    { href: "/subjects/videogames/?page=0", value: "Видеоигры" },
+    { href: "/subjects/sport/?page=0", value: "Спорт" },
+    { href: "/subjects/active-leisure/?page=0", value: "Активный отдых" },
+    { href: "/subjects/science-tecnology/?page=0", value: "Наука/технологии" },
+    { href: "/subjects/economic/?page=0", value: "Экономика" },
+    { href: "/subjects/politics/?page=0", value: "Политика" },
   ];
 
   const [signActive, setSignActive] = useState(false);
@@ -199,6 +203,7 @@ function App() {
             path="/videos-subscriptions"
             element={<SubscribtionVideoPage />}
           />
+          <Route path="/subjects/:subject" element={<SubjectVideoPage />} />
           <Route path="/" element={<MainPage />} />
         </Routes>
       </div>
