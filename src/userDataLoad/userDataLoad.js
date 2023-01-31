@@ -40,9 +40,12 @@ export default class UserDataLoad {
     }
   }
 
-  static async getUserHistoryVideos(user_id) {
+  static async getUserHistoryVideos(user_id, current_page) {
     try {
-      const result = await UserDataLoadService.getUserHistoryVideos(user_id);
+      const result = await UserDataLoadService.getUserHistoryVideos(
+        user_id,
+        current_page
+      );
       return result;
     } catch (e) {
       throw "Не удалось получить историю пользователя: " + e;

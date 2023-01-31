@@ -23,19 +23,20 @@ export default class UserDataLoadService {
     );
   };
 
-  static getWatchLaterVideos = async (user_id) => {
+  static getWatchLaterVideos = async (user_id, current_page) => {
     return $api.post(
       "http://localhost:5000/users-data-load/get-watch-later-videos",
       {
         user_id: user_id,
+        current_page: current_page,
       }
     );
   };
 
-  static getUserHistoryVideos = async (user_id) => {
+  static getUserHistoryVideos = async (user_id, current_page) => {
     return $api.post(
       "http://localhost:5000/users-data-load/get-user-history-videos",
-      { user_id: user_id }
+      { user_id: user_id, current_page: current_page }
     );
   };
 }
