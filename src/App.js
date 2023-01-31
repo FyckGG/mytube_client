@@ -41,6 +41,7 @@ import { ResetPasswordPage } from "./pages/ResetPasswordPage/ResetPasswordPage";
 import SeacrhResultsPage from "./pages/SearchResultsPage/SeacrhResultsPage";
 import SubscribtionVideoPage from "./pages/SubscribtionsVideoPage/SubscribtionVideoPage";
 import SubjectVideoPage from "./pages/SubjectVideoPage/SubjectVideoPage";
+import UserHistoryPage from "./pages/UserHistoryPage/UserHistoryPage";
 import { WatchLater } from "./pages/WatchLater/WatchLater";
 import { Context } from ".";
 
@@ -70,7 +71,7 @@ function App() {
       icon: faClockFour,
     },
     {
-      href: `/history/${store.user.id}`,
+      href: `/history/${store.user.id}/?page=0`,
       value: "История",
       icon: faClockRotateLeft,
     },
@@ -264,6 +265,7 @@ function App() {
             element={<SubscribtionVideoPage />}
           />
           <Route path="/subjects/:subject" element={<SubjectVideoPage />} />
+          <Route path="/history/:id" element={<UserHistoryPage />} />
           <Route path="/" element={<MainPage />} />
         </Routes>
       </div>
