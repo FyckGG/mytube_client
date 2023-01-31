@@ -1,5 +1,5 @@
 .post_form {
-  width: 98%;
+  width: 95vw;
 }
 
 .post_pole {
@@ -9,7 +9,7 @@
 
 .text_area {
   resize: none;
-  width: 100%;
+  width: 100vw;
   margin: 5px 0px 5px 0px;
 }
 

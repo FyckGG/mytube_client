@@ -5,7 +5,8 @@ form {
 .search input {
   border: 1px solid #d1e0e0;
   border-radius: 4px;
-  width: 500px;
+  /* width: 500px; */
+  width: 40vw;
   height: 25px;
   min-width: 100px;
   padding: 2px;
