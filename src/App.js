@@ -80,22 +80,44 @@ function App() {
     {
       href: "/",
       value: "Главная",
+      for_auth: false,
     },
     { href: "", value: "line" },
-    { href: "/videos-subscriptions/?page=0", value: "Подписки" },
+    {
+      href: "/videos-subscriptions/?page=0",
+      value: "Подписки",
+      for_auth: true,
+    },
     { href: "", value: "line" },
-    { href: "/subjects/films-serials/?page=0", value: "Фильмы/сериалы" },
+    {
+      href: "/subjects/films-serials/?page=0",
+      value: "Фильмы/сериалы",
+      for_auth: false,
+    },
     {
       href: "/subjects/cartoons-animation/?page=0",
       value: "Мультфильмы/анимация",
+      for_auth: false,
     },
-    { href: "/subjects/music/?page=0", value: "Музыка" },
-    { href: "/subjects/videogames/?page=0", value: "Видеоигры" },
-    { href: "/subjects/sport/?page=0", value: "Спорт" },
-    { href: "/subjects/active-leisure/?page=0", value: "Активный отдых" },
-    { href: "/subjects/science-tecnology/?page=0", value: "Наука/технологии" },
-    { href: "/subjects/economic/?page=0", value: "Экономика" },
-    { href: "/subjects/politics/?page=0", value: "Политика" },
+    { href: "/subjects/music/?page=0", value: "Музыка", for_auth: false },
+    {
+      href: "/subjects/videogames/?page=0",
+      value: "Видеоигры",
+      for_auth: false,
+    },
+    { href: "/subjects/sport/?page=0", value: "Спорт", for_auth: false },
+    {
+      href: "/subjects/active-leisure/?page=0",
+      value: "Активный отдых",
+      for_auth: false,
+    },
+    {
+      href: "/subjects/science-tecnology/?page=0",
+      value: "Наука/технологии",
+      for_auth: false,
+    },
+    { href: "/subjects/economic/?page=0", value: "Экономика", for_auth: false },
+    { href: "/subjects/politics/?page=0", value: "Политика", for_auth: false },
   ];
 
   const [signActive, setSignActive] = useState(false);

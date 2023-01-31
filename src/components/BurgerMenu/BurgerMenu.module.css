@@ -51,3 +51,8 @@
   border-bottom: 2px solid black;
   /* padding-bottom: 5px; */
 }
+
+.undisabled {
+  color: #a6acad !important;
+  pointer-events: none;
+}

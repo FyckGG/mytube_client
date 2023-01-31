@@ -1,8 +1,25 @@
 import React from "react";
 import styles from "./BurgerMenu.module.css";
 import { Link } from "react-router-dom";
+import { Context } from "../..";
+import { faL } from "@fortawesome/free-solid-svg-icons";
+
+/* item.href === "" && item.value === "line" ? (
+            <></>
+          ) : item_index + 1 < all_items.length &&
+            all_items[item_index + 1].href === "" &&
+            all_items[item_index + 1].value === "line" ? (
+            <Link to={item.href}>
+              <li className={styles.bottom_border}>{item.value}</li>
+            </Link>
+          ) : (
+            <Link to={item.href}>
+              <li>{item.value}</li>
+            </Link>
+          ) */
 
 export default function BurgerMenu(props) {
+  const store = React.useContext(Context);
   return (
     <div
       className={
@@ -18,15 +35,36 @@ export default function BurgerMenu(props) {
         {props.items.map((item, item_index, all_items) =>
           item.href === "" && item.value === "line" ? (
             <></>
-          ) : item_index + 1 < all_items.length &&
-            all_items[item_index + 1].href === "" &&
-            all_items[item_index + 1].value === "line" ? (
-            <Link to={item.href}>
-              <li className={styles.bottom_border}>{item.value}</li>
+          ) : item.for_auth == true ? (
+            <Link
+              to={item.href}
+              className={store.isAuth ? "" : styles.undisabled}
+            >
+              <li
+                className={
+                  item_index + 1 < all_items.length &&
+                  all_items[item_index + 1].href === "" &&
+                  all_items[item_index + 1].value === "line"
+                    ? styles.bottom_border
+                    : ""
+                }
+              >
+                {item.value}
+              </li>
             </Link>
           ) : (
             <Link to={item.href}>
-              <li>{item.value}</li>
+              <li
+                className={
+                  item_index + 1 < all_items.length &&
+                  all_items[item_index + 1].href === "" &&
+                  all_items[item_index + 1].value === "line"
+                    ? styles.bottom_border
+                    : ""
+                }
+              >
+                {item.value}
+              </li>
             </Link>
           )
         )}
