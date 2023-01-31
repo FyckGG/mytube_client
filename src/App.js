@@ -13,7 +13,7 @@ import { faUser } from "@fortawesome/free-solid-svg-icons"; //// Здесь по
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { faListSquares } from "@fortawesome/free-solid-svg-icons";
 import { faClockFour } from "@fortawesome/free-solid-svg-icons";
-import { faFilm } from "@fortawesome/free-solid-svg-icons";
+import { faClockRotateLeft } from "@fortawesome/free-solid-svg-icons";
 import { faDoorOpen } from "@fortawesome/free-solid-svg-icons";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { faSquareCheck } from "@fortawesome/free-solid-svg-icons";
@@ -70,9 +70,9 @@ function App() {
       icon: faClockFour,
     },
     {
-      href: `/playlisis/${store.user.id}`,
-      value: "Плейлисты",
-      icon: faFilm,
+      href: `/history/${store.user.id}`,
+      value: "История",
+      icon: faClockRotateLeft,
     },
     {
       href: "/",
