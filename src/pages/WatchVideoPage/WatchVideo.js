@@ -20,7 +20,7 @@ import userActions from "../../userActions/userActions";
 import convertCount from "./../../otherServices/ConvertCount";
 
 import load_photo from "./../../imgs/load_photo.jpg";
-import UserDataLoad from "../../userDataLoad/userDataLoad";
+import UserDataChange from "../../userDataChange/userDataChange";
 //import load_photo from "./../../imgs/load_photo.jpg";
 
 const WatchVideo = observer(() => {
@@ -279,6 +279,21 @@ const WatchVideo = observer(() => {
       }, 1000);
     };
     getVideoMark();
+  }, [isUserLoading]);
+
+  React.useEffect(() => {
+    const addVideoToHistory = async () => {
+      if (!isUserLoading && store.user.id) {
+        await UserDataChange.add_video_to_history(
+          store.user.id,
+          searchParams.get("v")
+        );
+      }
+      setTimeout(() => {
+        setIsUserLoading(store.isLoading);
+      }, 1000);
+    };
+    addVideoToHistory();
   }, [isUserLoading]);
 
   return (
