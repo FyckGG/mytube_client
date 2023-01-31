@@ -15,6 +15,17 @@ import { faListSquares } from "@fortawesome/free-solid-svg-icons";
 import { faClockFour } from "@fortawesome/free-solid-svg-icons";
 import { faFilm } from "@fortawesome/free-solid-svg-icons";
 import { faDoorOpen } from "@fortawesome/free-solid-svg-icons";
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
+import { faSquareCheck } from "@fortawesome/free-solid-svg-icons";
+import { faCamera } from "@fortawesome/free-solid-svg-icons";
+import { faFaceSmileBeam } from "@fortawesome/free-solid-svg-icons";
+import { faMusic } from "@fortawesome/free-solid-svg-icons";
+import { faGamepad } from "@fortawesome/free-solid-svg-icons";
+import { faDumbbell } from "@fortawesome/free-solid-svg-icons";
+import { faPersonBiking } from "@fortawesome/free-solid-svg-icons";
+import { faFlask } from "@fortawesome/free-solid-svg-icons";
+import { faDollar } from "@fortawesome/free-solid-svg-icons";
+import { faLandmark } from "@fortawesome/free-solid-svg-icons";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import MainPage from "./pages/MainPage/MainPage";
 import UserLikes from "./pages/UserLikes/UserLikes";
@@ -81,43 +92,70 @@ function App() {
       href: "/",
       value: "Главная",
       for_auth: false,
+      icon: faHouse,
     },
     { href: "", value: "line" },
     {
       href: "/videos-subscriptions/?page=0",
       value: "Подписки",
       for_auth: true,
+      icon: faSquareCheck,
     },
     { href: "", value: "line" },
     {
       href: "/subjects/films-serials/?page=0",
       value: "Фильмы/сериалы",
       for_auth: false,
+      icon: faCamera,
     },
     {
       href: "/subjects/cartoons-animation/?page=0",
       value: "Мультфильмы/анимация",
       for_auth: false,
+      icon: faFaceSmileBeam,
     },
-    { href: "/subjects/music/?page=0", value: "Музыка", for_auth: false },
+    {
+      href: "/subjects/music/?page=0",
+      value: "Музыка",
+      for_auth: false,
+      icon: faMusic,
+    },
     {
       href: "/subjects/videogames/?page=0",
       value: "Видеоигры",
       for_auth: false,
+      icon: faGamepad,
     },
-    { href: "/subjects/sport/?page=0", value: "Спорт", for_auth: false },
+    {
+      href: "/subjects/sport/?page=0",
+      value: "Спорт",
+      for_auth: false,
+      icon: faDumbbell,
+    },
     {
       href: "/subjects/active-leisure/?page=0",
       value: "Активный отдых",
       for_auth: false,
+      icon: faPersonBiking,
     },
     {
       href: "/subjects/science-tecnology/?page=0",
       value: "Наука/технологии",
       for_auth: false,
+      icon: faFlask,
     },
-    { href: "/subjects/economic/?page=0", value: "Экономика", for_auth: false },
-    { href: "/subjects/politics/?page=0", value: "Политика", for_auth: false },
+    {
+      href: "/subjects/economic/?page=0",
+      value: "Экономика",
+      for_auth: false,
+      icon: faDollar,
+    },
+    {
+      href: "/subjects/politics/?page=0",
+      value: "Политика",
+      for_auth: false,
+      icon: faLandmark,
+    },
   ];
 
   const [signActive, setSignActive] = useState(false);

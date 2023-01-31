@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./BurgerMenu.module.css";
 import { Link } from "react-router-dom";
 import { Context } from "../..";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faL } from "@fortawesome/free-solid-svg-icons";
 
 /* item.href === "" && item.value === "line" ? (
@@ -49,6 +50,11 @@ export default function BurgerMenu(props) {
                     : ""
                 }
               >
+                <FontAwesomeIcon
+                  icon={item.icon}
+                  size="lg"
+                  style={{ marginRight: "5px" }}
+                />
                 {item.value}
               </li>
             </Link>
@@ -63,6 +69,11 @@ export default function BurgerMenu(props) {
                     : ""
                 }
               >
+                <FontAwesomeIcon
+                  icon={item.icon}
+                  size="lg"
+                  style={{ marginRight: "5px" }}
+                />
                 {item.value}
               </li>
             </Link>
