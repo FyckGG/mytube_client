@@ -5,4 +5,5 @@
   visibility: hidden;
   padding: 5px;
   border-radius: 5px;
+  z-index: 3;
 }
