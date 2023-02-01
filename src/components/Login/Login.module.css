@@ -21,11 +21,15 @@ hr {
   margin-bottom: 2px;
 }
 
+.form_sig input[type="submit"] {
+  font-size: 1.3rem;
+}
+
 .create_acc {
   margin-top: 15px !important;
   background-color: #f3f47b;
   padding: 5px;
-  font-size: 20px !important;
+  /* font-size: 20px !important; */
   cursor: pointer;
 }
 
@@ -58,4 +62,24 @@ hr {
 .forgot_password:hover {
   cursor: pointer;
   color: #c7c866;
+}
+
+@media (max-width: 700px) {
+  .form_sig input {
+    font-size: 0.6rem;
+  }
+
+  .form_sig input[type="submit"] {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .form_sig input {
+    font-size: 0.4rem;
+  }
+
+  .form_sig input[type="submit"] {
+    font-size: 0.7rem;
+  }
 }

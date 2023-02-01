@@ -3,7 +3,8 @@
   border: 1px solid #d1e0e0;
   border-radius: 4px;
   display: inline-block;
-  font-size: 17px;
+  /* font-size: 17px; */
+  font-size: 1rem;
   width: fit-content;
   cursor: pointer;
   padding: 2px;
@@ -14,10 +15,28 @@
   border: 1px solid #d1e0e0;
   border-radius: 4px;
   display: inline-block;
-  font-size: 17px;
+  font-size: 1rem;
   width: fit-content;
   cursor: pointer;
   padding: 2px;
+}
+
+@media (max-width: 500px) {
+  .main_button {
+    font-size: 0.6rem;
+  }
+  .pressed_main_button {
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 350px) {
+  .main_button {
+    font-size: 0.3rem;
+  }
+  .pressed_main_button {
+    font-size: 0.3rem;
+  }
 }
 
 .pressed_main_button:hover {

@@ -7,7 +7,21 @@ form {
   border-radius: 4px;
   /* width: 500px; */
   width: 40vw;
-  height: 25px;
-  min-width: 100px;
-  padding: 2px;
+  height: 1.7rem;
+  min-width: 1rem;
+  /* padding: 2px; */
+}
+
+/* @media (max-width: 700px) {
+  .search input {
+    font-size: 1rem;
+    height: 1rem;
+  }
+} */
+
+@media (max-width: 500px) {
+  .search input {
+    height: 1rem;
+    font-size: 0.5rem;
+  }
 }

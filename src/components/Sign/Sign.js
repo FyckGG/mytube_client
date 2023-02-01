@@ -127,7 +127,7 @@ function Sign({ modalActive, setModalActive, onSign }) {
 
   return (
     <Modal_Win active={modalActive} setActive={setModalActive}>
-      <h1 style={{ padding: "15px", color: "#f3f47b" }}>Registration</h1>
+      <h1 style={{ padding: "15px", color: "#f3f47b" }}>Регистрация</h1>
       <hr />
 
       <div className={styles.sign_panel}>
@@ -151,7 +151,7 @@ function Sign({ modalActive, setModalActive, onSign }) {
           <p className={styles.bad_input}>{errorEmail}</p>
           <br />
           <label for="login_s">
-            Login
+            Логин
             <br />
             <input
               type="text"
@@ -169,7 +169,7 @@ function Sign({ modalActive, setModalActive, onSign }) {
           <p className={styles.bad_input}>{errorLogin}</p>
           <br />
           <label for="pas_1">
-            Password
+            Пароль
             <br />
             <input
               type="password"
@@ -195,7 +195,7 @@ function Sign({ modalActive, setModalActive, onSign }) {
           <p className={styles.bad_input}>{errorPassword}</p>
           <br />
           <label for="pas_2">
-            Repeat the password
+            Повторите пароль
             <br />
             <input
               type="password"
@@ -242,7 +242,7 @@ function Sign({ modalActive, setModalActive, onSign }) {
                   : styles.create_acc_disabled
               }
               type="submit"
-              value="Create a new account"
+              value="Завершить регистрацию"
               disabled={!check_on_correct()}
             ></input>
           )}

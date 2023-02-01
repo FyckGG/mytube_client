@@ -54,11 +54,11 @@ function Login({ modalActive, setModalActive, onLog }) {
 
   return (
     <Modal_Win active={modalActive} setActive={setModalActive}>
-      <h1 style={{ padding: "15px", color: "#f3f47b" }}>Account login</h1>
+      <h1 style={{ padding: "15px", color: "#f3f47b" }}>Авторизация</h1>
       <hr />
       <form className={styles.form_sig} onSubmit={autorization}>
         <label for="login_l">
-          Login or email
+          Логин или пароль
           <br />
           <input
             type="text"
@@ -70,7 +70,7 @@ function Login({ modalActive, setModalActive, onLog }) {
         </label>
         <br />
         <label for="pas_l_1">
-          Password
+          Пароль
           <br />
           <input
             type="password"
@@ -86,7 +86,7 @@ function Login({ modalActive, setModalActive, onLog }) {
           style={{ cursor: "pointer" }}
           className={styles.create_acc}
           type="submit"
-          value="Log in"
+          value="Войти в аккаунт"
         ></input>
         <p
           className={styles.forgot_password}

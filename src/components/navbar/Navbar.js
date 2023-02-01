@@ -36,8 +36,8 @@ const Navbar = observer((props) => {
                 src={props.list_icon}
                 action={props.burger_action}
                 alt="GG"
-                height={"25px"}
-                width={"25px"}
+                height={"25rem"}
+                width={"25rem"}
               />
             </li>
             <li>
