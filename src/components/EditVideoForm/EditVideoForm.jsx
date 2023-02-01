@@ -42,7 +42,7 @@ export const EditVideoForm = observer((props) => {
     const tags_arr = videoTags.split(" ");
     const hash_tags_arr = videoHashtags.split(" ");
 
-    if (!checkHashTags(hash_tags_arr)) {
+    if (!checkHashTags(hash_tags_arr) && videoHashtags != "") {
       setError("В начале каждого хештега должен стоять символ #");
       return;
     }
