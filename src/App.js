@@ -41,7 +41,7 @@ import { ResetPasswordPage } from "./pages/ResetPasswordPage/ResetPasswordPage";
 import SeacrhResultsPage from "./pages/SearchResultsPage/SeacrhResultsPage";
 import SubscribtionVideoPage from "./pages/SubscribtionsVideoPage/SubscribtionVideoPage";
 import SubjectVideoPage from "./pages/SubjectVideoPage/SubjectVideoPage";
-import NewVideoPage from "./pages/NewVIdeosPage/NewVideosPage";
+import NewVideoPage from "./pages/Channel/NewVIdeosPage/NewVideosPage";
 import UserHistoryPage from "./pages/UserHistoryPage/UserHistoryPage";
 import { WatchLater } from "./pages/WatchLater/WatchLater";
 import { Context } from ".";
