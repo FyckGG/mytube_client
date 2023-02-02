@@ -41,6 +41,7 @@ import { ResetPasswordPage } from "./pages/ResetPasswordPage/ResetPasswordPage";
 import SeacrhResultsPage from "./pages/SearchResultsPage/SeacrhResultsPage";
 import SubscribtionVideoPage from "./pages/SubscribtionsVideoPage/SubscribtionVideoPage";
 import SubjectVideoPage from "./pages/SubjectVideoPage/SubjectVideoPage";
+import NewVideoPage from "./pages/NewVIdeosPage/NewVideosPage";
 import UserHistoryPage from "./pages/UserHistoryPage/UserHistoryPage";
 import { WatchLater } from "./pages/WatchLater/WatchLater";
 import { Context } from ".";
@@ -266,6 +267,7 @@ function App() {
           />
           <Route path="/subjects/:subject" element={<SubjectVideoPage />} />
           <Route path="/history/:id" element={<UserHistoryPage />} />
+          <Route path="/new/" element={<NewVideoPage />} />
           <Route path="/" element={<MainPage />} />
         </Routes>
       </div>
