@@ -29,47 +29,43 @@ const UserVideos = observer((props) => {
           <h2 className={styles.loading}>Идёт загрузка...</h2>
         ) : (
           <>
-            {!props.is_activated ? (
-              <>
-                {props.videos == "" ? (
-                  <div className={styles.no_video}>
-                    <h2>Нет видео</h2>
-                  </div>
-                ) : (
-                  <VideosInProfile
-                    activation_edit_form={handleEdiVideoFormActive}
-                    can_redact={props.can_change}
-                    videos={props.videos}
-                    currentVideoPage={currentVideoPage}
-                  />
-                )}
-                {props.can_change ? (
-                  <div style={{ marginTop: "5px" }}>
-                    <Link
-                      to={`/upload_video/${props.user_id}`}
-                      className={styles.add_video}
-                    >
-                      Загрузить видео
-                    </Link>
-                  </div>
-                ) : (
-                  <></>
-                )}
-                <div style={{ marginTop: "7px" }}>
-                  {Math.ceil(props.videos.length / 24) >= 2 ? (
-                    <PageList
-                      buttons_count={Math.ceil(props.videos.length / 24)}
-                      on_page_change={handlePageChange}
-                      active_button={currentVideoPage}
-                    />
-                  ) : (
-                    <></>
-                  )}
-                </div>
-              </>
+            {props.videos == "" ? (
+              <div className={styles.no_video}>
+                <h2>Нет видео</h2>
+              </div>
             ) : (
+              <VideosInProfile
+                activation_edit_form={handleEdiVideoFormActive}
+                can_redact={props.can_change}
+                videos={props.videos}
+                currentVideoPage={currentVideoPage}
+              />
+            )}
+            {props.can_change && props.is_activated ? (
+              <div style={{ marginTop: "5px" }}>
+                <Link
+                  to={`/upload_video/${props.user_id}`}
+                  className={styles.add_video}
+                >
+                  Загрузить видео
+                </Link>
+              </div>
+            ) : props.can_change ? (
               <h2>Для загрузки видео подтвердите свою электронную почту.</h2>
-            )}{" "}
+            ) : (
+              <></>
+            )}
+            <div style={{ marginTop: "7px" }}>
+              {Math.ceil(props.videos.length / 24) >= 2 ? (
+                <PageList
+                  buttons_count={Math.ceil(props.videos.length / 24)}
+                  on_page_change={handlePageChange}
+                  active_button={currentVideoPage}
+                />
+              ) : (
+                <></>
+              )}
+            </div>
           </>
         )}
       </div>
