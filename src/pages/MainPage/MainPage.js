@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./MainPage.module.css";
 import VideoMin from "../../components/UI/VideoMin/VideoMin";
+import { Donut_2 } from "../../components/UI/Donut_2/Donut_2";
 import { VIdeoMinList } from "../../components/UI/VideoMinList/VIdeoMinList";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Context } from "../..";
-import { set } from "mobx";
 
 const MainPage = () => {
   const store = React.useContext(Context);
@@ -33,10 +33,16 @@ const MainPage = () => {
   return (
     <div className={styles.main_page}>
       {videosLoading ? (
-        <div>Загрузка...</div>
+        <Donut_2 />
       ) : (
         <>
+          <h1>Новые видео:</h1>
           <VIdeoMinList videos={videos} />
+          <div style={{ marginTop: "2rem" }}>
+            <Link to={`/new?page=0`} className={styles.more_videos_link}>
+              Больше новых видео
+            </Link>
+          </div>
         </>
       )}
     </div>
