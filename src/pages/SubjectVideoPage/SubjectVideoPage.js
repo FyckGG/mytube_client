@@ -35,7 +35,7 @@ const SubjectVideoPage = () => {
       setIsResultsLoading(true);
       if (!isUserLoading) {
         const results = await axios.post(
-          "http://localhost:5000/data-load/get-videos-by-subject",
+          `${process.env.REACT_APP_API_URL}/data-load/get-videos-by-subject`,
           {
             user_id: store.user.id,
             subject: getSubjectString(subject),

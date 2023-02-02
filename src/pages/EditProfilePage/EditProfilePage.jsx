@@ -18,17 +18,17 @@ export const EditProfilePage = () => {
         const url = window.location.href;
         const final = getLastUrlPart(url);
         const default_img = await axios.post(
-          "http://localhost:5000/users-data-load/get-avatar",
+          `${process.env.REACT_APP_API_URL}/users-data-load/get-avatar`,
           {
             id: final,
           }
         );
         const default_description = await axios.post(
-          "http://localhost:5000/users-data-load/get-channel-description",
+          `${process.env.REACT_APP_API_URL}/users-data-load/get-channel-description`,
           { user_id: final }
         );
         setProfileImg(
-          `http://localhost:5000${default_img.data.avatar_dir}${default_img.data.avatar_name}`
+          `${process.env.REACT_APP_API_URL}${default_img.data.avatar_dir}${default_img.data.avatar_name}`
         );
         setChannelDescription(default_description.data.description);
         setIsLoading(false);

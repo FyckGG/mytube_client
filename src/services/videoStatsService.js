@@ -4,7 +4,7 @@ export default class VideoStatsService {
   static addView = async (video_id) => {
     try {
       const result = await $api.post(
-        "http://localhost:5000/video-stats/add-view",
+        `${process.env.REACT_APP_API_URL}/video-stats/add-view`,
         {
           video_id: video_id,
         }
@@ -18,7 +18,7 @@ export default class VideoStatsService {
   static addMark = async (video, user, is_like) => {
     try {
       const result = await $api.post(
-        "http://localhost:5000/video-stats/add-mark",
+        `${process.env.REACT_APP_API_URL}/video-stats/add-mark`,
         {
           video: video,
           user: user,
@@ -34,7 +34,7 @@ export default class VideoStatsService {
   static deleteMark = async (video, user, is_like) => {
     try {
       const result = await $api.post(
-        "http://localhost:5000/video-stats/delete-mark",
+        `${process.env.REACT_APP_API_URL}/video-stats/delete-mark`,
         {
           video: video,
           user: user,

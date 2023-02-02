@@ -15,7 +15,7 @@ const MainPage = () => {
   React.useEffect(() => {
     const getVideos = async () => {
       const videos_res = await axios.post(
-        "http://localhost:5000/data-load/get-videos",
+        `${process.env.REACT_APP_API_URL}/data-load/get-videos`,
         { user: store.user.id }
       );
 

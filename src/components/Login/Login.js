@@ -19,9 +19,12 @@ function Login({ modalActive, setModalActive, onLog }) {
       "Для смены пароля введите email, привязанный к вашему аккаунту (Перед отправкой убедитесь, что email подтверждён)."
     );
     const send_message_result = await axios
-      .post("http://localhost:5000/users/get-req-for-change-password", {
-        email: email,
-      })
+      .post(
+        `${process.env.REACT_APP_API_URL}/users/get-req-for-change-password`,
+        {
+          email: email,
+        }
+      )
       .then((res) => {
         alert("На вашу почту было выслано сообщение для смены пароля.");
       })

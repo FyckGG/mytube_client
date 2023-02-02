@@ -3,7 +3,7 @@ import $api from "../http";
 export default class UserActionService {
   static uploadVideo = async (uploading_video) => {
     return $api.post(
-      "http://localhost:5000/user-action/upload-video",
+      `${process.env.REACT_APP_API_URL}/user-action/upload-video`,
       uploading_video,
       {
         headers: {
@@ -14,45 +14,60 @@ export default class UserActionService {
   };
 
   static sendComment = async (video, user, text) => {
-    return $api.post("http://localhost:5000/user-action/send-comment", {
-      video_id: video,
-      user_id: user,
-      text: text,
-    });
+    return $api.post(
+      `${process.env.REACT_APP_API_URL}/user-action/send-comment`,
+      {
+        video_id: video,
+        user_id: user,
+        text: text,
+      }
+    );
   };
 
   static deleteComment = async (comment) => {
-    return $api.post("http://localhost:5000/user-action/delete-comment", {
-      comment_id: comment,
-    });
+    return $api.post(
+      `${process.env.REACT_APP_API_URL}/user-action/delete-comment`,
+      {
+        comment_id: comment,
+      }
+    );
   };
 
   static subscribe = async (channel_id, subscriber_id) => {
-    return $api.post("http://localhost:5000/user-action/subscribe", {
+    return $api.post(`${process.env.REACT_APP_API_URL}/user-action/subscribe`, {
       channel_id: channel_id,
       subscriber_id: subscriber_id,
     });
   };
 
   static unsubscribe = async (channel_id, subscriber_id) => {
-    return $api.post("http://localhost:5000/user-action/unsubscribe", {
-      channel_id: channel_id,
-      subscriber_id: subscriber_id,
-    });
+    return $api.post(
+      `${process.env.REACT_APP_API_URL}/user-action/unsubscribe`,
+      {
+        channel_id: channel_id,
+        subscriber_id: subscriber_id,
+      }
+    );
   };
 
   static addWatchLater = async (video_id, user_id) => {
-    return $api.post("http://localhost:5000/user-action/add-watch-later", {
-      video_id: video_id,
-      user_id: user_id,
-    });
+    return $api.post(
+      `${process.env.REACT_APP_API_URL}/user-action/add-watch-later`,
+      {
+        video_id: video_id,
+        user_id: user_id,
+      }
+    );
   };
 
   static deleteWatchLater = async (video_id, user_id) => {
-    return $api.post("http://localhost:5000/user-action/delete-watch-later", {
-      video_id: video_id,
-      user_id: user_id,
-    });
+    return $api.post(
+      `${process.env.REACT_APP_API_URL}/user-action/delete-watch-later`,
+      {
+        video_id: video_id,
+        user_id: user_id,
+      }
+    );
   };
 
   static editVideo = async (
@@ -62,17 +77,20 @@ export default class UserActionService {
     video_description,
     video_access
   ) => {
-    return $api.post("http://localhost:5000/user-action/edit-video", {
-      user: user_id,
-      video_id: video_id,
-      video_name: video_name,
-      video_description: video_description,
-      video_access: video_access,
-    });
+    return $api.post(
+      `${process.env.REACT_APP_API_URL}/user-action/edit-video`,
+      {
+        user: user_id,
+        video_id: video_id,
+        video_name: video_name,
+        video_description: video_description,
+        video_access: video_access,
+      }
+    );
   };
 
   static editTags = async (user_id, video_id, tags, hash_tags) => {
-    return $api.post("http://localhost:5000/user-action/edit-tags", {
+    return $api.post(`${process.env.REACT_APP_API_URL}/user-action/edit-tags`, {
       user_id: user_id,
       video_id: video_id,
       tags: tags,
@@ -81,8 +99,11 @@ export default class UserActionService {
   };
 
   static deleteVideo = async (video_id) => {
-    return $api.post("http://localhost:5000/user-action/delete-video", {
-      video_id: video_id,
-    });
+    return $api.post(
+      `${process.env.REACT_APP_API_URL}/user-action/delete-video`,
+      {
+        video_id: video_id,
+      }
+    );
   };
 }

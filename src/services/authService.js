@@ -2,14 +2,14 @@ import $api from "./../http/index";
 
 export default class AuthServices {
   static autorization = async (login_email, password) => {
-    return $api.post("http://localhost:5000/users/autorization", {
+    return $api.post(`${process.env.REACT_APP_API_URL}/users/autorization`, {
       em_log: login_email,
       password: password,
     });
   };
 
   static registration = async (email, login, password, img_profile) => {
-    return $api.post("http://localhost:5000/users/registration", {
+    return $api.post(`${process.env.REACT_APP_API_URL}/users/registration`, {
       email: email,
       login: login,
       password: password,
@@ -22,6 +22,6 @@ export default class AuthServices {
   // };
 
   static logout = async () => {
-    return $api.post("http://localhost:5000/users/logout");
+    return $api.post(`${process.env.REACT_APP_API_URL}/users/logout`);
   };
 }

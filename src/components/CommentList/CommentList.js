@@ -38,7 +38,7 @@ const CommentList = observer((props) => {
                   user_id={comment.user_id}
                   user_name={comment.user_name}
                   comment_text={comment.comment_text}
-                  user_profile={`http://localhost:5000${comment.user_avatar}`}
+                  user_profile={`${process.env.REACT_APP_API_URL}${comment.user_avatar}`}
                   comment_time={timeAgo(comment.comment_date)}
                 />
                 {comment.user_id === store.user.id ? (

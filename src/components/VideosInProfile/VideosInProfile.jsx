@@ -28,7 +28,7 @@ export const VideosInProfile = (props) => {
             <div className={styles.video_min_item}>
               <MyVideoMin
                 video_id={video.id}
-                src={`http://localhost:5000${video.thumbnail_dir}`}
+                src={`${process.env.REACT_APP_API_URL}${video.thumbnail_dir}`}
                 video_name={video.video_name}
                 video_time={convertTime(video.video_duration)}
                 video_views={video.number_views}

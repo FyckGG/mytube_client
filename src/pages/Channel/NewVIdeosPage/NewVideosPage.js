@@ -33,7 +33,7 @@ const NewVideoPage = () => {
       setIsResultsLoading(true);
       if (!isUserLoading) {
         const results = await axios.post(
-          "http://localhost:5000/data-load/get-new-videos",
+          `${process.env.REACT_APP_API_URL}/data-load/get-new-videos`,
           {
             user_id: store.user.id,
             current_page: Number(searchParams.get("page")),

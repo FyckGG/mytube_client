@@ -47,6 +47,7 @@ import { WatchLater } from "./pages/WatchLater/WatchLater";
 import { Context } from ".";
 
 function App() {
+  //dotenv.config();
   const nodeRef = useRef(null);
   const store = useContext(Context);
   //store.user.id

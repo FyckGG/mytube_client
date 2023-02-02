@@ -38,7 +38,7 @@ export const ResetPasswordForm = () => {
     e.preventDefault();
     setIsSendingData(true);
     await axios
-      .post("http://localhost:5000/users/reset-password", {
+      .post(`${process.env.REACT_APP_API_URL}/users/reset-password`, {
         user_id: searchParams.get("id"),
         token: searchParams.get("token"),
         password: repeatPassword,

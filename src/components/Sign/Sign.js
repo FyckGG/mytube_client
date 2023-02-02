@@ -43,12 +43,12 @@ function Sign({ modalActive, setModalActive, onSign }) {
       const response = await store.registration(email, login, password);
 
       const create_dir_response = await axios.post(
-        "http://localhost:5000/users-data-creation/create-dir",
+        `${process.env.REACT_APP_API_URL}/users-data-creation/create-dir`,
         { id: response.data.user.id }
       );
       console.log(response);
       const create_dir_avatar_response = await axios.post(
-        "http://localhost:5000/users-data-creation/create-dir-avatar",
+        `${process.env.REACT_APP_API_URL}/users-data-creation/create-dir-avatar`,
         { id: response.data.user.id }
       );
       console.log(create_dir_avatar_response);
@@ -56,7 +56,7 @@ function Sign({ modalActive, setModalActive, onSign }) {
       if (imgProfile != null) {
         uploading_avatar.append("avatar", imgProfile);
         var avatar_response = await axios.post(
-          "http://localhost:5000/users-data-creation/upload-avatar",
+          `${process.env.REACT_APP_API_URL}/users-data-creation/upload-avatar`,
           uploading_avatar,
           {
             headers: {
@@ -66,7 +66,7 @@ function Sign({ modalActive, setModalActive, onSign }) {
         );
       } else {
         var avatar_response = await axios.post(
-          "http://localhost:5000/users-data-creation/add-defaut-avatar",
+          `${process.env.REACT_APP_API_URL}/users-data-creation/add-defaut-avatar`,
           {
             id: response.data.user.id,
           }
@@ -74,7 +74,7 @@ function Sign({ modalActive, setModalActive, onSign }) {
       }
 
       await axios.post(
-        "http://localhost:5000/users-data-creation/save-avatar-info",
+        `${process.env.REACT_APP_API_URL}/users-data-creation/save-avatar-info`,
         {
           id: response.data.user.id,
           avatar_name: avatar_response.data.avatar_name,
@@ -220,21 +220,6 @@ function Sign({ modalActive, setModalActive, onSign }) {
               donut_size={"40px"}
             />
           ) : (
-            /* <div className={styles.load_panel}>
-              <div
-                style={{
-                  display: "inline-block",
-                  color: "#f3f47b",
-                  fontSize: "15px",
-                  fontWeight: "bold",
-                  margin: "auto",
-                }}
-              >
-                Отправка данных
-              </div>
-              <div class={styles.donut}></div>{" "}
-            </div> */
-
             <input
               className={
                 check_on_correct()

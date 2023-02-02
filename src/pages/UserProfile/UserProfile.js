@@ -69,25 +69,25 @@ const UserProfile = observer((props) => {
       setVideosLoading(true);
       await store.checkAuth();
       const user_result = await axios.post(
-        "http://localhost:5000/users-data-load/get-user",
+        `${process.env.REACT_APP_API_URL}/users-data-load/get-user`,
         {
           user_id: final,
         }
       );
       setUserName(user_result.data.login);
       const avatar_result = await axios.post(
-        "http://localhost:5000/users-data-load/get-avatar",
+        `${process.env.REACT_APP_API_URL}/users-data-load/get-avatar`,
         {
           id: final,
         }
       );
       setAvatar(
-        `http://localhost:5000${avatar_result.data.avatar_dir}${avatar_result.data.avatar_name}`
+        `${process.env.REACT_APP_API_URL}${avatar_result.data.avatar_dir}${avatar_result.data.avatar_name}`
       );
       setAvatarLoading(false);
       console.log(store.user.id);
       const user_videos_result = await axios.post(
-        "http://localhost:5000/users-data-load/get-user-videos",
+        `${process.env.REACT_APP_API_URL}/users-data-load/get-user-videos`,
         {
           //user_id: final,
           channel_id: final,
@@ -95,7 +95,7 @@ const UserProfile = observer((props) => {
         }
       );
       const user_stats = await axios.post(
-        "http://localhost:5000/users-data-load/get-user-stats",
+        `${process.env.REACT_APP_API_URL}/users-data-load/get-user-stats`,
 
         { user_id: final }
       );
@@ -107,7 +107,7 @@ const UserProfile = observer((props) => {
       }
 
       const user_description = await axios.post(
-        "http://localhost:5000/users-data-load/get-channel-description",
+        `${process.env.REACT_APP_API_URL}/users-data-load/get-channel-description`,
         { user_id: final }
       );
 

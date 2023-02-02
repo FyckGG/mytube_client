@@ -8,7 +8,7 @@ export const ChannelSubscribe = (props) => {
     <ChannelLink channel_id={props.channel_id}>
       <div className={styles.channel_subscribe}>
         <ProfilePicture
-          src={`http://localhost:5000${props.avatar}`}
+          src={`${process.env.REACT_APP_API_URL}${props.avatar}`}
           alt="profile_img"
           width="90"
           height="100"

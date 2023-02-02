@@ -91,7 +91,7 @@ const VideoUploader = () => {
     console.log(upload_responce);
 
     const db_responce = await axios.post(
-      "http://localhost:5000/user-action/add-video",
+      `${process.env.REACT_APP_API_URL}/user-action/add-video`,
       {
         userId: store.user.id,
         name: videoName,
@@ -104,7 +104,7 @@ const VideoUploader = () => {
     );
 
     const thumbnail_responce = await axios.post(
-      "http://localhost:5000/user-action/create-video-thumbnail",
+      `${process.env.REACT_APP_API_URL}/user-action/create-video-thumbnail`,
       {
         videoId: db_responce.data._id,
         video_dir: `/../usersData/${store.user.id}/videos/${upload_responce.data.video_name}`,

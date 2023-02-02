@@ -157,7 +157,7 @@ const WatchVideo = observer(() => {
     }
     setCommentRenderCount(commentRenderCount + 10);
     const comment_list = await axios.post(
-      "http://localhost:5000/data-load/get-comments",
+      `${process.env.REACT_APP_API_URL}/data-load/get-comments`,
       {
         video_id: searchParams.get("v"),
         comment_count: commentRenderCount + 10,
@@ -204,7 +204,7 @@ const WatchVideo = observer(() => {
       //if (!isUserLoading) {
       setPageLoading(true);
       const video = await axios.post(
-        "http://localhost:5000/user-action/load-watch-video",
+        `${process.env.REACT_APP_API_URL}/user-action/load-watch-video`,
         {
           video_id: searchParams.get("v"),
           user_id: store.user.id,
@@ -239,7 +239,7 @@ const WatchVideo = observer(() => {
     const getSubStatus = async () => {
       if (!isUserLoading) {
         const channel_status = await axios.post(
-          "http://localhost:5000/users-data-load/get-channel-status",
+          `${process.env.REACT_APP_API_URL}/users-data-load/get-channel-status`,
           {
             user_id: store.user.id,
             video_id: searchParams.get("v"),
@@ -260,7 +260,7 @@ const WatchVideo = observer(() => {
       if (!isUserLoading) {
         //const video_mark = await UserDataLoad.getVideoMark(
         const video_mark = await axios.post(
-          "http://localhost:5000/users-data-load/get-video-mark",
+          `${process.env.REACT_APP_API_URL}/users-data-load/get-video-mark`,
           {
             user_id: store.user.id,
             video_id: searchParams.get("v"),
@@ -300,7 +300,7 @@ const WatchVideo = observer(() => {
     <div>
       <div className={styles.video_player}>
         <ReactPlayer
-          url={`http://localhost:5000${videoPath}`}
+          url={`${process.env.REACT_APP_API_URL}${videoPath}`}
           controls
           width="100%"
           height="70vh"
@@ -347,7 +347,7 @@ const WatchVideo = observer(() => {
             <div className={styles.channel_picture}>
               <ChannelLink user_id={store.user.id} channel_id={channelId}>
                 <ProfilePicture
-                  src={`http://localhost:5000${channelAvatar}`}
+                  src={`${process.env.REACT_APP_API_URL}${channelAvatar}`}
                   alt="profile_img"
                   width="60"
                   height="60"

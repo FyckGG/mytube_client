@@ -36,7 +36,7 @@ const SeacrhResultsPage = () => {
       setIsResultsLoading(true);
       if (!isUserLoading) {
         const search_results = await axios.post(
-          "http://localhost:5000/data-load/get-filtered-content",
+          `${process.env.REACT_APP_API_URL}/data-load/get-filtered-content`,
           {
             user_id: store.user.id,
             search_string: searchParams.get("params"),

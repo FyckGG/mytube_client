@@ -28,7 +28,7 @@ const VideoMin = observer((props) => {
       </div>
       <div>
         <VideoPreview
-          src={`http://localhost:5000${props.preview}`}
+          src={`${process.env.REACT_APP_API_URL}${props.preview}`}
           width="200"
         />
       </div>
@@ -39,7 +39,7 @@ const VideoMin = observer((props) => {
           style={{ height: "40%" }}
         >
           <ProfilePicture
-            src={`http://localhost:5000${props.channel_icon}`}
+            src={`${process.env.REACT_APP_API_URL}${props.channel_icon}`}
             alt="profile_img"
             width="40"
             height="40"
