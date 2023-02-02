@@ -17,7 +17,7 @@ const PostCommentForm = (props) => {
     <div className={styles.post_form}>
       <div className={styles.post_pole}>
         <textarea
-          maxLength={500}
+          maxLength={2000}
           rows="3"
           cols="60"
           name="text"

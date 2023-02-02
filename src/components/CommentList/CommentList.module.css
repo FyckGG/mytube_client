@@ -1,6 +1,7 @@
 .comment {
   margin-top: 7px;
   display: flex;
+  padding: 0.5rem;
 }
 
 .comment_content {

@@ -41,21 +41,21 @@ const CommentList = observer((props) => {
                   user_profile={`http://localhost:5000${comment.user_avatar}`}
                   comment_time={timeAgo(comment.comment_date)}
                 />
+                {comment.user_id === store.user.id ? (
+                  <div
+                    className={styles.delete_icon}
+                    onClick={() => deleteComment(comment.comment_id)}
+                  >
+                    <FontAwesomeIcon
+                      className={styles.font_delete}
+                      icon={faTrash}
+                      size="lg"
+                    />
+                  </div>
+                ) : (
+                  <></>
+                )}
               </div>
-              {comment.user_id === store.user.id ? (
-                <div
-                  className={styles.delete_icon}
-                  onClick={() => deleteComment(comment.comment_id)}
-                >
-                  <FontAwesomeIcon
-                    className={styles.font_delete}
-                    icon={faTrash}
-                    size="lg"
-                  />
-                </div>
-              ) : (
-                <></>
-              )}
             </div>
           </CSSTransition>
         ))}

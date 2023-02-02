@@ -13,9 +13,12 @@
 }
 
 .comment_text {
+  width: 90vw;
   margin-top: 5px;
   padding: 2px;
   display: inline-block;
+  display: block;
+  word-break: break-word;
 }
 
 /* .delete_icon {

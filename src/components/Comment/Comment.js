@@ -38,18 +38,6 @@ const Comment = (props) => {
           >
             {props.comment_time}
           </p>
-
-          {/* {props.user_id === store.user.id ? (
-            <div className={styles.delete_icon} onClick={deleteThisComment}>
-              <FontAwesomeIcon
-                className={styles.font_delete}
-                icon={faTrash}
-                size="lg"
-              />
-            </div>
-          ) : (
-            <></>
-          )} */}
         </div>
 
         <p className={styles.comment_text}>{props.comment_text}</p>
