@@ -223,11 +223,11 @@ const VideoUploader = () => {
               Выберите тему
             </option>
             <option value="Фильмы/сериалы">Фильмы/сериалы</option>
-            <option value="Мультфилмы/анимация">Мультфилмы/анимация</option>
+            <option value="Мультфильмы/анимация">Мультфилмы/анимация</option>
             <option value="Музыка">Музыка</option>
             <option value="Видеоигры">Видеоигры</option>
             <option value="Спорт">Спорт</option>
-            <option value="Активынй отдых">Активынй отдых</option>
+            <option value="Активный отдых">Активынй отдых</option>
             <option value="Наука/технологии">Наука/технологии</option>
             <option value="Экономика">Экономика</option>
             <option value="Политика">Политика</option>
