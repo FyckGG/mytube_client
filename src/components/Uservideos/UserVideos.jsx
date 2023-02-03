@@ -6,7 +6,7 @@ import { Context } from "../..";
 import MyVideoMin from "../UI/MyVideoMin/MyVideoMin";
 import { VideosInProfile } from "../VideosInProfile/VideosInProfile";
 import { observer } from "mobx-react-lite";
-import convertTime from "./../../otherServices/convertVideoTime";
+import convertTime from "../../otherServices/convertVideoTime";
 
 import PageList from "../UI/PageList/PageList";
 

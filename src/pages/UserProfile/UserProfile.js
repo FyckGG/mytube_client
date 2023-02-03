@@ -18,7 +18,7 @@ import axios from "axios";
 
 import load_photo from "./../../imgs/load_photo.jpg";
 import { getLastUrlPart } from "../../otherServices/getLastUrlPart";
-import UserVideos from "../../components/UserVideos/UserVideos";
+import UserVideos from "../../components/UserVideos/UserVideos.jsx";
 
 const UserProfile = observer((props) => {
   const store = useContext(Context);
