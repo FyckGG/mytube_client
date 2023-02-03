@@ -41,7 +41,7 @@ const UserVideos = observer((props) => {
                 currentVideoPage={currentVideoPage}
               />
             )}
-            {props.can_change && props.is_activated ? (
+            {props.can_change && !props.is_activated ? (
               <div style={{ marginTop: "5px" }}>
                 <Link
                   to={`/upload_video/${props.user_id}`}
