@@ -20,7 +20,7 @@ import load_photo from "./../../imgs/load_photo.jpg";
 import { getLastUrlPart } from "../../otherServices/getLastUrlPart";
 //import UserVideos from "../../components/UserVideos/UserVideos.js";
 
-import UserVideos from "./root/client/mytube_client/src/pages/UserProfile/../../components/UserVideos/UserVideos.js";
+import UserVideos from "/root/client/mytube_client/src/pages/UserProfile/../../components/UserVideos/UserVideos.js";
 
 const UserProfile = observer((props) => {
   const store = useContext(Context);
