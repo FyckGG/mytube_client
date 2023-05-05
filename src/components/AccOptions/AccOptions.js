@@ -33,19 +33,21 @@ export default function AccOptions(props) {
           <div className={styles.options_header}>{props.header}</div>
 
           <ul>
-            {props.items.map((item) => (
-              <Link to={item.href}>
-                <div className={styles.menu_item} onClick={item.action}>
-                  <li>
-                    <FontAwesomeIcon
-                      icon={item.icon}
-                      size="lg"
-                      style={{ paddingRight: "5px" }}
-                    />
-                    {item.value}
-                  </li>
-                </div>
-              </Link>
+            {props.items.map((item, index) => (
+              <div key={index}>
+                <Link to={item.href}>
+                  <div className={styles.menu_item} onClick={item.action}>
+                    <li>
+                      <FontAwesomeIcon
+                        icon={item.icon}
+                        size="lg"
+                        style={{ paddingRight: "5px" }}
+                      />
+                      {item.value}
+                    </li>
+                  </div>
+                </Link>
+              </div>
             ))}
           </ul>
         </div>

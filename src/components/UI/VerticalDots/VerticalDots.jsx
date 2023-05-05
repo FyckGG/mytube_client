@@ -44,8 +44,9 @@ export const VerticalDots = (props) => {
           }
           ref={dotsRef}
         >
-          {props.content.map((item) => (
+          {props.content.map((item, index) => (
             <div
+              key={index}
               className={styles.content_item}
               onClick={() => {
                 item.action();

@@ -7,7 +7,7 @@ export const VIdeoMinList = (props) => {
   return (
     <div>
       {props.videos.map((video) => (
-        <div className={styles.video_min}>
+        <div className={styles.video_min} key={video.video_id}>
           <Link
             to={`/watch_video?v=${video.video_id}`}
             style={{ color: "inherit", textDecoration: "inherit" }}

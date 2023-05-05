@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./MainPage.module.css";
-import VideoMin from "../../components/UI/VideoMin/VideoMin";
 import { Donut_2 } from "../../components/UI/Donut_2/Donut_2";
 import { VIdeoMinList } from "../../components/UI/VideoMinList/VIdeoMinList";
 import { Link } from "react-router-dom";
@@ -23,7 +22,6 @@ const MainPage = () => {
         setVideos(videos_res.data);
         setVideosLoading(false);
       }
-      console.log(videos_res);
       setIsUserLoading(store.isLoading);
     };
 

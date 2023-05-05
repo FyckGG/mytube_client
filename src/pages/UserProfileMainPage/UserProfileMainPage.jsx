@@ -16,7 +16,6 @@ const UserProfileMainPage = observer((props) => {
     setNewestVideos(getNewestVideos(props.videos));
     setPopularVideos(getMostPopularVideos(props.videos));
     setBestVideos(getBestVideos(props.videos));
-    console.log(props.videos);
     getNewestVideos(props.videos);
   }, [props.is_loading]);
   return (

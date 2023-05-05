@@ -18,10 +18,7 @@ import SubscribeButton from "../../components/UI/SubscribeButton/SubscribeButton
 import ChannelLink from "../../components/UI/ChannelLink/ChannelLink";
 import userActions from "../../userActions/userActions";
 import convertCount from "./../../otherServices/ConvertCount";
-
-import load_photo from "./../../imgs/load_photo.jpg";
 import UserDataChange from "../../userDataChange/userDataChange";
-//import load_photo from "./../../imgs/load_photo.jpg";
 
 const WatchVideo = observer(() => {
   const store = React.useContext(Context);
@@ -134,7 +131,7 @@ const WatchVideo = observer(() => {
       store.user.id,
       commentText
     );
-    //console.log(new_comment);
+
     setCommentForm(false);
 
     setCommentList([new_comment.data, ...commentList]);
@@ -163,7 +160,7 @@ const WatchVideo = observer(() => {
         comment_count: commentRenderCount + 10,
       }
     );
-    //console.log(comment_list.data);
+
     setCountComments(comment_list.data.comments_count);
     if (comment_list.data.comments_count === 0) {
       setHasMoreComments(false);
@@ -187,7 +184,6 @@ const WatchVideo = observer(() => {
     if (isPlay && !isWatch) {
       timer = setInterval(() => {
         setSecond((second) => second + 1);
-        console.log(second);
         if (isVideoWatching(duration, second)) {
           setIsWatch(true);
           VideoStatsService.addView(searchParams.get("v"));
@@ -201,7 +197,6 @@ const WatchVideo = observer(() => {
 
   React.useEffect(() => {
     const getVideo = async () => {
-      //if (!isUserLoading) {
       setPageLoading(true);
       const video = await axios.post(
         `${process.env.REACT_APP_API_URL}/user-action/load-watch-video`,
@@ -210,8 +205,6 @@ const WatchVideo = observer(() => {
           user_id: store.user.id,
         }
       );
-
-      //console.log(video.data);
 
       setVideoPath(video.data.video.video_directory);
       setVideoName(video.data.video.video_name);
@@ -223,14 +216,7 @@ const WatchVideo = observer(() => {
       setCountDislike(video.data.count_dislikes);
       setCountSubs(video.data.count_subs);
       setCountViews(video.data.count_views);
-      //if (video.data.video_mark === true) setIsLike(true);
-      //else if (video.data.video_mark === false) setIsDislike(true);
       setPageLoading(false);
-      //}
-
-      // setTimeout(() => {
-      //   setIsUserLoading(store.isLoading);
-      // }, 5000);
     };
     getVideo();
   }, []);
@@ -245,7 +231,6 @@ const WatchVideo = observer(() => {
             video_id: searchParams.get("v"),
           }
         );
-        //console.log(channel_status);
         setIsSubs(channel_status.data.subs_status);
         setChannelId(channel_status.data.channel);
         setIsSubsStatusLoading(false);
@@ -258,7 +243,6 @@ const WatchVideo = observer(() => {
   React.useEffect(() => {
     const getVideoMark = async () => {
       if (!isUserLoading) {
-        //const video_mark = await UserDataLoad.getVideoMark(
         const video_mark = await axios.post(
           `${process.env.REACT_APP_API_URL}/users-data-load/get-video-mark`,
           {
@@ -266,8 +250,6 @@ const WatchVideo = observer(() => {
             video_id: searchParams.get("v"),
           }
         );
-        console.log("vfvfvfv");
-        console.log(video_mark);
         if (video_mark.data !== null) {
           if (video_mark.data.is_like === true) setIsLike(true);
           if (video_mark.data.is_like === false) setIsDislike(true);

@@ -9,13 +9,11 @@ import { useSearchParams } from "react-router-dom";
 export default function Search() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [stringSearch, setStringSearch] = React.useState(
-    searchParams.get("params")
+    searchParams.get("params") ? searchParams.get("params") : ""
   );
   const [stringParams, setStringParams] = React.useState();
   const navigate = useNavigate();
   const search = () => {
-    //navigate(`/search-results?params=${stringParams}`);
-    ///console.log(window.location.href);
     if (window.location.href.includes("/search-results"))
       window.location.reload();
   };
@@ -31,16 +29,10 @@ export default function Search() {
           const str_par_2 = str_par_1.replace(/#/g, "%23");
           setStringParams(str_par_2);
         }}
-        placeholder="Search"
+        placeholder="Поиск"
       ></input>
       <Link to={`/search-results?params=${stringParams}&&page=0`}>
-        <Main_Button
-        // button_action={() => {
-        //   search();
-        // }}
-        >
-          Find
-        </Main_Button>
+        <Main_Button>Найти</Main_Button>
       </Link>
     </form>
   );

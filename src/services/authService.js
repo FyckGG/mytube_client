@@ -9,6 +9,8 @@ export default class AuthServices {
   };
 
   static registration = async (email, login, password, img_profile) => {
+    console.log("ure in reg service");
+    console.log(process.env.REACT_APP_API_URL);
     return $api.post(`${process.env.REACT_APP_API_URL}/users/registration`, {
       email: email,
       login: login,

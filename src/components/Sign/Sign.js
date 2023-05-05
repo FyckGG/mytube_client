@@ -46,12 +46,10 @@ function Sign({ modalActive, setModalActive, onSign }) {
         `${process.env.REACT_APP_API_URL}/users-data-creation/create-dir`,
         { id: response.data.user.id }
       );
-      console.log(response);
       const create_dir_avatar_response = await axios.post(
         `${process.env.REACT_APP_API_URL}/users-data-creation/create-dir-avatar`,
         { id: response.data.user.id }
       );
-      console.log(create_dir_avatar_response);
       uploading_avatar.append("id", response.data.user.id);
       if (imgProfile != null) {
         uploading_avatar.append("avatar", imgProfile);

@@ -13,21 +13,23 @@ const ToggleTabs = (props) => {
 
   return (
     <div className={styles.tab}>
-      <div className={styles.tab_flip}>
+      <div>
         {arr.map((item) => (
-          <MyTab
-            tabname={item.tabname}
-            tab_active={tabsActive[item.tab_id]}
-            className={styles.tab_menu}
-            tab_action={() => {
-              setChoisedMenu(item.tab_id);
-              const newTabsActive = [...tabsActive];
-              for (let i = 0; i < newTabsActive.length; i++)
-                newTabsActive[i] = false;
-              newTabsActive[item.tab_id] = true;
-              setTabsActive([...newTabsActive]);
-            }}
-          />
+          <div className={styles.tab_flip} key={item.tab_id}>
+            <MyTab
+              tabname={item.tabname}
+              tab_active={tabsActive[item.tab_id]}
+              className={styles.tab_menu}
+              tab_action={() => {
+                setChoisedMenu(item.tab_id);
+                const newTabsActive = [...tabsActive];
+                for (let i = 0; i < newTabsActive.length; i++)
+                  newTabsActive[i] = false;
+                newTabsActive[item.tab_id] = true;
+                setTabsActive([...newTabsActive]);
+              }}
+            />
+          </div>
         ))}
       </div>
 

@@ -3,6 +3,10 @@
   margin-top: 10px;
 }
 
+.textarea {
+  resize: none;
+}
+
 .finish_button {
   padding: 5px;
   font-size: 20px;
@@ -10,8 +14,19 @@
   border-radius: 5px;
 }
 
+.delete_button {
+  background-color: #d03516;
+  border: 1px solid #b22f15;
+}
+
+.delete_button:hover {
+  cursor: pointer;
+  background-color: #b22f15;
+}
+
 .save_button {
   background-color: #f3f47b;
+  border: 1px solid #d1e0e0;
 }
 
 .save_button:hover {
@@ -21,6 +36,7 @@
 
 .cancel_button {
   background-color: #c1c1be;
+  border: 1px solid #d1e0e0;
   margin-left: 10px;
 }
 

@@ -6,8 +6,8 @@ export const ChannelSubscribeList = ({ list }) => {
   const arr = [1, 1, 1, 11, 1, , 1, 1, 1];
   return (
     <div className={styles.subscribe_list}>
-      {list.map((item) => (
-        <div className={styles.channel_subscribe}>
+      {list.map((item, index) => (
+        <div className={styles.channel_subscribe} key={index}>
           <ChannelSubscribe
             channel_id={item.channel_id}
             name={item.channel_name}

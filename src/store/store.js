@@ -45,7 +45,7 @@ export default class Store {
         password,
         img_profile
       );
-      console.log(response.data);
+      //console.log(response.data);
       localStorage.setItem("token", response.data.accessToken);
       this.setAuth(true);
       this.setUser(response.data.user);

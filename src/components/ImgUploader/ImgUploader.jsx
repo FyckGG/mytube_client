@@ -37,8 +37,6 @@ const ImgUploader = (props) => {
         fileReader.onloadend = () => {
           setImageURL(fileReader.result);
           props.img_change(e.dataTransfer.files[0]);
-          //console.log(imageURL);
-          //console.log(e.dataTransfer.files[0]);
         };
       }
     }
@@ -59,11 +57,8 @@ const ImgUploader = (props) => {
       } else {
         setFileStatus();
         fileReader.onloadend = () => {
-          //console.log(fileReader.result);
           setImageURL(fileReader.result);
           props.img_change(e.target.files[0]);
-          //console.log(imageURL);
-          //console.log(e.target.files[0]);
         };
       }
     }
@@ -79,7 +74,6 @@ const ImgUploader = (props) => {
       <label className={styles.custom_file_upload}>
         {props.button_text}
         <input
-          //id="file-loader-button"
           type="file"
           className={styles.upload_file_button}
           onChange={handleOnChange}

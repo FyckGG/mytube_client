@@ -81,7 +81,6 @@ export const EditVideoForm = observer((props) => {
   }, [props.is_loading]);
 
   return (
-    // <div className={styles.edit_video_form}>
     <EditForm>
       <div>
         <h1>Изменить данные видео:</h1>
@@ -105,7 +104,7 @@ export const EditVideoForm = observer((props) => {
               rows="3"
               cols="45"
               name="text"
-              className={styles.video_description}
+              className={styles.textarea}
               value={videoDescription}
               onChange={(e) => {
                 setVideoDescription(e.target.value);
@@ -179,28 +178,7 @@ export const EditVideoForm = observer((props) => {
             </select>
           </label>
           <br />
-          {/* <label>
-              Тема видео:
-              <select
-                defaultValue={videoSubject}
-                value={videoSubject}
-                onChange={(e) => {
-                  setVideoSubject(e.target.value);
-                }}
-              >
-                <option value={"Фильмы/сериалы"}>Фильмы/сериалы</option>
-                <option value={"Мультфилмы/анимация"}>
-                  Мультфилмы/анимация
-                </option>
-                <option value={"Музыка"}>Музыка</option>
-                <option value={"Видеоигры"}>Видеоигры</option>
-                <option value={"Спорт"}>Спорт</option>
-                <option value={"Активный отдых"}>Активный отдых</option>
-                <option value={"Наука/технологиии"}>Наука/технологии</option>
-                <option value={"Экономика"}>Экономика</option>
-                <option value={"Политика"}>Политика</option>
-              </select>
-            </label> */}
+
           <div className={styles.error_message}>{error}</div>
           {isSendingData ? (
             <div style={{ display: "inline-block" }}>
@@ -251,6 +229,5 @@ export const EditVideoForm = observer((props) => {
         </form>
       </div>
     </EditForm>
-    // </div>
   );
 });

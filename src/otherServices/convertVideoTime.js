@@ -3,9 +3,9 @@ const convertTime = (time) => {
   const minutes = Math.floor(time / 60) - hours * 60;
   const seconds = Math.floor(time % 60);
   let time_string = "";
-  if (hours != 0) time_string += `${hours}h `;
+  if (hours != 0) time_string += `${hours}ч `;
   if (minutes != 0) time_string += `${minutes}m `;
-  if (seconds != 0) time_string += `${seconds}s`;
+  if (seconds != 0) time_string += `${seconds}с`;
   return time_string;
 };
 

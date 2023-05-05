@@ -82,6 +82,7 @@ export const EditProfileForm = observer((props) => {
             <label>
               Описание канала:
               <textarea
+                className={styles.textarea}
                 maxLength={300}
                 rows="3"
                 cols="45"
@@ -116,6 +117,13 @@ export const EditProfileForm = observer((props) => {
                   onClick={() => {
                     navigate(`/profile/${store.user.id}`);
                   }}
+                />
+                <br />
+                <input
+                  onClick={() => {}}
+                  className={`${styles.delete_button} ${styles.finish_button}`}
+                  type={"button"}
+                  value={"Удалить аккаунт"}
                 />
               </>
             )}

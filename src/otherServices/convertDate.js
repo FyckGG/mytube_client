@@ -15,7 +15,6 @@ const convertDate = (date) => {
     .set("12", "декабря");
   const date_part = date.split("-");
   date_part[2] = date_part[2].substring(0, 2);
-  console.log(date_part);
   return `${date_part[2]} ${mounths.get(date_part[1])} ${date_part[0]}`;
 };
 

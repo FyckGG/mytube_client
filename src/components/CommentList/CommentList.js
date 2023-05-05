@@ -15,13 +15,11 @@ const CommentList = observer((props) => {
   const deleteComment = async (id) => {
     props.on_delete_icon_click(id);
   };
-  console.log(props.comment_list);
   const comments_with_ref = [];
   props.comment_list.map((comment) => {
     comment = { ...comment, nodeRef: React.createRef(null) };
     comments_with_ref.push(comment);
   });
-  console.log(comments_with_ref);
   return (
     <div>
       <TransitionGroup className={"todo-list"}>

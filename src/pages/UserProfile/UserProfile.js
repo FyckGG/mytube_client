@@ -45,23 +45,8 @@ const UserProfile = observer((props) => {
     setIsSubs(e);
   };
 
-  // const subscribe_click = async () => {
-  //   if (isSubs) {
-  //     const unsub_result = await userActions.Unsubscribe(userId, store.user.id);
-  //     setCountSubs(countSubs - 1);
-  //     setIsSubs(false);
-  //     console.log("otpiska");
-  //   } else {
-  //     const sub_result = await userActions.Subscribe(userId, store.user.id);
-  //     setCountSubs(countSubs + 1);
-  //     setIsSubs(true);
-  //     console.log("podpiska");
-  //   }
-  // };
-
   useEffect(() => {
     const url = window.location.href;
-    //const final = url.substring(url.lastIndexOf("/") + 1);
     const final = getLastUrlPart(url);
     setUserId(final);
     const getUserData = async () => {
@@ -85,7 +70,6 @@ const UserProfile = observer((props) => {
         `${process.env.REACT_APP_API_URL}${avatar_result.data.avatar_dir}${avatar_result.data.avatar_name}`
       );
       setAvatarLoading(false);
-      console.log(store.user.id);
       const user_videos_result = await axios.post(
         `${process.env.REACT_APP_API_URL}/users-data-load/get-user-videos`,
         {
@@ -114,7 +98,6 @@ const UserProfile = observer((props) => {
       setCountSubs(user_stats.data.count_of_subs);
       setCountViews(user_stats.data.count_of_views);
       setUserVideos(user_videos_result.data);
-      // console.log(user_videos_result.data);
       setSignDate(user_result.data.sign_date);
       setChannelDescription(user_description.data.description);
       setIsSubInfoLoad(true);
@@ -136,7 +119,6 @@ const UserProfile = observer((props) => {
       tab_id: 1,
       tab_content: (
         <UserVideos
-          //is_load={props.is_my_profile}
           can_change={props.is_my_profile}
           videos={user_videos}
           is_activated={store.user.isActivated}

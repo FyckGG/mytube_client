@@ -10,7 +10,6 @@ export const VideosInProfile = (props) => {
   // const [editVideoFormActive, setEditVideoFormActive] = React.useState(false);
   const editVideo = (e) => {
     e.preventDefault();
-    console.log(e.target);
     props.activation_edit_form();
   };
   const s1 = props.currentVideoPage ? props.currentVideoPage * 24 : 0;
@@ -20,7 +19,7 @@ export const VideosInProfile = (props) => {
   return (
     <div style={{ textAlign: "center" }}>
       {props.videos.slice(s1, s2).map((video) => (
-        <div className={styles.video_min}>
+        <div className={styles.video_min} key={video.id}>
           <Link
             to={`/watch_video?v=${video.id}`}
             style={{ color: "inherit", textDecoration: "inherit" }}

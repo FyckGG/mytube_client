@@ -35,9 +35,10 @@ export default function BurgerMenu(props) {
       <ul>
         {props.items.map((item, item_index, all_items) =>
           item.href === "" && item.value === "line" ? (
-            <></>
+            <div key={item_index}></div>
           ) : item.for_auth == true ? (
             <Link
+              key={item_index}
               to={item.href}
               className={store.isAuth ? "" : styles.undisabled}
             >
@@ -59,7 +60,7 @@ export default function BurgerMenu(props) {
               </li>
             </Link>
           ) : (
-            <Link to={item.href}>
+            <Link to={item.href} key={item_index}>
               <li
                 className={
                   item_index + 1 < all_items.length &&

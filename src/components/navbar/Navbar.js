@@ -13,11 +13,6 @@ import styles from "./Navbar.module.css";
 const Navbar = observer((props) => {
   const is_log = props.is_log;
   const store = useContext(Context);
-  // useEffect(() => {
-  //   if (localStorage.getItem("token")) {
-  //     store.checkAuth();
-  //   }
-  // }, []);
 
   return (
     <>
@@ -28,7 +23,7 @@ const Navbar = observer((props) => {
           <ul>
             <li style={{ float: "left" }}>
               <Link to={"/"}>
-                <Main_Button>Main Page</Main_Button>
+                <Main_Button>Главная страница</Main_Button>
               </Link>
             </li>
             <li style={{ float: "left" }}>
@@ -49,17 +44,17 @@ const Navbar = observer((props) => {
                 ref={props.acc_button_ref}
               >
                 <Main_Button button_action={props.open_options}>
-                  Account
+                  Аккаунт
                 </Main_Button>
               </li>
             ) : (
               <>
                 <li style={{ float: "right", marginRight: "15px" }}>
-                  <Main_Button button_action={props.log_in}>Log in</Main_Button>
+                  <Main_Button button_action={props.log_in}>Вход</Main_Button>
                 </li>
                 <li style={{ float: "right", paddingRight: "15px" }}>
                   <Main_Button button_action={props.sign_in}>
-                    Sign in
+                    Регистрация
                   </Main_Button>
                 </li>
               </>

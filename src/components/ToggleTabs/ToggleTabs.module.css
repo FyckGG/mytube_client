@@ -4,6 +4,10 @@
   padding: 15px;
 }
 
+.tab_flip {
+  display: inline;
+}
+
 /* .tab_menu {
   margin-right: 10px;
 } */

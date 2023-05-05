@@ -39,7 +39,6 @@ const NewVideoPage = () => {
             current_page: Number(searchParams.get("page")),
           }
         );
-        console.log(results);
         setPageVideos(results.data.videos);
 
         setVideosLength(results.data.videos_length);
