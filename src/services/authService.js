@@ -9,8 +9,6 @@ export default class AuthServices {
   };
 
   static registration = async (email, login, password, img_profile) => {
-    console.log("ure in reg service");
-    console.log(process.env.REACT_APP_API_URL);
     return $api.post(`${process.env.REACT_APP_API_URL}/users/registration`, {
       email: email,
       login: login,
@@ -19,11 +17,11 @@ export default class AuthServices {
     });
   };
 
-  // static upload_avatar = async (avatar) => {
-  //   return $api.post("http://localhost:5000/users/upload-avatar", { avatar });
-  // };
-
   static logout = async () => {
     return $api.post(`${process.env.REACT_APP_API_URL}/users/logout`);
+  };
+
+  static deleteAccount = async () => {
+    return $api.post(`${process.env.REACT_APP_API_URL}/users/delete-user`);
   };
 }

@@ -17,13 +17,13 @@ export const EditProfileForm = observer((props) => {
     props.default_description
   );
   const [isSendingData, setIsSendingData] = React.useState(false);
+  const [isDeletingUser, setIsDeletingUser] = React.useState(false);
   const [error, setError] = React.useState("");
   React.useEffect(() => {
     setDescription(props.default_description);
   }, [props.is_loading]);
   const handleImgChange = (e) => {
     setImgProfile(e);
-    //console.log(e);
   };
 
   const editProfile = async (e) => {
@@ -54,6 +54,13 @@ export const EditProfileForm = observer((props) => {
     navigate(`/profile/${store.user.id}`);
   };
 
+  const delete_profile = async () => {
+    setIsDeletingUser(true);
+    await store.deleteAccount();
+    alert("Ваш аккаунт успешно удалён.");
+    navigate(`/`);
+  };
+
   return (
     <EditForm>
       {props.is_loading ? (
@@ -65,9 +72,7 @@ export const EditProfileForm = observer((props) => {
             <label>
               <div className={styles.img_uploader}>
                 <ImgUploader
-                  //default_img="https://cdn1.iconfinder.com/data/icons/business-company-1/500/image-512.png"
                   default_img={props.default_profile}
-                  // is_parent_active={modalActive}
                   img_change={handleImgChange}
                   button_text="Сменить аватар"
                   height="150px"
@@ -75,10 +80,6 @@ export const EditProfileForm = observer((props) => {
                 />
               </div>
             </label>
-            {/* <label>
-          Логин:
-          <input type={"text"} />
-        </label> */}
             <label>
               Описание канала:
               <textarea
@@ -94,10 +95,12 @@ export const EditProfileForm = observer((props) => {
               />
             </label>
             <div className={styles.error_message}>{error}</div>
-            {isSendingData ? (
+            {isSendingData | isDeletingUser ? (
               <div style={{ display: "inline-block" }}>
                 <Donut
-                  donut_name={"Сохранение изменений"}
+                  donut_name={
+                    isSendingData ? "Сохранение изменений" : "Удаление аккаунта"
+                  }
                   donut_name_size={"20px"}
                   donut_color={"#f3f47b"}
                   donut_size={"40px"}
@@ -120,7 +123,9 @@ export const EditProfileForm = observer((props) => {
                 />
                 <br />
                 <input
-                  onClick={() => {}}
+                  onClick={() => {
+                    delete_profile(store.user.id);
+                  }}
                   className={`${styles.delete_button} ${styles.finish_button}`}
                   type={"button"}
                   value={"Удалить аккаунт"}

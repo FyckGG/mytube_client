@@ -45,7 +45,6 @@ export default class Store {
         password,
         img_profile
       );
-      //console.log(response.data);
       localStorage.setItem("token", response.data.accessToken);
       this.setAuth(true);
       this.setUser(response.data.user);
@@ -74,6 +73,17 @@ export default class Store {
   async logout() {
     try {
       const response = await AuthServices.logout();
+      localStorage.removeItem("token");
+      this.setAuth(false);
+      this.setUser({});
+    } catch (e) {
+      console.log(e.response?.data?.message);
+    }
+  }
+
+  async deleteAccount() {
+    try {
+      const response = await AuthServices.deleteAccount();
       localStorage.removeItem("token");
       this.setAuth(false);
       this.setUser({});
