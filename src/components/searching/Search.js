@@ -11,29 +11,32 @@ export default function Search() {
   const [stringSearch, setStringSearch] = React.useState(
     searchParams.get("params") ? searchParams.get("params") : ""
   );
-  const [stringParams, setStringParams] = React.useState();
+  const [stringParams, setStringParams] = React.useState("");
   const navigate = useNavigate();
-  const search = () => {
-    if (window.location.href.includes("/search-results"))
-      window.location.reload();
-  };
+
   return (
-    <form className={styles.search}>
-      <input
-        type="text"
-        maxLength={50}
-        value={stringSearch}
-        onChange={(e) => {
-          setStringSearch(e.target.value);
-          const str_par_1 = e.target.value.replace(/ /g, "+");
-          const str_par_2 = str_par_1.replace(/#/g, "%23");
-          setStringParams(str_par_2);
-        }}
-        placeholder="Поиск"
-      ></input>
-      <Link to={`/search-results?params=${stringParams}&&page=0`}>
+    <div className={styles.search}>
+      <form>
+        <input
+          type="text"
+          maxLength={50}
+          value={stringSearch}
+          onChange={(e) => {
+            setStringSearch(e.target.value);
+            const str_par_1 = e.target.value.replace(/ /g, "+");
+            const str_par_2 = str_par_1.replace(/#/g, "%23");
+            setStringParams(str_par_2);
+          }}
+          placeholder="Поиск"
+        ></input>
+      </form>
+      {stringParams != "" ? (
+        <Link to={`/search-results?params=${stringParams}&&page=0`}>
+          <Main_Button>Найти</Main_Button>
+        </Link>
+      ) : (
         <Main_Button>Найти</Main_Button>
-      </Link>
-    </form>
+      )}
+    </div>
   );
 }
