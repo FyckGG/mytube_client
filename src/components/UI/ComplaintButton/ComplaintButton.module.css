@@ -1,0 +1,27 @@
+.complaint_button {
+  color: #d9d9d9;
+  background-color: #9bacb2;
+  display: inline;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+.complaint_icon {
+  display: inline;
+}
+
+.complaint_text {
+  display: inline;
+  margin-left: 0.5rem;
+}
+
+.complaint_button:hover {
+  cursor: pointer;
+  color: aliceblue;
+}
+
+@media (max-width: 400px) {
+  .complaint_text {
+    display: none;
+  }
+}
