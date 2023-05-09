@@ -110,11 +110,27 @@ export default class userActions {
 
   static async deleteVideo(video_id) {
     try {
-      console.log("cvfv");
       const result = await UserActionService.deleteVideo(video_id);
       return result;
     } catch (e) {
       throw "Не удалось удалить видео: " + e;
+    }
+  }
+
+  static async sendComplaint(
+    complaint_source,
+    complaint_target,
+    complaint_text
+  ) {
+    try {
+      const result = await UserActionService.sendComplaint(
+        complaint_source,
+        complaint_target,
+        complaint_text
+      );
+      return result;
+    } catch (e) {
+      throw "Не удалось отправить жалобу" + e;
     }
   }
 }
