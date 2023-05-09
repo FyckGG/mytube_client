@@ -3,21 +3,6 @@ import styles from "./BurgerMenu.module.css";
 import { Link } from "react-router-dom";
 import { Context } from "../..";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faL } from "@fortawesome/free-solid-svg-icons";
-
-/* item.href === "" && item.value === "line" ? (
-            <></>
-          ) : item_index + 1 < all_items.length &&
-            all_items[item_index + 1].href === "" &&
-            all_items[item_index + 1].value === "line" ? (
-            <Link to={item.href}>
-              <li className={styles.bottom_border}>{item.value}</li>
-            </Link>
-          ) : (
-            <Link to={item.href}>
-              <li>{item.value}</li>
-            </Link>
-          ) */
 
 export default function BurgerMenu(props) {
   const store = React.useContext(Context);

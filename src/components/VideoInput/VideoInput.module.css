@@ -21,7 +21,20 @@
 
 .video_input_empty_video {
   margin-top: 20px;
-  width: 150px;
+  width: 30%;
   text-align: center;
   border: 4px solid black;
+}
+
+.video_input_video {
+  width: 30%;
+}
+
+@media (max-width: 400px) {
+  .video_input_empty_video {
+    width: 90%;
+  }
+  .video_input_video {
+    width: 90%;
+  }
 }

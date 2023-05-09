@@ -70,13 +70,14 @@ const VideoInput = (props) => {
               ? `${styles.video_input_empty_video} ${styles.video_input_empty_video_drop}`
               : styles.video_input_empty_video
           }
-          style={{ width: "30%", height: height }}
+          // style={{ width: "30%", height: height }}
+          style={{ height: height }}
         >
           <img
             src={upload_video_icon}
             alt="upload_video"
-            height="200px"
-            width="200px"
+            height="200rem"
+            width="200rem"
             className={styles.video_icon}
             style={{ marginTop: height / 6 }}
             onDragEnter={dragStartHandler}
@@ -88,7 +89,6 @@ const VideoInput = (props) => {
       ) : (
         <video
           className={styles.video_input_video}
-          width="30%"
           height={height}
           controls
           src={source}
