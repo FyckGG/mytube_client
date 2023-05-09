@@ -14,11 +14,8 @@
 }
 
 .subs_count {
-  /* display: inline-block; */
-  /* color: #d9d9d9; */
   color: #b4b4b4;
   margin-right: 5px;
-  /* padding: 20px; */
 }
 
 .user_picture {
@@ -34,4 +31,13 @@
   width: 40px;
   height: 40px;
   animation: donut-spin 1.2s linear infinite;
+}
+
+.user_interactions {
+  display: inline;
+}
+
+.complaint_button {
+  display: inline;
+  margin-left: 1rem;
 }

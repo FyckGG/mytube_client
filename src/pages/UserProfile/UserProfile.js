@@ -9,6 +9,8 @@ import { Context } from "../..";
 import { observer } from "mobx-react-lite";
 import UserDataLoad from "../../userDataLoad/userDataLoad";
 import SubscribeButton from "../../components/UI/SubscribeButton/SubscribeButton";
+import ComplaintButton from "components/UI/ComplaintButton/ComplaintButton";
+import ComplaintForm from "components/ComplaintForm/ComplaintForm";
 import EditProfileButton from "../../components/UI/EditProfileButton/EditProfileButton";
 import { Donut_2 } from "../../components/UI/Donut_2/Donut_2";
 import { Link } from "react-router-dom";
@@ -34,6 +36,8 @@ const UserProfile = observer((props) => {
   const [signDate, setSignDate] = useState("");
   const [channelDesciption, setChannelDescription] = useState(""); ///////////////////
 
+  const [complaintForm, setComlaintForm] = useState(false);
+
   const handleCountSubsChange = (e) => {
     if (e) setCountSubs(countSubs + 1);
     else setCountSubs(countSubs - 1);
@@ -41,6 +45,14 @@ const UserProfile = observer((props) => {
 
   const handleSubsStatusChange = (e) => {
     setIsSubs(e);
+  };
+
+  const handleComplaintFormStatusChange = () => {
+    setComlaintForm(!complaintForm);
+  };
+
+  const hideForm = () => {
+    setComlaintForm(false);
   };
 
   useEffect(() => {
@@ -172,13 +184,28 @@ const UserProfile = observer((props) => {
                 {props.is_my_profile || !store.user.id ? (
                   <></>
                 ) : (
-                  <SubscribeButton
-                    is_subs={isSubs}
-                    channel={userId}
-                    subscriber={store.user.id}
-                    count_subs_change={handleCountSubsChange}
-                    subs_status_change={handleSubsStatusChange}
-                  />
+                  <div className={styles.user_interactions}>
+                    <SubscribeButton
+                      is_subs={isSubs}
+                      channel={userId}
+                      subscriber={store.user.id}
+                      count_subs_change={handleCountSubsChange}
+                      subs_status_change={handleSubsStatusChange}
+                    />
+                    <div
+                      className={styles.complaint_button}
+                      onClick={handleComplaintFormStatusChange}
+                    >
+                      <ComplaintButton />
+                    </div>
+                    <ComplaintForm
+                      hide_form={hideForm}
+                      user_id={store.user.id}
+                      channel_id={userId}
+                      modal_active={complaintForm}
+                      set_modal_active={setComlaintForm}
+                    />
+                  </div>
                 )}
               </div>
             ) : (
