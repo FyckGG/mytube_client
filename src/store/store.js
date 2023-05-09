@@ -28,7 +28,6 @@ export default class Store {
   async autorization(em_log, password) {
     try {
       const response = await AuthServices.autorization(em_log, password);
-      console.log(response.data);
       localStorage.setItem("token", response.data.accessToken);
       this.setAuth(true);
       this.setUser(response.data.user);

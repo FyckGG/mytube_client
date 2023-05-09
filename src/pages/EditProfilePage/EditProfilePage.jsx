@@ -5,11 +5,13 @@ import axios from "axios";
 import styles from "./EditProfilePage.module.css";
 import { getLastUrlPart } from "../../otherServices/getLastUrlPart";
 
+import load_photo from "./../../imgs/load_photo.jpg";
+
 export const EditProfilePage = () => {
   const store = React.useContext(Context);
   const [isUserLoading, setIsUserLoading] = React.useState(store.isLoading);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [profileImg, setProfileImg] = React.useState("");
+  const [profileImg, setProfileImg] = React.useState(load_photo);
   const [channelDescription, setChannelDescription] = React.useState("");
 
   React.useEffect(() => {
@@ -27,10 +29,12 @@ export const EditProfilePage = () => {
           `${process.env.REACT_APP_API_URL}/users-data-load/get-channel-description`,
           { user_id: final }
         );
-        setProfileImg(
-          `${process.env.REACT_APP_API_URL}${default_img.data.avatar_dir}${default_img.data.avatar_name}`
-        );
-        setChannelDescription(default_description.data.description);
+        if (default_img.data)
+          setProfileImg(
+            `${process.env.REACT_APP_API_URL}${default_img.data.avatar_dir}${default_img.data.avatar_name}`
+          );
+        if (default_description.data)
+          setChannelDescription(default_description.data.description);
         setIsLoading(false);
       }
       //setIsUserLoading(store.isLoading);

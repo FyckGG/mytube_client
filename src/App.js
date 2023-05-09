@@ -43,6 +43,7 @@ import SubscribtionVideoPage from "./pages/SubscribtionsVideoPage/SubscribtionVi
 import SubjectVideoPage from "./pages/SubjectVideoPage/SubjectVideoPage";
 import NewVideoPage from "./pages/Channel/NewVIdeosPage/NewVideosPage";
 import UserHistoryPage from "./pages/UserHistoryPage/UserHistoryPage";
+import NotFoundPage from "pages/NotFoundPage/NotFoundPage";
 import { WatchLater } from "./pages/WatchLater/WatchLater";
 import { Context } from ".";
 
@@ -270,6 +271,7 @@ function App() {
           <Route path="/history/:id" element={<UserHistoryPage />} />
           <Route path="/new/" element={<NewVideoPage />} />
           <Route path="/" element={<MainPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
     </div>

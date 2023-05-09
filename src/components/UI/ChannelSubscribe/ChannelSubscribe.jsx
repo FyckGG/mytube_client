@@ -5,7 +5,7 @@ import styles from "./ChannelSubscribe.module.css";
 
 export const ChannelSubscribe = (props) => {
   return (
-    <ChannelLink channel_id={props.channel_id}>
+    <ChannelLink user_id={props.user_id} channel_id={props.channel_id}>
       <div className={styles.channel_subscribe}>
         <ProfilePicture
           src={`${process.env.REACT_APP_API_URL}${props.avatar}`}

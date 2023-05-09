@@ -1,4 +1,5 @@
 export const getMostPopularVideos = (videos_arr) => {
+  console.log(videos_arr);
   const watched_videos = videos_arr.filter((video) => video.number_views > 0);
 
   watched_videos.sort(function (a, b) {

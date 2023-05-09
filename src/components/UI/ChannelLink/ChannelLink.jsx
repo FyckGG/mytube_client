@@ -5,7 +5,7 @@ const ChannelLink = ({ children, user_id, channel_id, style }) => {
   return (
     <Link
       to={
-        user_id === channel_id
+        user_id == channel_id
           ? `/profile/${channel_id}`
           : `/channel/${channel_id}`
       }

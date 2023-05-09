@@ -2,13 +2,11 @@ import React from "react";
 import { useState, useEffect, useContext } from "react";
 import ProfilePicture from "../../components/UI/ProfilePicture/ProfilePicture";
 import styles from "./UserProfile.module.css";
-import Main_Button from "../../components/UI/main_button/Main_Button";
 import ToggleTabs from "../../components/ToggleTabs/ToggleTabs";
 import ChannelInformation from "../../components/ChannelInformation/ChannelInformation";
 import UserProfileMainPage from "../UserProfileMainPage/UserProfileMainPage";
 import { Context } from "../..";
 import { observer } from "mobx-react-lite";
-import userActions from "../../userActions/userActions";
 import UserDataLoad from "../../userDataLoad/userDataLoad";
 import SubscribeButton from "../../components/UI/SubscribeButton/SubscribeButton";
 import EditProfileButton from "../../components/UI/EditProfileButton/EditProfileButton";
@@ -53,27 +51,33 @@ const UserProfile = observer((props) => {
       setAvatarLoading(true);
       setVideosLoading(true);
       await store.checkAuth();
-      const user_result = await axios.post(
-        `${process.env.REACT_APP_API_URL}/users-data-load/get-user`,
-        {
+      const user_result = await axios
+        .post(`${process.env.REACT_APP_API_URL}/users-data-load/get-user`, {
           user_id: final,
-        }
-      );
-      setUserName(user_result.data.login);
+        })
+        .catch(function (error) {
+          if (error.response.status == 404);
+          alert("Пользователь недоступен");
+        });
+
+      if (user_result.data) setUserName(user_result.data.login);
+
       const avatar_result = await axios.post(
         `${process.env.REACT_APP_API_URL}/users-data-load/get-avatar`,
         {
           id: final,
         }
       );
-      setAvatar(
-        `${process.env.REACT_APP_API_URL}${avatar_result.data.avatar_dir}${avatar_result.data.avatar_name}`
-      );
-      setAvatarLoading(false);
+      if (avatar_result.data) {
+        setAvatar(
+          `${process.env.REACT_APP_API_URL}${avatar_result.data.avatar_dir}${avatar_result.data.avatar_name}`
+        );
+        setAvatarLoading(false);
+      }
+
       const user_videos_result = await axios.post(
         `${process.env.REACT_APP_API_URL}/users-data-load/get-user-videos`,
         {
-          //user_id: final,
           channel_id: final,
           user_id: store.user.id,
         }
@@ -95,11 +99,17 @@ const UserProfile = observer((props) => {
         { user_id: final }
       );
 
-      setCountSubs(user_stats.data.count_of_subs);
-      setCountViews(user_stats.data.count_of_views);
+      if (user_stats.data) {
+        setCountSubs(user_stats.data.count_of_subs);
+        setCountViews(user_stats.data.count_of_views);
+      }
       setUserVideos(user_videos_result.data);
-      setSignDate(user_result.data.sign_date);
-      setChannelDescription(user_description.data.description);
+
+      if (user_result.data) setSignDate(user_result.data.sign_date);
+
+      if (user_description.data)
+        setChannelDescription(user_description.data.description);
+
       setIsSubInfoLoad(true);
       setVideosLoading(false);
     };

@@ -24,7 +24,6 @@ export const EditVideoPage = observer(() => {
           searchParams.get("v"),
           store.user.id
         );
-        //console.log(video_data);
         setVideoName(video_data.data.name);
         setVideoDescription(video_data.data.description);
         setVideoAccess(video_data.data.access_type);

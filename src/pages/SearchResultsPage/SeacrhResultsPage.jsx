@@ -71,7 +71,10 @@ const SeacrhResultsPage = () => {
           )}
           <div>
             {currentPage == 0 ? (
-              <ChannelSubscribeList list={filteredChannels} />
+              <ChannelSubscribeList
+                list={filteredChannels}
+                user={store.user.id}
+              />
             ) : (
               <></>
             )}

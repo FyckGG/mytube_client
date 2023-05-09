@@ -19,6 +19,7 @@ import ChannelLink from "../../components/UI/ChannelLink/ChannelLink";
 import userActions from "../../userActions/userActions";
 import convertCount from "./../../otherServices/ConvertCount";
 import UserDataChange from "../../userDataChange/userDataChange";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const WatchVideo = observer(() => {
   const store = React.useContext(Context);
@@ -58,7 +59,7 @@ const WatchVideo = observer(() => {
 
   const handleLikeChange = async () => {
     if (isLike) {
-      const delete_like = await VideoStatsService.deleteMark(
+      await VideoStatsService.deleteMark(
         searchParams.get("v"),
         store.user.id,
         true
@@ -66,7 +67,7 @@ const WatchVideo = observer(() => {
       setCountLike(countLike - 1);
     } else {
       if (isDislike) {
-        const delete_dislike = await VideoStatsService.deleteMark(
+        await VideoStatsService.deleteMark(
           searchParams.get("v"),
           store.user.id,
           false
@@ -74,7 +75,7 @@ const WatchVideo = observer(() => {
         setIsDislike(!isDislike);
         setCountDislike(countDislike - 1);
       }
-      const add_like = await VideoStatsService.addMark(
+      await VideoStatsService.addMark(
         searchParams.get("v"),
         store.user.id,
         true
@@ -86,7 +87,7 @@ const WatchVideo = observer(() => {
 
   const handleDislikeChange = async () => {
     if (isDislike) {
-      const delete_dislike = await VideoStatsService.deleteMark(
+      await VideoStatsService.deleteMark(
         searchParams.get("v"),
         store.user.id,
         false
@@ -94,7 +95,7 @@ const WatchVideo = observer(() => {
       setCountDislike(countDislike - 1);
     } else {
       if (isLike) {
-        const delete_like = await VideoStatsService.deleteMark(
+        await VideoStatsService.deleteMark(
           searchParams.get("v"),
           store.user.id,
           true
@@ -102,7 +103,7 @@ const WatchVideo = observer(() => {
         setIsLike(!isLike);
         setCountLike(countLike - 1);
       }
-      const add_dislike = await VideoStatsService.addMark(
+      await VideoStatsService.addMark(
         searchParams.get("v"),
         store.user.id,
         false
@@ -140,7 +141,7 @@ const WatchVideo = observer(() => {
   };
 
   const deleteComment = async (id) => {
-    const delete_result = await userActions.deleteComment(id);
+    await userActions.deleteComment(id);
     setCommentList(commentList.filter((comment) => comment.comment_id != id));
     setCountComments(countComments - 1);
   };
@@ -198,13 +199,15 @@ const WatchVideo = observer(() => {
   React.useEffect(() => {
     const getVideo = async () => {
       setPageLoading(true);
-      const video = await axios.post(
-        `${process.env.REACT_APP_API_URL}/user-action/load-watch-video`,
-        {
+      const video = await axios
+        .post(`${process.env.REACT_APP_API_URL}/user-action/load-watch-video`, {
           video_id: searchParams.get("v"),
           user_id: store.user.id,
-        }
-      );
+        })
+        .catch(function (error) {
+          if (error.response.status == 404);
+          alert("Видео недоступно");
+        });
 
       setVideoPath(video.data.video.video_directory);
       setVideoName(video.data.video.video_name);
@@ -231,9 +234,11 @@ const WatchVideo = observer(() => {
             video_id: searchParams.get("v"),
           }
         );
-        setIsSubs(channel_status.data.subs_status);
-        setChannelId(channel_status.data.channel);
-        setIsSubsStatusLoading(false);
+        if (channel_status.data) {
+          setIsSubs(channel_status.data.subs_status);
+          setChannelId(channel_status.data.channel);
+          setIsSubsStatusLoading(false);
+        }
       }
       setTimeout(() => setIsUserLoading(store.isLoading), 1000);
     };
