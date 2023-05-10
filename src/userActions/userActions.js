@@ -133,4 +133,21 @@ export default class userActions {
       throw "Не удалось отправить жалобу" + e;
     }
   }
+
+  static async sendVideoComplaint(
+    complaint_source,
+    complaint_target,
+    complaint_text
+  ) {
+    try {
+      const result = await UserActionService.sendVideoComplaint(
+        complaint_source,
+        complaint_target,
+        complaint_text
+      );
+      return result;
+    } catch (e) {
+      throw "Не удалось отправить жалобу" + e;
+    }
+  }
 }

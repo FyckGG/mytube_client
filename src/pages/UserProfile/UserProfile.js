@@ -36,7 +36,7 @@ const UserProfile = observer((props) => {
   const [signDate, setSignDate] = useState("");
   const [channelDesciption, setChannelDescription] = useState(""); ///////////////////
 
-  const [complaintForm, setComlaintForm] = useState(false);
+  const [complaintForm, setComplaintForm] = useState(false);
 
   const handleCountSubsChange = (e) => {
     if (e) setCountSubs(countSubs + 1);
@@ -48,11 +48,11 @@ const UserProfile = observer((props) => {
   };
 
   const handleComplaintFormStatusChange = () => {
-    setComlaintForm(!complaintForm);
+    setComplaintForm(!complaintForm);
   };
 
   const hideForm = () => {
-    setComlaintForm(false);
+    setComplaintForm(false);
   };
 
   useEffect(() => {
@@ -201,9 +201,10 @@ const UserProfile = observer((props) => {
                     <ComplaintForm
                       hide_form={hideForm}
                       user_id={store.user.id}
-                      channel_id={userId}
+                      target_id={userId}
+                      target_type={"user"}
                       modal_active={complaintForm}
-                      set_modal_active={setComlaintForm}
+                      set_modal_active={setComplaintForm}
                     />
                   </div>
                 )}

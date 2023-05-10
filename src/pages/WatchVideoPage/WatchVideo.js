@@ -19,7 +19,8 @@ import ChannelLink from "../../components/UI/ChannelLink/ChannelLink";
 import userActions from "../../userActions/userActions";
 import convertCount from "./../../otherServices/ConvertCount";
 import UserDataChange from "../../userDataChange/userDataChange";
-import { useNavigate, useLocation } from "react-router-dom";
+import ComplaintButton from "components/UI/ComplaintButton/ComplaintButton";
+import ComplaintForm from "components/ComplaintForm/ComplaintForm";
 
 const WatchVideo = observer(() => {
   const store = React.useContext(Context);
@@ -56,6 +57,16 @@ const WatchVideo = observer(() => {
   const [isDislike, setIsDislike] = React.useState(false);
   const [commentForm, setCommentForm] = React.useState(false);
   const [commentText, setCommentText] = React.useState("");
+
+  const [complaintForm, setComplaintForm] = React.useState(false);
+
+  const handleComplaintFormStatusChange = () => {
+    setComplaintForm(!complaintForm);
+  };
+
+  const hideForm = () => {
+    setComplaintForm(false);
+  };
 
   const handleLikeChange = async () => {
     if (isLike) {
@@ -312,23 +323,39 @@ const WatchVideo = observer(() => {
           >
             <h1 className={styles.video_name}>{videoName}</h1>
             <div className={styles.video_stat}>
-              <h2 className={styles.views_count}>
+              <div className={styles.views_count}>
                 Количество просмотров: {convertCount(countViews)}
-              </h2>
-              {isVideoMarkLoading ? (
-                <></>
-              ) : (
-                <div className={styles.like_dislike_panel}>
-                  <LikeDislikePanel
-                    likes={convertCount(countLike)}
-                    dislikes={convertCount(countDislike)}
-                    is_like_active={isLike}
-                    is_dislike_active={isDislike}
-                    onLike={handleLikeChange}
-                    onDislike={handleDislikeChange}
-                  />
-                </div>
-              )}
+              </div>
+              <div className={styles.video_reaction}>
+                {isVideoMarkLoading ? (
+                  <></>
+                ) : (
+                  <div className={styles.like_dislike_panel}>
+                    <LikeDislikePanel
+                      likes={convertCount(countLike)}
+                      dislikes={convertCount(countDislike)}
+                      is_like_active={isLike}
+                      is_dislike_active={isDislike}
+                      onLike={handleLikeChange}
+                      onDislike={handleDislikeChange}
+                    />
+                  </div>
+                )}
+
+                {store.user.login == channelName ||
+                pageLoading ||
+                localStorage.getItem("token") == null ||
+                isSubsStatusLoading ? (
+                  <></>
+                ) : (
+                  <div
+                    className={styles.complaint_button}
+                    onClick={handleComplaintFormStatusChange}
+                  >
+                    <ComplaintButton />
+                  </div>
+                )}
+              </div>
             </div>
 
             <div className={styles.channel_picture}>
@@ -359,15 +386,25 @@ const WatchVideo = observer(() => {
             isSubsStatusLoading ? (
               <></>
             ) : (
-              <div className={styles.subscribe_button}>
-                <SubscribeButton
-                  is_subs={isSubs}
-                  channel={channelId}
-                  subscriber={store.user.id}
-                  count_subs_change={handleCountSubsChange}
-                  subs_status_change={handleSubsStatusChange}
+              <>
+                <div className={styles.subscribe_button}>
+                  <SubscribeButton
+                    is_subs={isSubs}
+                    channel={channelId}
+                    subscriber={store.user.id}
+                    count_subs_change={handleCountSubsChange}
+                    subs_status_change={handleSubsStatusChange}
+                  />
+                </div>
+                <ComplaintForm
+                  hide_form={hideForm}
+                  user_id={store.user.id}
+                  target_id={searchParams.get("v")}
+                  target_type={"video"}
+                  modal_active={complaintForm}
+                  set_modal_active={setComplaintForm}
                 />
-              </div>
+              </>
             )}
           </div>
           <div className={styles.video_description}>

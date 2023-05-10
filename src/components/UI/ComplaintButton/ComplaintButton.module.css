@@ -1,6 +1,6 @@
 .complaint_button {
-  color: #d9d9d9;
-  background-color: #9bacb2;
+  color: aliceblue;
+  background-color: #a1bbc4;
   display: inline;
   padding: 0.5rem;
   border-radius: 5px;
@@ -17,7 +17,7 @@
 
 .complaint_button:hover {
   cursor: pointer;
-  color: aliceblue;
+  background-color: #91b0ba;
 }
 
 @media (max-width: 400px) {

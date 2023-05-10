@@ -9,7 +9,18 @@ const ComplaintForm = (props) => {
   async function sendComplaint(e) {
     e.preventDefault();
     setIsComplaintSending(true);
-    await userActions.sendComplaint(props.user_id, props.channel_id, complaint);
+    if (props.target_type == "user")
+      await userActions.sendComplaint(
+        props.user_id,
+        props.target_id,
+        complaint
+      );
+    else
+      await userActions.sendVideoComplaint(
+        props.user_id,
+        props.target_id,
+        complaint
+      );
     alert(
       "Жалоба получена. После её рассмотрения мы отправим письмо на Вашу почту"
     );
@@ -29,7 +40,11 @@ const ComplaintForm = (props) => {
         </h1>
         <form className={styles.complaint_form} onSubmit={sendComplaint}>
           <label for="complaint">
-            <div style={{ color: "#f3f47b" }}>Укажите причину жалобы:</div>
+            <div style={{ color: "#f3f47b" }}>
+              {props.target_type == "user"
+                ? "Укажите причину жалобы на пользователя"
+                : "Укажите причину жалобы на видео"}
+            </div>
 
             <br />
             <textarea

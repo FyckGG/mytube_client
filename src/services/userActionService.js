@@ -121,4 +121,19 @@ export default class UserActionService {
       }
     );
   };
+
+  static sendVideoComplaint = async (
+    complaint_source,
+    complaint_target,
+    complaint_text
+  ) => {
+    return $api.post(
+      `${process.env.REACT_APP_API_URL}/user-action/send-video-complaint`,
+      {
+        complaint_source: complaint_source,
+        complaint_target: complaint_target,
+        complaint_text: complaint_text,
+      }
+    );
+  };
 }

@@ -3,7 +3,8 @@
 }
 
 .video_stat {
-  display: block;
+  display: flex;
+  flex-direction: column;
   float: right;
 }
 
@@ -19,11 +20,21 @@
   display: flex;
   color: #d9d9d9;
   float: right;
-  margin-right: 5vw;
+  font-size: 1.5rem;
+  margin-right: 2rem;
+}
+
+.video_reaction {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 2rem;
 }
 
 .like_dislike_panel {
-  margin-right: 2vw;
+}
+
+.complaint_button {
+  margin-top: 0.7rem;
 }
 
 .channel_picture {
@@ -40,6 +51,10 @@
   color: #d9d9d9;
 }
 
+.count_subs {
+  font-size: 1rem;
+}
+
 .channel_name:hover {
   text-shadow: 2px 2px #616d71;
 }
@@ -51,7 +66,7 @@
 
 .count_subs {
   display: flex;
-  font-size: 15px;
+  font-size: 1rem;
   color: #d9d9d9;
 }
 
@@ -74,4 +89,17 @@
 
 .donut_panel {
   display: flex;
+}
+
+@media (max-width: 400px) {
+  .channel_info {
+    display: block;
+    margin-left: 1rem;
+  }
+  .count_subs {
+    font-size: 1rem;
+  }
+  .channel_name {
+    font-size: 1rem;
+  }
 }

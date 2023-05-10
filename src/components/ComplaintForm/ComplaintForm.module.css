@@ -19,3 +19,9 @@
   cursor: pointer;
   background-color: #c7c866;
 }
+
+@media (max-width: 400px) {
+  .complaint_text {
+    font-size: 0.4rem;
+  }
+}
